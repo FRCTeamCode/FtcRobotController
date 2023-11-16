@@ -11,10 +11,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.command.AlignAprilTag;
+import org.firstinspires.ftc.teamcode.command.ArmControl;
 import org.firstinspires.ftc.teamcode.command.FlyWheel;
 import org.firstinspires.ftc.teamcode.command.MovePosition;
 import org.firstinspires.ftc.teamcode.command.TeleopDrive;
 import org.firstinspires.ftc.teamcode.drive.DrivePose;
+import org.firstinspires.ftc.teamcode.subsystem.Arm;
 import org.firstinspires.ftc.teamcode.subsystem.MyCamera;
 import org.firstinspires.ftc.teamcode.subsystem.TestMotor;
 
@@ -30,17 +32,20 @@ public class MyTeleOp extends CommandOpMode {
         drive.setDefaultCommand(new TeleopDrive(drive, gamepad1));
 
         TestMotor shooter = new TestMotor(hardwareMap, dashboardTelemetry);
+        Arm arm  = new Arm(hardwareMap, dashboardTelemetry);
 //        schedule(new CameraStream(myCamera, gamepad1));
 
         Button a = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);
-        a.whileHeld(new FlyWheel(shooter, 500.0));
+        a.whenPressed(new ArmControl(arm, 1.0));
         Button b = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.B);
-        b.whileHeld(new FlyWheel(shooter, 1000.0));
-
+        b.whenPressed(new ArmControl(arm, 0.0));
         Button x = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.X);
-        x.whenPressed(new MovePosition(shooter,100));
-        Button y = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.Y);
-        y.whenPressed(new MovePosition(shooter,800));
+        x.whenPressed(new ArmControl(arm, 2.0));
+
+//        Button x = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.X);
+//        x.whenPressed(new MovePosition(shooter,100));
+//        Button y = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.Y);
+//        y.whenPressed(new MovePosition(shooter,800));
 
         Button lb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.LEFT_BUMPER);
         lb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 1, 10.0, 5.0, 0.0));
