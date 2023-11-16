@@ -6,8 +6,8 @@ import org.firstinspires.ftc.teamcode.subsystem.Arm;
 
 public class ArmControl extends CommandBase {
     private Arm mArm;
-    private  double mRotatePos;
-    public ArmControl(Arm arm, double rotatePos) {
+    private  int mRotatePos;
+    public ArmControl(Arm arm, int rotatePos) {
         mArm = arm;
         mRotatePos = rotatePos;
         addRequirements(mArm);
@@ -15,27 +15,21 @@ public class ArmControl extends CommandBase {
 
     @Override
     public void initialize() {
-        if (mRotatePos==1.0) {
-            mArm.open();
-            mArm.openClaw();
-        } else if (mRotatePos==2.0) {
-            mArm.looseClaw();
-        } else {
-            mArm.close();
-            mArm.closeClaw();
-        }
+        mArm.setArmPos(mRotatePos);
     }
 
     @Override
     public void execute() {
+        mArm.setSpeed(0.35);
     }
 
     @Override
     public void end(boolean interrupted) {
+        mArm.stopMotor();
     }
 
     @Override
     public boolean isFinished() {
-        return true;
+        return false;
     }
 }

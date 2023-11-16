@@ -12,13 +12,17 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.command.AlignAprilTag;
 import org.firstinspires.ftc.teamcode.command.ArmControl;
-import org.firstinspires.ftc.teamcode.command.FlyWheel;
-import org.firstinspires.ftc.teamcode.command.MovePosition;
+import org.firstinspires.ftc.teamcode.command.ClawControl;
+import org.firstinspires.ftc.teamcode.command.IntakeControl;
+import org.firstinspires.ftc.teamcode.command.PixelHold;
+import org.firstinspires.ftc.teamcode.command.PixelIntake;
+import org.firstinspires.ftc.teamcode.command.PixelPut;
 import org.firstinspires.ftc.teamcode.command.TeleopDrive;
 import org.firstinspires.ftc.teamcode.drive.DrivePose;
 import org.firstinspires.ftc.teamcode.subsystem.Arm;
+import org.firstinspires.ftc.teamcode.subsystem.Claw;
+import org.firstinspires.ftc.teamcode.subsystem.Intake;
 import org.firstinspires.ftc.teamcode.subsystem.MyCamera;
-import org.firstinspires.ftc.teamcode.subsystem.TestMotor;
 
 @TeleOp
 public class MyTeleOp extends CommandOpMode {
@@ -31,16 +35,26 @@ public class MyTeleOp extends CommandOpMode {
         DrivePose drive = new DrivePose(hardwareMap, dashboardTelemetry);
         drive.setDefaultCommand(new TeleopDrive(drive, gamepad1));
 
-        TestMotor shooter = new TestMotor(hardwareMap, dashboardTelemetry);
+//        TestMotor shooter = new TestMotor(hardwareMap, dashboardTelemetry);
         Arm arm  = new Arm(hardwareMap, dashboardTelemetry);
+        Claw claw  = new Claw(hardwareMap, dashboardTelemetry);
+        Intake intake  = new Intake(hardwareMap, dashboardTelemetry);
 //        schedule(new CameraStream(myCamera, gamepad1));
 
         Button a = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);
-        a.whenPressed(new ArmControl(arm, 1.0));
+        a.whenPressed(new PixelIntake(arm, claw, intake));
         Button b = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.B);
-        b.whenPressed(new ArmControl(arm, 0.0));
+        b.whenPressed(new PixelHold(arm, claw, intake));
         Button x = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.X);
-        x.whenPressed(new ArmControl(arm, 2.0));
+        x.whenPressed(new PixelPut(arm, claw, intake));
+
+        Button dl = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_LEFT);
+        dl.whenPressed(new IntakeControl(intake,2.0));
+        Button dr = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_RIGHT);
+        dr.whenPressed(new IntakeControl(intake,1.0));
+
+//        Button y = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.Y);
+//        y.whenPressed(new PixelIntake(arm, claw));
 
 //        Button x = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.X);
 //        x.whenPressed(new MovePosition(shooter,100));
