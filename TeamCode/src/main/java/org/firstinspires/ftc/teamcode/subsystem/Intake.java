@@ -9,7 +9,7 @@ public class Intake extends SubsystemBase {
     public Servo intakeServo;
     private final Telemetry telemetry;
     public static double closeIntake = 0.22;
-    public static double looseIntake = 0.27;
+    public static double looseIntake = 0.272;
     public static double openIntake = 0.4;
 
     public Intake(HardwareMap hardwareMap, Telemetry telemetry) {
