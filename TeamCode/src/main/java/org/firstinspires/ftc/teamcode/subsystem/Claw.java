@@ -8,9 +8,9 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Claw extends SubsystemBase {
     public Servo clawServo;
     private final Telemetry telemetry;
-    public static double lowClaw = 0.2;
-    public static double middleClaw = 0.3;
-    public static double highClaw = 0.5;
+    public static double lowClaw = 0.315;
+    public static double middleClaw = 0.382;
+    public static double highClaw = 0.4;
 
     public Claw(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
@@ -20,7 +20,7 @@ public class Claw extends SubsystemBase {
 
     @Override
     public void periodic() {
-        telemetry.addData("IntakeServo", clawServo.getPosition());
+        telemetry.addData("ClawServo", clawServo.getPosition());
     }
 
     public void lowClaw() {

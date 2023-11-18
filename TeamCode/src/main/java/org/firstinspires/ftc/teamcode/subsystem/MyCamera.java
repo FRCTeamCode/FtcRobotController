@@ -212,12 +212,12 @@ public class MyCamera extends SubsystemBase {
     }
 
     public double[] getAprilTagIDData(int id) {//TO-DO fix
-        double[] info = new double[4];
-        if (currentDetections()!=null) {
-            List<AprilTagDetection> detection = currentDetections();
-            for (int i = 0; i < detection.size(); i++) {
-                if (detection.get(i) != null) {
-                    if (id == detection.get(i).id) {
+        double[] info = {-1.0, -1.0, -1.0, -1.0};
+        if (id == 0) {
+            if (currentDetections()!=null) {
+                List<AprilTagDetection> detection = currentDetections();
+                for (int i = 0; i < detection.size(); i++) {
+                    if (detection.get(i) != null) {
                         info[0] = id;
                         if (detection.get(i).ftcPose != null) {
                             info[1] = detection.get(i).ftcPose.y;//forward-backward
@@ -225,6 +225,23 @@ public class MyCamera extends SubsystemBase {
                             info[3] = detection.get(i).ftcPose.roll;//rotate
                         }
                         break;
+                    }
+                }
+            }
+        } else  {
+            if (currentDetections()!=null) {
+                List<AprilTagDetection> detection = currentDetections();
+                for (int i = 0; i < detection.size(); i++) {
+                    if (detection.get(i) != null) {
+                        if (id == detection.get(i).id) {
+                            info[0] = id;
+                            if (detection.get(i).ftcPose != null) {
+                                info[1] = detection.get(i).ftcPose.y;//forward-backward
+                                info[2] = detection.get(i).ftcPose.x;//left-right
+                                info[3] = detection.get(i).ftcPose.roll;//rotate
+                            }
+                            break;
+                        }
                     }
                 }
             }

@@ -16,16 +16,18 @@ public class Arm extends SubsystemBase {
         armMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         armMotor.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armMotor.motor.setDirection(DcMotor.Direction.REVERSE);//REVERSE:1000->3000 arm up
-        configPosition();
+        armMotor.resetEncoder();
+        configPosition();//Pos:0-hold, 60-intake, 900-put
     }
     public void configPosition() {
         armMotor.setRunMode(Motor.RunMode.PositionControl);
-        armMotor.setPositionCoefficient(0.012);
-        armMotor.setPositionTolerance(5.0);
+        armMotor.setPositionCoefficient(0.013);
+        armMotor.setPositionTolerance(2.0);
     }
 
     @Override
     public void periodic() {
+        setSpeed(0.13);
         telemetry.addData("ArmPos", armMotor.getCurrentPosition());
     }
     public void setSpeed(double speed) {

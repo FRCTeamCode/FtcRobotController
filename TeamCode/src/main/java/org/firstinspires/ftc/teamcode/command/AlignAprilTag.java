@@ -44,11 +44,20 @@ public class AlignAprilTag extends CommandBase {
 
     @Override
     public void execute() {
-        tag = myCamera.getAprilTagIDData(id);
-        if (tag[0] == id) {
-            isHasTarget = true;
+        if (id == 0) {
+            tag = myCamera.getAprilTagIDData(0);
+            if (tag[0] != -1.0) {
+                isHasTarget = true;
+            } else {
+                isHasTarget = false;
+            }
         } else {
-            isHasTarget = false;
+            tag = myCamera.getAprilTagIDData(id);
+            if (tag[0] == id) {
+                isHasTarget = true;
+            } else {
+                isHasTarget = false;
+            }
         }
         if (isHasTarget) {
             invalidNo = 0;
@@ -72,12 +81,12 @@ public class AlignAprilTag extends CommandBase {
             drive.driveJoy(-(strafeVal * 0.5 + strafeFriction), //forward and backward
                            -(translationVal * 0.5 + translationFriction), //left and right
                             (rotationVal * 0.5 + rotationFriction)); //rotate left and right
-            //Rotate drive use rear camera track Tag
+            //Red Rotate drive use rear camera track Tag
 //            drive.driveJoy(
 //                    -(translationVal * 0.5 + translationFriction), //left and right
 //                    (strafeVal * 0.5 + strafeFriction), //forward and backward
 //                    (rotationVal * 0.5 + rotationFriction)); //rotate left and right
-            tolerance = (Math.abs(strafeVal) < 0.02) && (Math.abs(translationVal) < 0.035) && (Math.abs(rotationVal) < 0.025);
+            tolerance = (Math.abs(strafeVal) < 0.02) && (Math.abs(translationVal) < 0.035) && (Math.abs(rotationVal) < 0.02);
 
             telemetry.addData("Error1", strafeVal);
             telemetry.addData("Error2", translationVal);
@@ -89,7 +98,7 @@ public class AlignAprilTag extends CommandBase {
             runNo++;
             if (runNo%10==0) {
                 runNo = 0;
-                if ((Math.abs(strafeVal) < 0.09) && (Math.abs(translationVal) < 0.15) && (Math.abs(rotationVal) < 0.06)) {
+                if ((Math.abs(strafeVal) < 0.07) && (Math.abs(translationVal) < 0.1) && (Math.abs(rotationVal) < 0.07)) {
                     if (Math.abs(rollAverX.getAverage() - lastX)<0.03&&Math.abs(rollAverY.getAverage() - lastY)<0.03) {
                          standStill= true;
                     }

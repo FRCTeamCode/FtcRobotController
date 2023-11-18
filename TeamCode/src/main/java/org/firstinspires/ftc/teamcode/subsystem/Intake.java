@@ -8,8 +8,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Intake extends SubsystemBase {
     public Servo intakeServo;
     private final Telemetry telemetry;
-    public static double closeIntake = 0.23;
-    public static double looseIntake = 0.26;
+    public static double closeIntake = 0.22;
+    public static double looseIntake = 0.27;
     public static double openIntake = 0.4;
 
     public Intake(HardwareMap hardwareMap, Telemetry telemetry) {
@@ -20,7 +20,7 @@ public class Intake extends SubsystemBase {
 
     @Override
     public void periodic() {
-        telemetry.addData("ClawServo", intakeServo.getPosition());
+        telemetry.addData("IntakeServo", intakeServo.getPosition());
     }
 
     public void openIntake() {

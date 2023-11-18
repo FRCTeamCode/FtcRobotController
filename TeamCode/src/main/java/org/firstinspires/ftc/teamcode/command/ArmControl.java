@@ -20,16 +20,16 @@ public class ArmControl extends CommandBase {
 
     @Override
     public void execute() {
-        mArm.setSpeed(0.35);
+//        mArm.setSpeed(0.13);
     }
 
     @Override
     public void end(boolean interrupted) {
-        mArm.stopMotor();
+//        mArm.stopMotor();
     }
 
     @Override
     public boolean isFinished() {
-        return false;
+        return true;
     }
 }

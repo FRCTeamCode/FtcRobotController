@@ -8,17 +8,13 @@ import org.firstinspires.ftc.teamcode.subsystem.Arm;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
 
-public class PixelHold extends SequentialCommandGroup {
-
-    public PixelHold(Arm arm, Claw claw, Intake intake) {
+public class PixelRelease extends SequentialCommandGroup {
+    public PixelRelease(Intake intake) {
         addCommands(
-                new ParallelCommandGroup(
-                        new ClawControl(claw, 2.0),
-                        new IntakeControl(intake, 3.0)
-                ),
+                new IntakeControl(intake, 2.0),
                 new WaitCommand(500),
-                new ArmControl(arm, 6)
+                new IntakeControl(intake, 1.0)
         );
-        addRequirements(arm, claw, intake);
+        addRequirements(intake);
     }
 }
