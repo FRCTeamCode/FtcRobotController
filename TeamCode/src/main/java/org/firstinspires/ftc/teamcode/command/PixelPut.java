@@ -16,9 +16,9 @@ public class PixelPut extends SequentialCommandGroup {
                 new ArmControl(arm, 400),
                 new WaitCommand(200),
                 new ClawControl(claw, 3.0),
-                new ArmControl(arm, 820),
+                new ArmControl(arm, 850),
                 new WaitCommand(300),
-                new ArmControl(arm, 880)
+                new ArmControl(arm, 915)
         );
         addRequirements(arm, claw, intake);
     }

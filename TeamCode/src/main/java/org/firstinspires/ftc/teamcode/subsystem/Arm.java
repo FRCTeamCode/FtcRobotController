@@ -27,7 +27,7 @@ public class Arm extends SubsystemBase {
 
     @Override
     public void periodic() {
-        setSpeed(0.13);
+        setSpeed(0.14);
         telemetry.addData("ArmPos", armMotor.getCurrentPosition());
     }
     public void setSpeed(double speed) {
