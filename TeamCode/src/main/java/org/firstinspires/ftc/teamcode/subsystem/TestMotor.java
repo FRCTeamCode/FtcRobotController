@@ -25,7 +25,7 @@ public class TestMotor extends SubsystemBase {
 
     public TestMotor(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
-        testMotor = new Motor(hardwareMap, "hdHexMotor");
+        testMotor = new Motor(hardwareMap, "climb");
         testMotor.motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         testMotor.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         mLoadUserDefault();

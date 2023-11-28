@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.command;
 
 import com.arcrobotics.ftclib.command.CommandBase;
+import com.arcrobotics.ftclib.util.MathUtils;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -32,9 +33,19 @@ public class TeleopDrive  extends CommandBase {
 //        mDrive.mecanumCentricDrive(mGamepad.left_stick_x * driveKp
 //                                 , mGamepad.left_stick_y * driveKp
 //                                 , mGamepad.right_stick_x * driveKp, false);
-        mDrive.driveJoy(mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.65),
-                mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.65),
-                mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.65));
+//        mDrive.driveJoy(mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
+//                mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
+//                mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.5);
+//        if (Math.abs(mGamepad.right_trigger) < 0.5) {
+//            mDrive.driveField(-mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
+//                    mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
+//                    mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.5);
+//        } else{
+            mDrive.mecanumCentricDrive(-mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
+                -mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
+                -mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.5, 1.0);
+//        }
+
 //        mDrive.driveJoy(-mGamepad.left_stick_y, mGamepad.left_stick_x, mGamepad.right_stick_x);//normal drive
 
 //        mDrive.driveField(mGamepad.left_stick_y, mGamepad.left_stick_x, mGamepad.right_stick_x);

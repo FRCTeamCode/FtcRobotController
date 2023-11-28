@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.drive;
 
 import androidx.annotation.NonNull;
 import com.acmerobotics.roadrunner.control.PIDCoefficients;
+import com.acmerobotics.roadrunner.drive.DriveSignal;
 import com.acmerobotics.roadrunner.drive.MecanumDrive;
 import com.acmerobotics.roadrunner.followers.HolonomicPIDVAFollower;
 import com.acmerobotics.roadrunner.followers.TrajectoryFollower;
@@ -163,7 +164,7 @@ public class SampleMecanumFaster extends MecanumDrive {
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
         // TODO: if desired, use setLocalizer() to change the localization method
         sTWLoclizer = new StandardTrackingWheelLocalizer(hardwareMap);
-//        setLocalizer(sTWLoclizer);
+        setLocalizer(sTWLoclizer);
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
     }
@@ -193,28 +194,38 @@ public class SampleMecanumFaster extends MecanumDrive {
         double transFriction = Math.abs(yError) < 0.02 ? 0.0 : Math.signum(translationVal) * 0.055;
         //move rotate ---------------------------------------------------------//
 //        zError = tWheelPos.get(0)-tWheelPos.get(1);
-        zError = -Math.toDegrees(getRawExternalHeading());
+        zError = Math.toDegrees(getRawExternalHeading());
         double rotationVal = MathUtils.clamp(zError * 0.05, -0.1, 0.1);
         double rotationFriction = Math.abs(zError) < 0.02 ? 0.0 : Math.signum(rotationVal) * 0.03;
         if (runTime < timeout) {
-            setWeightedDrivePower(
-                    new Pose2d(
-                            strafeVal + strafeFriction,
-                            translationVal + transFriction,
-                            rotationVal + rotationFriction
-                    )
+//            updateRobotDrive(
+//                    -strafeVal + strafeFriction,
+//                    translationVal + transFriction,
+//                    rotationVal + rotationFriction,
+//                    1.0
+//            );
+            updateRobotDrive(
+                    -strafeVal - strafeFriction,
+                    translationVal + transFriction,
+                    rotationVal + rotationFriction,
+                    1.0
             );
+//            setWeightedDrivePower(
+//                    new Pose2d(
+//                            strafeVal + strafeFriction,
+//                            translationVal + transFriction,
+//                            rotationVal + rotationFriction
+//                    )
+//            );
         } else {
-            setWeightedDrivePower(new Pose2d(0.0, 0.0, 0.0));
+            updateRobotDrive(0.0,0.0,0.0,0.0);
+//            setWeightedDrivePower(new Pose2d(0.0, 0.0, 0.0));
         }
         tolerance = runTime > 100 && (Math.abs(strafeVal) < 0.01) && (Math.abs(translationVal) < 0.02) && (Math.abs(rotationVal) < 0.015);
         telemetry.addData("Error1", strafeVal);
         telemetry.addData("Error2", translationVal);
         telemetry.addData("Error3", rotationVal);
         telemetry.addData("Runtime", runTime);
-        telemetry.addData("LeftEnc1", tWheelPos.get(0));
-        telemetry.addData("LeftEnc2", tWheelPos.get(1));
-        telemetry.addData("LeftEnc3", tWheelPos.get(2));
     }
 
     public boolean isEndAutoMove() {
@@ -269,15 +280,18 @@ public class SampleMecanumFaster extends MecanumDrive {
     }
 
     public void update() {
-//        updatePoseEstimate();
-//        Pose2d poseEstimate = getPoseEstimate();
-//        telemetry.addData("TWLPoseX", poseEstimate.getX());
-//        telemetry.addData("TWLPoseY", poseEstimate.getY());
-//        telemetry.addData("TWLPoseH", Math.toDegrees(poseEstimate.getHeading()));
+        telemetry.addData("left", sTWLoclizer.getWheelPos().get(0));
+        telemetry.addData("right", sTWLoclizer.getWheelPos().get(1));
+        telemetry.addData("front", sTWLoclizer.getWheelPos().get(2));
         telemetry.addData("ImuHeading", Math.toDegrees(getRawExternalHeading()));
         telemetry.update();
-//        DriveSignal signal = trajectorySequenceRunner.update(getPoseEstimate(), getPoseVelocity());
-//        if (signal != null) setDriveSignal(signal);
+        updatePoseEstimate();
+        Pose2d poseEstimate = getPoseEstimate();
+        telemetry.addData("TWLPoseX", poseEstimate.getX());
+        telemetry.addData("TWLPoseY", poseEstimate.getY());
+        telemetry.addData("TWLPoseH", Math.toDegrees(poseEstimate.getHeading()));
+        DriveSignal signal = trajectorySequenceRunner.update(getPoseEstimate(), getPoseVelocity());
+        if (signal != null) setDriveSignal(signal);
     }
 
     public void updateRobotDrive(double left_stick_y, double left_stick_x, double right_stick_x, double driveK) {

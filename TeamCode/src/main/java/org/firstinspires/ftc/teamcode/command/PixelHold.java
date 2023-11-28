@@ -16,8 +16,8 @@ public class PixelHold extends SequentialCommandGroup {
                         new ClawControl(claw, 2.0),
                         new IntakeControl(intake, 3.0)
                 ),
-                new WaitCommand(500),
-                new ArmControl(arm, 6)
+                new WaitCommand(200),
+                new ArmControl(arm, 0.58)
         );
         addRequirements(arm, claw, intake);
     }

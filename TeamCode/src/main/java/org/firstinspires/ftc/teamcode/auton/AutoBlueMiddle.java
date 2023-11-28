@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 @Config
 public class AutoBlueMiddle extends LinearOpMode {
     SampleMecanumFaster drive;
-    Turret turret;
+//    Turret turret;
     private final FtcDashboard dashboard = FtcDashboard.getInstance();
     private final Telemetry dashboardTelemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
     ElapsedTime timer = new ElapsedTime();
@@ -32,30 +32,36 @@ public class AutoBlueMiddle extends LinearOpMode {
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drive.setPoseEstimate(AutoConstants.L_START);
 
-        turret = new Turret();
-        turret.init(hardwareMap, dashboardTelemetry);
-        turret.setTargetAngle(0);
+        isAutoEnd = false;
+
+//        turret = new Turret();
+//        turret.init(hardwareMap, dashboardTelemetry);
+//        turret.setTargetAngle(0);
 
         TrajectorySequence path = drive.trajectorySequenceBuilder(AutoConstants.L_START)
-                .addTemporalMarker(0, () -> {
-                    turret.setTargetAngle(100);
-                })
+                .setVelConstraint(AutoConstants.PARK_VEL)
+                .setAccelConstraint(AutoConstants.PARK_ACCEL)
+//                .addTemporalMarker(0, () -> {
+//                    turret.setTargetAngle(100);
+//                })
                 .lineToLinearHeading(AutoConstants.L_SCORE_POSE)
-                .UNSTABLE_addTemporalMarkerOffset(turretAfterScoreDelay, () -> {
-                    turret.setTargetAngle(300);
-                })
-                .waitSeconds(cycleDelay)
+//                .UNSTABLE_addTemporalMarkerOffset(turretAfterScoreDelay, () -> {
+//                    turret.setTargetAngle(300);
+//                })
+                .waitSeconds(1.5)
+
+
                 // END CONE 1 (PRELOAD)
-                .lineTo(AutoConstants.L_SCORE_VECTOR)
+//                .lineTo(AutoConstants.L_SCORE_VECTOR)
                 .build();
 
 
         TrajectorySequence leftPark = drive.trajectorySequenceBuilder(path.end())
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
-                .addTemporalMarker(0, () -> {
-                    turret.setTargetAngle(600);
-                })
+//                .addTemporalMarker(0, () -> {
+//                    turret.setTargetAngle(600);
+//                })
                 .lineToLinearHeading(AutoConstants.L_PARK_LEFT)
                 .waitSeconds(1.5)
                 .build();
@@ -74,16 +80,18 @@ public class AutoBlueMiddle extends LinearOpMode {
 
         while (!isStopRequested() && opModeIsActive()) {
             drive.update();
-            turret.loop();
+//            turret.loop();
             currentTime = timer.milliseconds();
             dashboardTelemetry.addLine("run-time: " + currentTime/1000);
             dashboardTelemetry.addLine("loop-time: " + (currentTime - lastTime)/1000);
+
             if (currentTime > 7000.0 && !isAutoEnd) {
                 drive.followTrajectorySequenceAsync(leftPark);
                 isAutoEnd = true;
             }
+
             lastTime = currentTime;
-            dashboardTelemetry.update();
+//            dashboardTelemetry.update();
         }
     }
 }

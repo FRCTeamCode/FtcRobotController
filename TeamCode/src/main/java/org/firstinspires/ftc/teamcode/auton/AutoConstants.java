@@ -17,8 +17,8 @@ public class AutoConstants {
     // REF RIGHT Q4 (-, +)
 
     // Cycle parking constraints
-    public static final TrajectoryVelocityConstraint PARK_VEL = SampleMecanumDrive.getVelocityConstraint(40, 4.0, 13.91);
-    public static final TrajectoryAccelerationConstraint PARK_ACCEL = SampleMecanumDrive.getAccelerationConstraint(30);
+    public static final TrajectoryVelocityConstraint PARK_VEL = SampleMecanumDrive.getVelocityConstraint(20, 4.0, 10.2);
+    public static final TrajectoryAccelerationConstraint PARK_ACCEL = SampleMecanumDrive.getAccelerationConstraint(20);
 
     // GLOBAL
     public static double START_X = 36;
@@ -61,11 +61,11 @@ public class AutoConstants {
 //    public static final Pose2d L_START = new Pose2d(START_X, START_Y, START_HEADING);
     public static final Vector2d L_STACK = new Vector2d(L_STACK_X, L_STACK_Y);
 
-    public static final Pose2d L_SCORE_POSE = new Pose2d(10.0, 0.0, 0.0);
+    public static final Pose2d L_SCORE_POSE = new Pose2d(15.0, 15.0, Math.toRadians(90));
 //    public static final Pose2d L_SCORE_POSE = new Pose2d(L_SCORE_X, L_SCORE_Y, L_SCORE_HEADING);
     public static final Vector2d L_SCORE_VECTOR = new Vector2d(20.0, 0.0);
 //    public static final Vector2d L_SCORE_VECTOR = new Vector2d(L_SCORE_X, L_SCORE_Y);
-    public static final Pose2d L_PARK_LEFT = new Pose2d(-50.0, 0.0, 0.0);
+    public static final Pose2d L_PARK_LEFT = new Pose2d(0.0, 0.0, 0.0);
 //    public static final Pose2d L_PARK_LEFT = new Pose2d(LPL_X, PARK_Y, PARK_HEADING);
 
     public static final Pose2d L_SCORE_MID_POSE = new Pose2d(L_SCORE_MID_X + .55, L_SCORE_Y, L_SCORE_HEADING);

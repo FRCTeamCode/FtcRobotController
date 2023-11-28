@@ -28,8 +28,17 @@ public class DrivePose extends SubsystemBase {
         );
     }
 
+    public void mecanumCentricDrive(double left_stick_y, double left_stick_x, double right_stick_x, double v) {
+        drive.updateRobotDrive(
+                left_stick_y * 1.0,
+                -left_stick_x * 1.0,
+                -right_stick_x * 1.0,
+                1.0
+        );
+    }
+
     public void autoMoveXY(double runTime) {
-        drive.autoMoveXY(25.0, 0.3, 0.0, 0.3, runTime, 8000.0, 10.0, 0.6);
+        drive.autoMoveXY(25.0, 0.3, 15.0, 0.3, runTime, 8000.0, 6.0, 0.5);
     }
     public void driveAlign(double id, double x, double y, double r) {
         drive.alignAprilTag(16.0,0.0,0.0, id, x, y, r);

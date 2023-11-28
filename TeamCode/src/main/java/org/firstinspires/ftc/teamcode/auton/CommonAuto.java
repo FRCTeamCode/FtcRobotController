@@ -53,68 +53,7 @@ public class CommonAuto extends LinearOpMode {
 //        turret.init(hardwareMap, dashboardTelemetry);
 //        turret.setTargetAngle(0);
 
-        testMotor = new TestMotor(hardwareMap, dashboardTelemetry);
-
-        TrajectorySequence path = drive.trajectorySequenceBuilder(AutoConstants.L_START)
-//                .addTemporalMarker(0.5, () -> {
-                    // This marker runs two seconds into the trajectory
-//                    turret.setTargetAngle(100);
-//                    testMotor.setSpeed(0.2);
-                    // Run your action in here!
-//                })
-//                .addTemporalMarker(0.5, 0.1, () -> {
-//                    // This example will run 50% of the way through the path, plus 0.1 seconds
-//                    // The offset can be left at zero but is useful for making slight adjustments to the timing
-//                })
-//                .addDisplacementMarker(() -> {
-//                    // This marker runs after the first splineTo()
-//
-//                    // Run your action in here!
-//                })
-//                .addDisplacementMarker(20, () -> {
-//                    // This marker runs after robot drives 20 inches in the trajectory
-//
-//                    // Run your action in here!
-//                })
-//                .addSpatialMarker(new Vector2d(20, 20), () -> {
-//                    // This marker runs at the point that gets
-//                    // closest to the (20, 20) coordinate
-//
-//                    // Run your action in here!
-//                })
-
-                .lineToLinearHeading(AutoConstants.L_SCORE_POSE)
-                .UNSTABLE_addTemporalMarkerOffset(turretAfterScoreDelay, () -> {
-//                    turret.setTargetAngle(300);
-                    aState = Auto_State.alignAprilTag;
-                })
-//                .waitSeconds(cycleDelay)
-                // END CONE 1 (PRELOAD)
-//                .lineTo(AutoConstants.L_SCORE_VECTOR)
-                .build();
-
-        TrajectorySequence path2 = drive.trajectorySequenceBuilder(lastPose)
-                .setVelConstraint(AutoConstants.PARK_VEL)
-                .setAccelConstraint(AutoConstants.PARK_ACCEL)
-                .lineToLinearHeading(AutoConstants.L_PARK_LEFT)
-                .UNSTABLE_addTemporalMarkerOffset(turretAfterScoreDelay, () -> {
-//                    turret.setTargetAngle(300);
-                })
-                .waitSeconds(cycleDelay)
-                .build();
-
-
-        TrajectorySequence leftPark = drive.trajectorySequenceBuilder(path.end())
-                .setVelConstraint(AutoConstants.PARK_VEL)
-                .setAccelConstraint(AutoConstants.PARK_ACCEL)
-                .addTemporalMarker(.5, () -> {
-//                    turret.setTargetAngle(600);
-                })
-                .lineToLinearHeading(AutoConstants.L_PARK_LEFT)
-                .waitSeconds(1.5)
-                .build();
-
-//        dashboardTelemetry.setMsTransmissionInterval(50);//Default value: 250
+//        testMotor = new TestMotor(hardwareMap, dashboardTelemetry);
 
         while (!isStarted() && !isStopRequested()) {
             dashboardTelemetry.addLine("Robot is (!isStarted() && !isStopRequested())");
@@ -141,7 +80,7 @@ public class CommonAuto extends LinearOpMode {
                             cState = Command_State.isFinish;
                             break;
                         case execute:
-                            drive.autoMoveXY(12.0, 0.3, -15.0, 0.3, timer.milliseconds() - initTime, 8000.0, 10.0, 0.6);
+                            drive.autoMoveXY(12.0, 0.3, 0.0, 0.3, timer.milliseconds() - initTime, 8000.0, 10.0, 0.6);
                             cState = Command_State.isFinish;
                             break;
                         case end:
@@ -165,7 +104,7 @@ public class CommonAuto extends LinearOpMode {
                             cState = Command_State.isFinish;
                             break;
                         case execute:
-                            double[] idData = myCamera.getAprilTagIDData(10);
+                            double[] idData = myCamera.getAprilTagIDData(9);
                             drive.alignAprilTag(25.0, 0.0, 0.0, idData[0], idData[1], idData[2], idData[3]);
                             cState = Command_State.isFinish;
                             break;

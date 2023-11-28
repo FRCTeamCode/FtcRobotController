@@ -13,6 +13,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.command.AlignAprilTag;
 import org.firstinspires.ftc.teamcode.command.ArmControl;
 import org.firstinspires.ftc.teamcode.command.ClawControl;
+import org.firstinspires.ftc.teamcode.command.DriveAuto;
 import org.firstinspires.ftc.teamcode.command.IntakeControl;
 import org.firstinspires.ftc.teamcode.command.PixelArmReset;
 import org.firstinspires.ftc.teamcode.command.PixelHold;
@@ -60,15 +61,17 @@ public class MyTeleOp extends CommandOpMode {
         Button lb2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.LEFT_BUMPER);
         lb2.whenPressed(new IntakeControl(intake,3.0));
         Button rb2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.RIGHT_BUMPER);
-        rb2.whenPressed(new IntakeControl(intake,1.0));
+//        rb2.whenPressed(new IntakeControl(intake,1.0));
+        rb2.whenPressed(new PixelRelease(intake));
         Button s2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.START);
         s2.whenPressed(new IntakeControl(intake,2.0));
 
 //
-//        Button a = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);
-//        a.whenPressed(new PixelIntake(arm, claw, intake));
-//        Button b = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.B);
-//        b.whenPressed(new PixelHold(arm, claw, intake));
+        Button a = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);
+//        a.whenPressed(new ArmControl(arm, 2.5));
+        a.whenPressed(new DriveAuto(drive, gamepad1));
+        Button b = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.B);
+//        b.whenPressed(new ArmControl(arm, 0.8));
 //        Button x = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.X);
 //        x.whenPressed(new PixelPut(arm, claw, intake));
 //        Button y = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.Y);
