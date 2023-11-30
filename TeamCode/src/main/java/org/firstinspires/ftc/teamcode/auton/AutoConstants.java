@@ -57,7 +57,19 @@ public class AutoConstants {
     public static double L_STACK_Y = 12;
     public static double L_STACK_HEADING = Math.toRadians(180);
 
-    public static final Pose2d L_START = new Pose2d(0.0, 0.0, 0.0);
+    //Blue near BACKSTAGE side - Left
+    public static final Pose2d START = new Pose2d(0.0, 0.0, 0.0);
+    public static final Pose2d BL1_STOP = new Pose2d(11.5, 5.2, 0.0);
+    public static final Pose2d BL1_BACKSTAGE = new Pose2d(11.8, 26.0, Math.toRadians(-87.0));
+
+    //Blue near BACKSTAGE side - Middle
+    public static final Pose2d BM1_STOP = new Pose2d(15.0, 0.0, 0.0);
+
+    //Blue near BACKSTAGE side - Right
+    public static final Pose2d BR1_STOP = new Pose2d(15.0, -10.0, 0.0);
+
+
+
 //    public static final Pose2d L_START = new Pose2d(START_X, START_Y, START_HEADING);
     public static final Vector2d L_STACK = new Vector2d(L_STACK_X, L_STACK_Y);
 

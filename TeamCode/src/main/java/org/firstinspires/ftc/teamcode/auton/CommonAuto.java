@@ -45,7 +45,7 @@ public class CommonAuto extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         drive = new SampleMecanumFaster(hardwareMap, dashboardTelemetry);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        drive.setPoseEstimate(AutoConstants.L_START);
+        drive.setPoseEstimate(AutoConstants.START);
 
         myCamera = new MyCamera(hardwareMap, dashboardTelemetry);
 

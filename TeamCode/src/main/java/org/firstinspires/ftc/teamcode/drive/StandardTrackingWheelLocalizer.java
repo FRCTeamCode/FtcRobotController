@@ -29,8 +29,8 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
     public static double WHEEL_RADIUS = DriveConstants.WHEEL_RADIUS; // in,0.6889764
     public static double GEAR_RATIO = DriveConstants.GEAR_RATIO; // output (wheel) speed / input (encoder) speed
 
-    public static double LATERAL_DISTANCE = DriveConstants.TRACK_WIDTH; // in; distance between the left and right wheels
-    public static double FORWARD_OFFSET = DriveConstants.FORWARD_OFFSET; // in; offset of the lateral wheel
+    public static double LATERAL_DISTANCE = 8.97; // in; distance between the left and right wheels
+    public static double FORWARD_OFFSET = -0.8; // in; offset of the lateral wheel//-0.8
 
     private Encoder leftEncoder, rightEncoder, frontEncoder;
     // x: 50/49.466272502353554 + 50/49.68096645210301 + 50/49.2869229175432 + 50/49.41976823851759 + 50/49.39283574196898
@@ -41,9 +41,9 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
 
     public StandardTrackingWheelLocalizer(HardwareMap hardwareMap) {
         super(Arrays.asList(
-                new Pose2d(0, 11.5/2.54, 0), // left
-                new Pose2d(0, -10.6/2.54, 0), // right
-                new Pose2d(-1.2/2.54, 0, Math.toRadians(90.0)) // front
+                new Pose2d(0, LATERAL_DISTANCE/2, 0), // left
+                new Pose2d(0, -LATERAL_DISTANCE/2, 0), // right
+                new Pose2d(FORWARD_OFFSET, 0, Math.toRadians(90.0)) // front
         ));
         frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "motorTest1"));//2
         leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "motorTest0"));//3

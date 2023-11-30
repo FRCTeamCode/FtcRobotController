@@ -276,6 +276,8 @@ public class MyCamera extends SubsystemBase {
             telemetry.addData("- Position", "%.0f / %.0f", x, y);
             telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
         }
-
+    }
+    public List<Recognition> getTfodData() {
+        return tfod.getRecognitions();
     }
 }
