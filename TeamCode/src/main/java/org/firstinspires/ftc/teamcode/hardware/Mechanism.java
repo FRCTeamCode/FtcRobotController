@@ -24,6 +24,6 @@ public abstract class Mechanism {
      *
      * @param hwMap robot's hardware map
      */
-    public abstract void init(HardwareMap hwMap, Telemetry telemetry);
+    public abstract void init(HardwareMap hardwareMap, Telemetry telemetry);
 
 }

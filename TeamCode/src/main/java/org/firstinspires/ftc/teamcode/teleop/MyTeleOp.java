@@ -8,7 +8,6 @@ import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.command.AlignAprilTag;
 import org.firstinspires.ftc.teamcode.command.ArmControl;
@@ -25,6 +24,7 @@ import org.firstinspires.ftc.teamcode.drive.DrivePose;
 import org.firstinspires.ftc.teamcode.subsystem.Arm;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
+import org.firstinspires.ftc.teamcode.subsystem.Launch;
 import org.firstinspires.ftc.teamcode.subsystem.MyCamera;
 
 @TeleOp
@@ -42,12 +42,13 @@ public class MyTeleOp extends CommandOpMode {
         Arm arm  = new Arm(hardwareMap, dashboardTelemetry);
         Claw claw  = new Claw(hardwareMap, dashboardTelemetry);
         Intake intake  = new Intake(hardwareMap, dashboardTelemetry);
+//        Launch launch  = new Launch(hardwareMap, dashboardTelemetry);
 //        schedule(new CameraStream(myCamera, gamepad1));
 
         Button lb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.LEFT_BUMPER);
         lb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 2, 6.0, 0.0, 2.9));
         Button rb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.RIGHT_BUMPER);
-        rb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 0, 6.0, 0.0, 2.9));
+        rb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 0, 6.0, 0.0, 0.0));
 
         Button a2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.A);
         a2.whenPressed(new PixelHold(arm, claw, intake));

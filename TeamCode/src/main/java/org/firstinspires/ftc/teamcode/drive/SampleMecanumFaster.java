@@ -234,13 +234,6 @@ public class SampleMecanumFaster extends MecanumDrive {
 
     public void alignAprilTag(double x, double y, double r, double id, double X, double Y, double R) {
         double strafeVal = 0.0, strafeFriction;
-        //move forward and backward
-        if (Math.abs(X - x) < 30.0) {
-            strafeVal = MathUtils.clamp((X - x) * 0.1, -0.4, 0.4);
-            strafeFriction = Math.abs(strafeVal) < 0.01 ? 0.0 :  Math.signum(strafeVal) * 0.035;
-        } else {
-            strafeFriction = 0.0;
-        }
         //Move left and right
         double dist = Math.abs(X - x);
 
@@ -253,6 +246,13 @@ public class SampleMecanumFaster extends MecanumDrive {
         double kp3 = dist > 4.0 ? 1.3 : 1.0;
         double rotationVal = MathUtils.clamp((R - r) * 0.2 * kp3, -0.13, 0.13);
         double rotationFriction = Math.abs(rotationVal) < 0.01 ? 0.0 :  Math.signum(rotationVal) * 0.012;
+        //move forward and backward
+        if (Math.abs(errorY) < 0.3 && Math.abs(rotationVal) < 0.08) {
+            strafeVal = MathUtils.clamp((X - x) * 0.1, -0.4, 0.4);
+            strafeFriction = Math.abs(strafeVal) < 0.01 ? 0.0 :  Math.signum(strafeVal) * 0.035;
+        } else {
+            strafeFriction = 0.0;
+        }
         telemetry.addData("Error0", y - Y);
         telemetry.addData("Error1", strafeVal);
         telemetry.addData("Error2", translationVal);
@@ -267,7 +267,7 @@ public class SampleMecanumFaster extends MecanumDrive {
                     new Pose2d(
                             strafeVal * 0.4 + strafeFriction,
                             translationVal * 0.4 + translationFriction,
-                            rotationVal * 0.4 + rotationFriction
+                            (rotationVal * 0.4 + rotationFriction)
                     )
             );
         } else {

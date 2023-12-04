@@ -8,6 +8,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Claw extends SubsystemBase {
     public Servo clawServo;
     private final Telemetry telemetry;
+    public static double lowerClaw = 0.29;
     public static double lowClaw = 0.314;
     public static double middleClaw = 0.383;
     public static double highClaw = 0.4;
@@ -23,6 +24,9 @@ public class Claw extends SubsystemBase {
         telemetry.addData("ClawServo", clawServo.getPosition());
     }
 
+    public void lowerClaw() {
+        clawServo.setPosition(lowerClaw);
+    }
     public void lowClaw() {
         clawServo.setPosition(lowClaw);
     }

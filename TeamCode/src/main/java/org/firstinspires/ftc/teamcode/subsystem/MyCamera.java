@@ -22,13 +22,13 @@ import java.util.List;
 public class MyCamera extends SubsystemBase {
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
     private AprilTagProcessor aprilTag;
-    private TfodProcessor tfod;
+//    private TfodProcessor tfod;
     private VisionPortal visionPortal;
     private VisionPortal myVisionPortal;
     private final Telemetry telemetry;
-    private static final String TFOD_MODEL_ASSET = "CDCenterStage.tflite";
+//    private static final String TFOD_MODEL_ASSET = "model_20231201_200350.tflite";//CDCenterStage.tflite
 //    private static final String TFOD_MODEL_FILE = "model1a.tflite";
-//    private static final String[] CustomLabeles = {"BlueStack", "Pole", "RedStack", "Z1", "Z2", "Z3"};
+    private static final String[] CustomLabeles = {"BlueCube", "RedCube", "Pixel", "Z1", "Z2", "Z3"};
     public MyCamera(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
 //        initAprilTag(hardwareMap);
@@ -66,12 +66,12 @@ public class MyCamera extends SubsystemBase {
         } else {
             telemetry.addLine("Dpad Right to enable AprilTag");
         }
-        if (myVisionPortal.getProcessorEnabled(tfod)) {
-            telemetry.addLine("Dpad Down to disable TFOD");
-            telemetryTfod();
-        } else {
-            telemetry.addLine("Dpad Up to enable TFOD");
-        }
+//        if (myVisionPortal.getProcessorEnabled(tfod)) {
+//            telemetry.addLine("Dpad Down to disable TFOD");
+//            telemetryTfod();
+//        } else {
+//            telemetry.addLine("Dpad Up to enable TFOD");
+//        }
 
 //        if (gamepad.dpad_left) {
 //            myVisionPortal.setProcessorEnabled(aprilTag, false);
@@ -109,22 +109,23 @@ public class MyCamera extends SubsystemBase {
         // -----------------------------------------------------------------------------------------
         // TFOD Configuration
         // -----------------------------------------------------------------------------------------
-        tfod = new TfodProcessor.Builder()
-                .setModelAssetName(TFOD_MODEL_ASSET)
-//                .setModelFileName(TFOD_MODEL_FILE)
-                .setModelLabels(LABELS)
-                .setIsModelTensorFlow2(true)
-                .setIsModelQuantized(true)
-                .setModelInputSize(300)
-                .setModelAspectRatio(16.0 / 9.0)
-                .build();
+//        tfod = new TfodProcessor.Builder()
+//                .setModelAssetName(TFOD_MODEL_ASSET)
+////                .setModelFileName(TFOD_MODEL_FILE)
+//                .setModelLabels(CustomLabeles)
+//                .setIsModelTensorFlow2(true)
+//                .setIsModelQuantized(true)
+//                .setModelInputSize(300)
+//                .setModelAspectRatio(16.0 / 9.0)
+//                .build();
         // -----------------------------------------------------------------------------------------
         // Camera Configuration
         // -----------------------------------------------------------------------------------------
         if (USE_WEBCAM) {
             myVisionPortal = new VisionPortal.Builder()
                     .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
-                    .addProcessors(tfod, aprilTag)
+//                    .addProcessors(tfod, aprilTag)
+                    .addProcessors(aprilTag)
                     .enableLiveView(true)
                     .setStreamFormat(VisionPortal.StreamFormat.YUY2)
                     .setAutoStopLiveView(false)
@@ -132,7 +133,8 @@ public class MyCamera extends SubsystemBase {
         } else {
             myVisionPortal = new VisionPortal.Builder()
                     .setCamera(BuiltinCameraDirection.BACK)
-                    .addProcessors(tfod, aprilTag)
+//                    .addProcessors(tfod, aprilTag)
+                    .addProcessors(aprilTag)
                     .build();
         }
     }
@@ -263,21 +265,21 @@ public class MyCamera extends SubsystemBase {
         }
         return info;
     }
-
-    private void telemetryTfod() {
-        List<Recognition> currentRecognitions = tfod.getRecognitions();
-        telemetry.addData("#TFOD Detected", currentRecognitions.size());
-        // Step through the list of recognitions and display info for each one.
-        for (Recognition recognition : currentRecognitions) {
-            double x = (recognition.getLeft() + recognition.getRight()) / 2 ;
-            double y = (recognition.getTop()  + recognition.getBottom()) / 2 ;
-            telemetry.addData(""," ");
-            telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
-            telemetry.addData("- Position", "%.0f / %.0f", x, y);
-            telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
-        }
-    }
-    public List<Recognition> getTfodData() {
-        return tfod.getRecognitions();
-    }
+//
+//    private void telemetryTfod() {
+//        List<Recognition> currentRecognitions = tfod.getRecognitions();
+//        telemetry.addData("#TFOD Detected", currentRecognitions.size());
+//        // Step through the list of recognitions and display info for each one.
+//        for (Recognition recognition : currentRecognitions) {
+//            double x = (recognition.getLeft() + recognition.getRight()) / 2 ;
+//            double y = (recognition.getTop()  + recognition.getBottom()) / 2 ;
+//            telemetry.addData(""," ");
+//            telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
+//            telemetry.addData("- Position", "%.0f / %.0f", x, y);
+//            telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
+//        }
+//    }
+//    public List<Recognition> getTfodData() {
+//        return tfod.getRecognitions();
+//    }
 }

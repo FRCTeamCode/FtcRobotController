@@ -57,6 +57,10 @@ public class DrivePose extends SubsystemBase {
         return xyValue;
     }
 
+    public Pose2d getPoseEstimate() {
+        return poseEstimate;
+    }
+
     @Override
     public void periodic() {
         drive.update();
