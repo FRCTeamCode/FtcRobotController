@@ -70,7 +70,7 @@ public class Arm extends SubsystemBase {
         vel = xP + xI + xD;
         vel = vel + addFriction(xP);
         xLastError = errorVel;
-        vel = MathUtils.clamp(vel, -0.35, 0.5);
+        vel = MathUtils.clamp(vel, -0.35, 0.4);
         telemetry.addData("ArmPIDVelP", xP);
         telemetry.addData("ArmPIDVelI", xI);
         telemetry.addData("ArmPIDVelD", xD);

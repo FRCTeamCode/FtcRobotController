@@ -3,33 +3,25 @@ package org.firstinspires.ftc.teamcode.auton;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
-import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
-import org.firstinspires.ftc.teamcode.command.CameraStream;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumFaster;
-import org.firstinspires.ftc.teamcode.hardware.Turret;
 import org.firstinspires.ftc.teamcode.subsystem.Arm;
 import org.firstinspires.ftc.teamcode.subsystem.CameraAuto;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
-import org.firstinspires.ftc.teamcode.subsystem.MyCamera;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
-import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
 @Autonomous
 @Config
-public class AutoBlueMiddle extends LinearOpMode {
+public class AutoBlueLeft extends LinearOpMode {
     SampleMecanumFaster drive;
 //    MyCamera myCamera;
     CameraAuto cameraAuto;
@@ -80,16 +72,16 @@ public class AutoBlueMiddle extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.0, () -> {
-                    arm.setArmPos(2.08);
+                    arm.setArmPos(2.36);
                 })
                 .addTemporalMarker(3.6, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE)
-                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-                    arm.setArmPos(3.15);
+                .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
+                    arm.setArmPos(3.1);
                 })
-                .waitSeconds(1.25)
+                .waitSeconds(1.5)
                 .lineToLinearHeading(AutoConstants.BL1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     arm.setArmPos(1.8);
@@ -106,28 +98,80 @@ public class AutoBlueMiddle extends LinearOpMode {
         TrajectorySequence pathMiddle = drive.trajectorySequenceBuilder(AutoConstants.START)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
-//                .addTemporalMarker(0, () -> {
-//                    turret.setTargetAngle(100);
-//                })
-                .lineToLinearHeading(AutoConstants.BM1_STOP)
-//                .UNSTABLE_addTemporalMarkerOffset(turretAfterScoreDelay, () -> {
-//                    turret.setTargetAngle(300);
-//                })
+                .addTemporalMarker(0.0, () -> {
+                    arm.setArmPos(1.08);
+                })
+                .addTemporalMarker(2.0, () -> {
+                    claw.lowClaw();
+                })
+                .addTemporalMarker(2.8, () -> {
+                    intake.openIntake();
+                })
+                .lineToLinearHeading(AutoConstants.BM1_PUT)
+                .addTemporalMarker(3.6, () -> {
+                    intake.closeIntake();
+                })
+                .addTemporalMarker(3.6, () -> {
+                    arm.setArmPos(2.36);
+                })
+                .addTemporalMarker(4.2, () -> {
+                    claw.lowerClaw();
+                })
+                .lineToLinearHeading(AutoConstants.BM1_BACKSTAGE)
+                .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
+                    arm.setArmPos(3.1);
+                })
                 .waitSeconds(1.5)
-//                .lineTo(AutoConstants.L_SCORE_VECTOR)
+                .lineToLinearHeading(AutoConstants.BM1_Tag)
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+                    arm.setArmPos(1.8);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+                    claw.middleClaw();
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+                    arm.setArmPos(0.58);
+                })
+                .lineToLinearHeading(AutoConstants.BM1_STOP)
                 .build();
         TrajectorySequence pathRight = drive.trajectorySequenceBuilder(AutoConstants.START)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
-//                .addTemporalMarker(0, () -> {
-//                    turret.setTargetAngle(100);
-//                })
-                .lineToLinearHeading(AutoConstants.BR1_STOP)
-//                .UNSTABLE_addTemporalMarkerOffset(turretAfterScoreDelay, () -> {
-//                    turret.setTargetAngle(300);
-//                })
+                .addTemporalMarker(0.0, () -> {
+                    arm.setArmPos(1.08);
+                })
+                .addTemporalMarker(1.6, () -> {
+                    claw.lowClaw();
+                })
+                .addTemporalMarker(2.1, () -> {
+                    intake.openIntake();
+                })
+                .lineToLinearHeading(AutoConstants.BR1_PUT)
+                .addTemporalMarker(3.0, () -> {
+                    intake.closeIntake();
+                })
+                .addTemporalMarker(3.0, () -> {
+                    arm.setArmPos(2.25);
+                })
+                .addTemporalMarker(3.5, () -> {
+                    claw.lowerClaw();
+                })
+                .lineToLinearHeading(AutoConstants.BR1_BACKSTAGE)
+                .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
+                    arm.setArmPos(3.1);
+                })
                 .waitSeconds(1.5)
-//                .lineTo(AutoConstants.L_SCORE_VECTOR)
+                .lineToLinearHeading(AutoConstants.BR1_Tag)
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+                    arm.setArmPos(1.8);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+                    claw.middleClaw();
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+                    arm.setArmPos(0.58);
+                })
+                .lineToLinearHeading(AutoConstants.BR1_STOP)
                 .build();
 
         TrajectorySequence pathLeftPark = drive.trajectorySequenceBuilder(AutoConstants.BL1_Tag)
@@ -193,11 +237,11 @@ public class AutoBlueMiddle extends LinearOpMode {
 //                    dashboardTelemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
                     if (recognition.getLabel() == "BlueCube") {
                         tagFound = true;
-                        if (x < 280 && x > 80 && Math.abs(y-135) < 30) {
+                        if (x < 280 && x > 80 && Math.abs(y-135) < 40 && Math.abs(recognition.getWidth()-87) < 20 && Math.abs(recognition.getHeight()-95) < 20) {
                             tagID = 4;
                             targetSide = "Left";
                             targetRoad = pathLeft;
-                        } else if (x > 280 && Math.abs(y-115) < 20) {
+                        } else if (x > 280 && Math.abs(y-115) < 40 && Math.abs(recognition.getWidth()-75) < 20 && Math.abs(recognition.getHeight()-88) < 20) {
                             tagID = 5;
                             targetSide = "Middle";
                             targetRoad = pathMiddle;

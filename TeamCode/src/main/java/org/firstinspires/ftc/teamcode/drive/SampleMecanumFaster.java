@@ -298,7 +298,6 @@ public class SampleMecanumFaster extends MecanumDrive {
         double y = -left_stick_y;
         double x = left_stick_x * 1.1; // Counteract imperfect strafing
         double rx = right_stick_x;
-
         // Denominator is the largest motor power (absolute value) or 1
         // Keeps all motor powers in proportion
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1.0);
@@ -306,7 +305,6 @@ public class SampleMecanumFaster extends MecanumDrive {
         double backLeftPower = (y - x + rx) / denominator * driveK;
         double frontRightPower = (y - x - rx) / denominator * driveK;
         double backRightPower = (y + x - rx) / denominator * driveK;
-
         // Set powers
         leftFront.setPower(frontLeftPower);
         leftRear.setPower(backLeftPower);
