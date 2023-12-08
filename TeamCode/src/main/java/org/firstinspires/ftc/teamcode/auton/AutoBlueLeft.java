@@ -72,7 +72,7 @@ public class AutoBlueLeft extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.0, () -> {
-                    arm.setArmPos(2.36);
+                    arm.setArmPos(2.2);
                 })
                 .addTemporalMarker(3.6, () -> {
                     claw.lowerClaw();
@@ -112,7 +112,7 @@ public class AutoBlueLeft extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.6, () -> {
-                    arm.setArmPos(2.36);
+                    arm.setArmPos(2.2);
                 })
                 .addTemporalMarker(4.2, () -> {
                     claw.lowerClaw();
@@ -151,7 +151,7 @@ public class AutoBlueLeft extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.0, () -> {
-                    arm.setArmPos(2.25);
+                    arm.setArmPos(2.2);
                 })
                 .addTemporalMarker(3.5, () -> {
                     claw.lowerClaw();
@@ -172,46 +172,6 @@ public class AutoBlueLeft extends LinearOpMode {
                     arm.setArmPos(0.58);
                 })
                 .lineToLinearHeading(AutoConstants.BR1_STOP)
-                .build();
-
-        TrajectorySequence pathLeftPark = drive.trajectorySequenceBuilder(AutoConstants.BL1_Tag)
-                .setVelConstraint(AutoConstants.PARK_VEL)
-                .setAccelConstraint(AutoConstants.PARK_ACCEL)
-//                .addTemporalMarker(0, () -> {
-//                    turret.setTargetAngle(100);
-//                })
-                .lineToLinearHeading(AutoConstants.BL1_STOP)
-//                .UNSTABLE_addTemporalMarkerOffset(turretAfterScoreDelay, () -> {
-//                    turret.setTargetAngle(300);
-//                })
-                .waitSeconds(1.5)
-//                .lineTo(AutoConstants.L_SCORE_VECTOR)
-                .build();
-        TrajectorySequence pathMiddlePark = drive.trajectorySequenceBuilder(AutoConstants.BM1_Tag)
-                .setVelConstraint(AutoConstants.PARK_VEL)
-                .setAccelConstraint(AutoConstants.PARK_ACCEL)
-//                .addTemporalMarker(0, () -> {
-//                    turret.setTargetAngle(100);
-//                })
-                .lineToLinearHeading(AutoConstants.BM1_STOP)
-//                .UNSTABLE_addTemporalMarkerOffset(turretAfterScoreDelay, () -> {
-//                    turret.setTargetAngle(300);
-//                })
-                .waitSeconds(1.5)
-//                .lineTo(AutoConstants.L_SCORE_VECTOR)
-                .build();
-        TrajectorySequence pathRightPark = drive.trajectorySequenceBuilder(AutoConstants.BR1_Tag)
-                .setVelConstraint(AutoConstants.PARK_VEL)
-                .setAccelConstraint(AutoConstants.PARK_ACCEL)
-//                .addTemporalMarker(0, () -> {
-//                    turret.setTargetAngle(100);
-//                })
-                .lineToLinearHeading(AutoConstants.BR1_STOP)
-//                .UNSTABLE_addTemporalMarkerOffset(turretAfterScoreDelay, () -> {
-//                    turret.setTargetAngle(300);
-//                })
-                .waitSeconds(1.5)
-//                .lineTo(AutoConstants.L_SCORE_VECTOR)
                 .build();
 
         targetRoad = pathRight;
@@ -237,11 +197,11 @@ public class AutoBlueLeft extends LinearOpMode {
 //                    dashboardTelemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
                     if (recognition.getLabel() == "BlueCube") {
                         tagFound = true;
-                        if (x < 280 && x > 80 && Math.abs(y-135) < 40 && Math.abs(recognition.getWidth()-87) < 20 && Math.abs(recognition.getHeight()-95) < 20) {
+                        if (x < 300 && x > 80 && Math.abs(y-176) < 40 && Math.abs(recognition.getWidth()-88) < 20 && Math.abs(recognition.getHeight()-93) < 20) {
                             tagID = 4;
                             targetSide = "Left";
                             targetRoad = pathLeft;
-                        } else if (x > 280 && Math.abs(y-115) < 40 && Math.abs(recognition.getWidth()-75) < 20 && Math.abs(recognition.getHeight()-88) < 20) {
+                        } else if (x > 280 && Math.abs(y-150) < 40 && Math.abs(recognition.getWidth()-81) < 20 && Math.abs(recognition.getHeight()-85) < 20) {
                             tagID = 5;
                             targetSide = "Middle";
                             targetRoad = pathMiddle;

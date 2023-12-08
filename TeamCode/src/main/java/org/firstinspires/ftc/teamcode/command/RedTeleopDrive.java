@@ -1,21 +1,19 @@
 package org.firstinspires.ftc.teamcode.command;
 
 import com.arcrobotics.ftclib.command.CommandBase;
-import com.arcrobotics.ftclib.util.MathUtils;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.drive.DrivePose;
-import org.firstinspires.ftc.teamcode.subsystem.MyCamera;
 
-public class TeleopDrive  extends CommandBase {
+public class RedTeleopDrive extends CommandBase {
 
     private final DrivePose mDrive;
-//    private final MyCamera myCamera;
+    //    private final MyCamera myCamera;
     private final Gamepad mGamepad;
     private ElapsedTime timer = new ElapsedTime();
     private final  double driveKp = 0.3;
-    public TeleopDrive (DrivePose drive, Gamepad gamepad) {
+    public RedTeleopDrive(DrivePose drive, Gamepad gamepad) {
         mDrive = drive;
         mGamepad = gamepad;
         addRequirements(mDrive);
@@ -41,7 +39,8 @@ public class TeleopDrive  extends CommandBase {
 //                    mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
 //                    mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.5);
 //        } else{
-            mDrive.mecanumCentricDrive(-mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
+        mDrive.mecanumCentricDrive(
+                -mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
                 -mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
                 -mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.5, 1.0);
 //        }

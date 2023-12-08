@@ -10,25 +10,28 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.command.AlignAprilTag;
-import org.firstinspires.ftc.teamcode.command.ArmControl;
-import org.firstinspires.ftc.teamcode.command.ClawControl;
 import org.firstinspires.ftc.teamcode.command.DriveAuto;
 import org.firstinspires.ftc.teamcode.command.IntakeControl;
+import org.firstinspires.ftc.teamcode.command.LaunchPlane;
+import org.firstinspires.ftc.teamcode.command.LaunchPrepare;
+import org.firstinspires.ftc.teamcode.command.MovePosition;
 import org.firstinspires.ftc.teamcode.command.PixelArmReset;
 import org.firstinspires.ftc.teamcode.command.PixelHold;
 import org.firstinspires.ftc.teamcode.command.PixelIntake;
 import org.firstinspires.ftc.teamcode.command.PixelPut;
 import org.firstinspires.ftc.teamcode.command.PixelRelease;
-import org.firstinspires.ftc.teamcode.command.TeleopDrive;
+import org.firstinspires.ftc.teamcode.command.BlueTeleopDrive;
+import org.firstinspires.ftc.teamcode.command.RedTeleopDrive;
 import org.firstinspires.ftc.teamcode.drive.DrivePose;
 import org.firstinspires.ftc.teamcode.subsystem.Arm;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
+import org.firstinspires.ftc.teamcode.subsystem.Climb;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
 import org.firstinspires.ftc.teamcode.subsystem.Launch;
 import org.firstinspires.ftc.teamcode.subsystem.MyCamera;
 
 @TeleOp
-public class MyTeleOp extends CommandOpMode {
+public class RedTeleop extends CommandOpMode {
     private MyCamera myCamera;
     private final FtcDashboard dashboard = FtcDashboard.getInstance();
     private final Telemetry dashboardTelemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
@@ -36,19 +39,25 @@ public class MyTeleOp extends CommandOpMode {
     public void initialize() {
         myCamera = new MyCamera(hardwareMap, dashboardTelemetry);
         DrivePose drive = new DrivePose(hardwareMap, dashboardTelemetry);
-        drive.setDefaultCommand(new TeleopDrive(drive, gamepad1));
+        drive.setDefaultCommand(new RedTeleopDrive(drive, gamepad1));
 
 //        TestMotor shooter = new TestMotor(hardwareMap, dashboardTelemetry);
         Arm arm  = new Arm(hardwareMap, dashboardTelemetry);
         Claw claw  = new Claw(hardwareMap, dashboardTelemetry);
         Intake intake  = new Intake(hardwareMap, dashboardTelemetry);
-//        Launch launch  = new Launch(hardwareMap, dashboardTelemetry);
+        Launch launch  = new Launch(hardwareMap, dashboardTelemetry);
+        Climb climb = new Climb(hardwareMap, dashboardTelemetry);
 //        schedule(new CameraStream(myCamera, gamepad1));
 
         Button lb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.LEFT_BUMPER);
         lb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 2, 6.0, 0.0, 2.9));
         Button rb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.RIGHT_BUMPER);
         rb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 0, 6.0, 0.0, 0.0));
+        Button dd = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_DOWN);
+        dd.whenPressed(new MovePosition(climb,0));
+        Button du = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_UP);
+        du.whenPressed(new MovePosition(climb,-2950));
+
 
         Button a2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.A);
         a2.whenPressed(new PixelHold(arm, claw, intake));
@@ -65,7 +74,9 @@ public class MyTeleOp extends CommandOpMode {
 //        rb2.whenPressed(new IntakeControl(intake,1.0));
         rb2.whenPressed(new PixelRelease(intake));
         Button s2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.START);
-        s2.whenPressed(new IntakeControl(intake,2.0));
+        s2.whenPressed(new LaunchPlane(launch, 2.0));
+        Button ba2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.BACK);
+        ba2.whenPressed(new LaunchPrepare(arm, claw, intake));
 
 //
         Button a = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);

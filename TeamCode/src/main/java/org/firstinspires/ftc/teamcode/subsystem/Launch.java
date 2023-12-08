@@ -8,18 +8,18 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Launch extends SubsystemBase {
     public Servo launch;
     private final Telemetry telemetry;
-    public static double lockPos = 0.314;
+    public static double lockPos = 0.32;
     public static double launchPos = 0.4;
 
     public Launch(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
-        launch = hardwareMap.get(Servo.class, "goB1");//0.1->0.2 claw up
+        launch = hardwareMap.get(Servo.class, "drone");//0.1->0.2 claw up
         lockPos();
     }
 
     @Override
     public void periodic() {
-        telemetry.addData("ClawServo", launch.getPosition());
+        telemetry.addData("LaunchServo", launch.getPosition());
     }
 
     public void lockPos() {
