@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumFaster;
+import org.firstinspires.ftc.teamcode.hardware.ArmAuto;
 import org.firstinspires.ftc.teamcode.subsystem.Arm;
 import org.firstinspires.ftc.teamcode.subsystem.CameraAuto;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
@@ -25,7 +26,7 @@ public class AutoRedRight extends LinearOpMode {
     SampleMecanumFaster drive;
     //    MyCamera myCamera;
     CameraAuto cameraAuto;
-    Arm arm;
+    ArmAuto armAuto;
     Claw claw;
     Intake intake;
     private final FtcDashboard dashboard = FtcDashboard.getInstance();
@@ -47,7 +48,7 @@ public class AutoRedRight extends LinearOpMode {
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drive.setPoseEstimate(AutoConstants.START);
 
-        arm = new Arm(hardwareMap, dashboardTelemetry);
+        armAuto = new ArmAuto(hardwareMap, dashboardTelemetry);
         claw = new Claw(hardwareMap, dashboardTelemetry);
         intake = new Intake(hardwareMap, dashboardTelemetry);
 //        myCamera = new MyCamera(hardwareMap, dashboardTelemetry);
@@ -59,7 +60,7 @@ public class AutoRedRight extends LinearOpMode {
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .addTemporalMarker(0.0, () -> {
-                    arm.setArmPos(1.08);
+                    armAuto.setArmPos(1.08);
                 })
                 .addTemporalMarker(0.9, () -> {
                     claw.lowClaw();
@@ -72,26 +73,29 @@ public class AutoRedRight extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.0, () -> {
-                    arm.setArmPos(2.2);
+                    armAuto.setArmPos(2.2);
                 })
                 .addTemporalMarker(3.6, () -> {
                     claw.lowerClaw();
                 })
+                //robot move to BACKSTAGE
                 .lineToLinearHeading(AutoConstants.RL1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    arm.setArmPos(3.1);
+                    armAuto.setArmPos(3.1);
                 })
                 .waitSeconds(1.5)
                 .lineToLinearHeading(AutoConstants.RL1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-                    arm.setArmPos(1.8);
+                    armAuto.setArmPos(1.8);
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     claw.middleClaw();
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-                    arm.setArmPos(0.58);
+                    armAuto.setArmPos(0.58);
                 })
+
+
                 .lineToLinearHeading(AutoConstants.RL1_STOP)
                 .build();
 
@@ -99,7 +103,7 @@ public class AutoRedRight extends LinearOpMode {
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .addTemporalMarker(0.0, () -> {
-                    arm.setArmPos(1.08);
+                    armAuto.setArmPos(1.08);
                 })
                 .addTemporalMarker(2.0, () -> {
                     claw.lowClaw();
@@ -112,25 +116,25 @@ public class AutoRedRight extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.6, () -> {
-                    arm.setArmPos(2.2);
+                    armAuto.setArmPos(2.2);
                 })
                 .addTemporalMarker(4.2, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.RM1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    arm.setArmPos(3.1);
+                    armAuto.setArmPos(3.1);
                 })
                 .waitSeconds(1.5)
                 .lineToLinearHeading(AutoConstants.RM1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-                    arm.setArmPos(1.8);
+                    armAuto.setArmPos(1.8);
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     claw.middleClaw();
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-                    arm.setArmPos(0.58);
+                    armAuto.setArmPos(0.58);
                 })
                 .lineToLinearHeading(AutoConstants.RM1_STOP)
                 .build();
@@ -138,7 +142,7 @@ public class AutoRedRight extends LinearOpMode {
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .addTemporalMarker(0.0, () -> {
-                    arm.setArmPos(1.08);
+                    armAuto.setArmPos(1.08);
                 })
                 .addTemporalMarker(1.6, () -> {
                     claw.lowClaw();
@@ -151,25 +155,25 @@ public class AutoRedRight extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.0, () -> {
-                    arm.setArmPos(2.2);
+                    armAuto.setArmPos(2.2);
                 })
                 .addTemporalMarker(3.5, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.RR1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    arm.setArmPos(3.1);
+                    armAuto.setArmPos(3.1);
                 })
                 .waitSeconds(1.5)
                 .lineToLinearHeading(AutoConstants.RR1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-                    arm.setArmPos(1.8);
+                    armAuto.setArmPos(1.8);
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     claw.middleClaw();
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-                    arm.setArmPos(0.58);
+                    armAuto.setArmPos(0.58);
                 })
                 .lineToLinearHeading(AutoConstants.RR1_STOP)
                 .build();
@@ -242,7 +246,7 @@ public class AutoRedRight extends LinearOpMode {
 
         while (!isStopRequested() && opModeIsActive()) {
             drive.update();
-            arm.loop();
+            armAuto.loop();
 //            currentTime = timer.milliseconds();
 //            dashboardTelemetry.addLine("run-time: " + currentTime/1000);
 //            dashboardTelemetry.addLine("loop-time: " + (currentTime - lastTime)/1000);
