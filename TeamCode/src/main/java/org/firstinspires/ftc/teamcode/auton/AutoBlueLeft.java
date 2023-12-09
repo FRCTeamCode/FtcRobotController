@@ -40,6 +40,7 @@ public class AutoBlueLeft extends LinearOpMode {
     public static double cycleDelay = .52;
     public static double turretAfterScoreDelay = .7;
     private boolean isAutoEnd = false;
+    //test branch
 
     @Override
     public void runOpMode() throws InterruptedException {
