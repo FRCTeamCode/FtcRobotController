@@ -10,9 +10,11 @@ public class PixelArmReset extends SequentialCommandGroup {
 
     public PixelArmReset(Arm arm, Claw claw, Intake intake) {
         addCommands(
-                new IntakeControl(intake, 3.0),
-                new ArmControl(arm, 1.2),
+                new ArmControl(arm, 1.4),
+                new WaitCommand(100),
                 new ClawControl(claw, 2.0),
+                new WaitCommand(100),
+                new IntakeControl(intake, 3.0),
                 new WaitCommand(100),
                 new ArmControl(arm, 1.05),
                 new WaitCommand(100),

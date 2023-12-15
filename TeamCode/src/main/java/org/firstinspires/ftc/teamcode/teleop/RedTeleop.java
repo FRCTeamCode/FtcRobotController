@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.command.AlignAprilTag;
 import org.firstinspires.ftc.teamcode.command.DriveAuto;
+import org.firstinspires.ftc.teamcode.command.DriveControlType;
 import org.firstinspires.ftc.teamcode.command.IntakeControl;
 import org.firstinspires.ftc.teamcode.command.LaunchPlane;
 import org.firstinspires.ftc.teamcode.command.LaunchPrepare;
@@ -49,12 +50,16 @@ public class RedTeleop extends CommandOpMode {
         Climb climb = new Climb(hardwareMap, dashboardTelemetry);
 //        schedule(new CameraStream(myCamera, gamepad1));
 
+        Button lsb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.LEFT_STICK_BUTTON);
+        lsb.whenPressed(new DriveControlType(true));
+        Button rsb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.RIGHT_STICK_BUTTON);
+        rsb.whenPressed(new DriveControlType(false));
         Button lb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.LEFT_BUMPER);
         lb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 2, 6.0, 0.0, 2.9));
         Button rb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.RIGHT_BUMPER);
         rb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 0, 6.0, 0.0, 0.0));
         Button dd = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_DOWN);
-        dd.whenPressed(new MovePosition(climb,0));
+        dd.whenPressed(new MovePosition(climb,-100));
         Button du = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_UP);
         du.whenPressed(new MovePosition(climb,-2950));
 

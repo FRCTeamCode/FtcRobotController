@@ -11,7 +11,7 @@ public class Claw extends SubsystemBase {
     public static double lowerClaw = 0.29;
     public static double lowClaw = 0.314;
     public static double middleClaw = 0.383;
-    public static double highClaw = 0.4;
+    public static double highClaw = 0.406;
     public static double highLowerClaw = 0.394;
 
     public Claw(HardwareMap hardwareMap, Telemetry telemetry) {

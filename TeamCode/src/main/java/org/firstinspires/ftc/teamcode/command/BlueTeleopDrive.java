@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.auton.AutoConstants;
 import org.firstinspires.ftc.teamcode.drive.DrivePose;
 
 public class BlueTeleopDrive extends CommandBase {
@@ -13,6 +14,7 @@ public class BlueTeleopDrive extends CommandBase {
     private final Gamepad mGamepad;
     private ElapsedTime timer = new ElapsedTime();
     private final  double driveKp = 0.3;
+    private boolean isFieldControl;
     public BlueTeleopDrive(DrivePose drive, Gamepad gamepad) {
         mDrive = drive;
         mGamepad = gamepad;
@@ -34,15 +36,17 @@ public class BlueTeleopDrive extends CommandBase {
 //        mDrive.driveJoy(mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
 //                mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
 //                mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.5);
-//        if (Math.abs(mGamepad.right_trigger) < 0.5) {
-//            mDrive.driveField(-mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
-//                    mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
-//                    mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.5);
-//        } else{
+
+        if (AutoConstants.isFieldControl) {
+            mDrive.driveField(
+                    mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
+                    mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
+                    mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.5);
+        } else{
             mDrive.mecanumCentricDrive(-mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
                 -mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
                 -mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.5, 1.0);
-//        }
+        }
 
 //        mDrive.driveJoy(-mGamepad.left_stick_y, mGamepad.left_stick_x, mGamepad.right_stick_x);//normal drive
 

@@ -74,16 +74,19 @@ public class AutoBlueLeft extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.0, () -> {
-                    armAuto.setArmPos(2.2);
+                    armAuto.setArmPos(2.36);
                 })
                 .addTemporalMarker(3.6, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.1);
+                    armAuto.setArmPos(2.8);
                 })
-                .waitSeconds(1.5)
+                .UNSTABLE_addTemporalMarkerOffset(1.8, () -> {
+                    armAuto.setArmPos(2.9);
+                })
+                .waitSeconds(2.5)
                 .lineToLinearHeading(AutoConstants.BL1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
@@ -106,7 +109,7 @@ public class AutoBlueLeft extends LinearOpMode {
                 .addTemporalMarker(2.0, () -> {
                     claw.lowClaw();
                 })
-                .addTemporalMarker(2.8, () -> {
+                .addTemporalMarker(2.5, () -> {
                     intake.openIntake();
                 })
                 .lineToLinearHeading(AutoConstants.BM1_PUT)
@@ -114,16 +117,19 @@ public class AutoBlueLeft extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.6, () -> {
-                    armAuto.setArmPos(2.2);
+                    armAuto.setArmPos(2.36);
                 })
                 .addTemporalMarker(4.2, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.BM1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.1);
+                    armAuto.setArmPos(2.8);
                 })
-                .waitSeconds(1.5)
+                .UNSTABLE_addTemporalMarkerOffset(1.8, () -> {
+                    armAuto.setArmPos(2.9);
+                })
+                .waitSeconds(2.5)
                 .lineToLinearHeading(AutoConstants.BM1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
@@ -149,18 +155,22 @@ public class AutoBlueLeft extends LinearOpMode {
                     intake.openIntake();
                 })
                 .lineToLinearHeading(AutoConstants.BR1_PUT)
-                .addTemporalMarker(3.0, () -> {
+                .waitSeconds(0.85)
+                .addTemporalMarker(3.8, () -> {
                     intake.closeIntake();
                 })
-                .addTemporalMarker(3.0, () -> {
-                    armAuto.setArmPos(2.2);
+                .addTemporalMarker(3.8, () -> {
+                    armAuto.setArmPos(2.36);
                 })
-                .addTemporalMarker(3.5, () -> {
+                .addTemporalMarker(4.3, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.BR1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.1);
+                    armAuto.setArmPos(2.8);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(1.8, () -> {
+                    armAuto.setArmPos(2.9);
                 })
                 .waitSeconds(1.5)
                 .lineToLinearHeading(AutoConstants.BR1_Tag)
@@ -199,11 +209,11 @@ public class AutoBlueLeft extends LinearOpMode {
 //                    dashboardTelemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
                     if (recognition.getLabel() == "BlueCube") {
                         tagFound = true;
-                        if (x < 300 && x > 80 && Math.abs(y-176) < 40 && Math.abs(recognition.getWidth()-88) < 20 && Math.abs(recognition.getHeight()-93) < 20) {
+                        if (Math.abs(x-232) < 48 && Math.abs(y-212) < 48 && Math.abs(recognition.getWidth()-90) < 20 && Math.abs(recognition.getHeight()-95) < 20) {
                             tagID = 4;
                             targetSide = "Left";
                             targetRoad = pathLeft;
-                        } else if (x > 280 && Math.abs(y-150) < 40 && Math.abs(recognition.getWidth()-81) < 20 && Math.abs(recognition.getHeight()-85) < 20) {
+                        } else if (Math.abs(x-455) < 48 && Math.abs(y-190) < 48 && Math.abs(recognition.getWidth()-74) < 24 && Math.abs(recognition.getHeight()-82) < 24) {
                             tagID = 5;
                             targetSide = "Middle";
                             targetRoad = pathMiddle;

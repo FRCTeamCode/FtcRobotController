@@ -27,7 +27,6 @@ public class ArmAuto {
 //        armMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 //        armMotor.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        armMotor.motor.setDirection(DcMotor.Direction.REVERSE);//REVERSE:1000->3000 arm up
-//        armMotor.resetEncoder();
 //        configPosition();//Pos:0-hold, 60-intake, 900-put
 
         arm2Motor = new MotorEx(hardwareMap, "right", Motor.GoBILDA.RPM_84);

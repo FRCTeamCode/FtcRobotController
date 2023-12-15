@@ -31,6 +31,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
+import org.firstinspires.ftc.teamcode.auton.AutoConstants;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
@@ -310,6 +311,7 @@ public class SampleMecanumFaster extends MecanumDrive {
         leftRear.setPower(backLeftPower);
         rightFront.setPower(frontRightPower);
         rightRear.setPower(backRightPower);
+        telemetry.addData("DriveType", AutoConstants.isFieldControl);
     }
     public void updateField(double left_stick_y, double left_stick_x, double right_stick_x, double driveK) {
         double y = -left_stick_y;
@@ -335,6 +337,7 @@ public class SampleMecanumFaster extends MecanumDrive {
 
         telemetry.addData("Heading", AngleUnit.RADIANS.toDegrees(getPoseEstimate().getHeading()));
         telemetry.addData("HeadingPos", AngleUnit.RADIANS.toDegrees(botHeading));
+        telemetry.addData("DriveType", AutoConstants.isFieldControl);
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {

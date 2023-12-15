@@ -59,39 +59,51 @@ public class AutoBlueRight extends LinearOpMode {
         TrajectorySequence pathLeft = drive.trajectorySequenceBuilder(AutoConstants.START)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
-                .addTemporalMarker(0.0, () -> {
+                .lineToLinearHeading(AutoConstants.BL2_way)
+                .lineToLinearHeading(AutoConstants.BL2_PUT2)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(1.08);
                 })
-                .addTemporalMarker(1.0, () -> {
+                .waitSeconds(1.0)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     claw.lowClaw();
                 })
-                .addTemporalMarker(2.1, () -> {
+                .waitSeconds(1.1)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.openIntake();
                 })
-                .waitSeconds(0.5)
-                .lineToLinearHeading(AutoConstants.BL2_PUT2)
-                .addTemporalMarker(3.0, () -> {
-                    intake.closeIntake();
-                })
-                .addTemporalMarker(3.5, () -> {
+                .waitSeconds(0.75)
+                .lineToLinearHeading(AutoConstants.BL2_PUT2Back)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     claw.middleClaw();
                 })
-                .addTemporalMarker(8.4, () -> {
-                    armAuto.setArmPos(2.2);
+                .waitSeconds(0.4)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                    intake.closeIntake();
                 })
-                .addTemporalMarker(8.7, () -> {
-                    claw.lowerClaw();
+                .waitSeconds(0.4)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                    armAuto.setArmPos(0.58);
                 })
+                .waitSeconds(0.4)
                 .lineToLinearHeading(AutoConstants.BL2_way0)
                 .lineToLinearHeading(AutoConstants.BL2_way1)
                 .lineToLinearHeading(AutoConstants.BL2_way2)
-                .lineToLinearHeading(AutoConstants.BL2_BACKSTAGE0)
-                .lineToLinearHeading(AutoConstants.BL2_BACKSTAGE1)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                    armAuto.setArmPos(2.36);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                    claw.lowerClaw();
+                })
+                .lineToLinearHeading(AutoConstants.BL2_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.1);
+                    armAuto.setArmPos(2.8);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(1.8, () -> {
+                    armAuto.setArmPos(2.9);
                 })
                 .waitSeconds(1.5)
-                .lineToLinearHeading(AutoConstants.BL2_Tag2)
+//                .lineToLinearHeading(AutoConstants.BL2_Tag2)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
                 })
@@ -101,7 +113,7 @@ public class AutoBlueRight extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .lineToLinearHeading(AutoConstants.BL2_STOP2)
+//                .lineToLinearHeading(AutoConstants.BL2_STOP2)
                 .build();
 
         TrajectorySequence pathMiddle = drive.trajectorySequenceBuilder(AutoConstants.START)
@@ -146,34 +158,47 @@ public class AutoBlueRight extends LinearOpMode {
         TrajectorySequence pathRight = drive.trajectorySequenceBuilder(AutoConstants.START)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
-                .addTemporalMarker(0.0, () -> {
+                .lineToLinearHeading(AutoConstants.BR2_PUT2)
+                .addTemporalMarker(0.2, () -> {
                     armAuto.setArmPos(1.08);
                 })
-                .addTemporalMarker(1.0, () -> {
+                .addTemporalMarker(0.8, () -> {
                     claw.lowClaw();
                 })
-                .addTemporalMarker(2.1, () -> {
+                .addTemporalMarker(2.2, () -> {
                     intake.openIntake();
                 })
-                .lineToLinearHeading(AutoConstants.BR2_PUT)
-                .addTemporalMarker(3.5, () -> {
-                    intake.closeIntake();
-                })
-                .addTemporalMarker(4.0, () -> {
+                .waitSeconds(1.0)
+                .lineToLinearHeading(AutoConstants.BR2_PUT2Back)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     claw.middleClaw();
                 })
-                .addTemporalMarker(7.0, () -> {
-                    armAuto.setArmPos(2.2);
+                .waitSeconds(0.4)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                    intake.closeIntake();
                 })
-                .addTemporalMarker(7.5, () -> {
+                .waitSeconds(0.4)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                    armAuto.setArmPos(0.58);
+                })
+                .waitSeconds(0.4)
+                .lineToLinearHeading(AutoConstants.BR2_way0)
+                .lineToLinearHeading(AutoConstants.BR2_way1)
+                .lineToLinearHeading(AutoConstants.BR2_way2)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                    armAuto.setArmPos(2.36);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.BR2_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.1);
+                    armAuto.setArmPos(2.8);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(1.8, () -> {
+                    armAuto.setArmPos(2.9);
                 })
                 .waitSeconds(1.5)
-                .lineToLinearHeading(AutoConstants.BR2_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
                 })
@@ -183,55 +208,9 @@ public class AutoBlueRight extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .lineToLinearHeading(AutoConstants.BR2_STOP)
-                .build();
-        TrajectorySequence pathRight2 = drive.trajectorySequenceBuilder(AutoConstants.START)
-                .setVelConstraint(AutoConstants.PARK_VEL)
-                .setAccelConstraint(AutoConstants.PARK_ACCEL)
-                .addTemporalMarker(0.0, () -> {
-                    armAuto.setArmPos(1.08);
-                })
-                .addTemporalMarker(1.0, () -> {
-                    claw.lowClaw();
-                })
-                .addTemporalMarker(2.1, () -> {
-                    intake.openIntake();
-                })
-                .waitSeconds(0.5)
-                .lineToLinearHeading(AutoConstants.BR2_PUT2)
-                .addTemporalMarker(3.0, () -> {
-                    intake.closeIntake();
-                })
-                .addTemporalMarker(3.5, () -> {
-                    claw.middleClaw();
-                })
-                .addTemporalMarker(7.5, () -> {
-                    armAuto.setArmPos(2.25);
-                })
-                .addTemporalMarker(8.0, () -> {
-                    claw.lowerClaw();
-                })
-                .lineToLinearHeading(AutoConstants.BR2_way1)
-                .lineToLinearHeading(AutoConstants.BR2_way2)
-                .lineToLinearHeading(AutoConstants.BR2_BACKSTAGE2)
-                .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.1);
-                })
-                .waitSeconds(1.5)
-                .lineToLinearHeading(AutoConstants.BR2_Tag2)
-                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-                    armAuto.setArmPos(1.8);
-                })
-                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-                    claw.middleClaw();
-                })
-                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-                    armAuto.setArmPos(0.58);
-                })
-                .lineToLinearHeading(AutoConstants.BR2_STOP2)
                 .build();
 
-        targetRoad = pathRight;
+        targetRoad = pathLeft;
 
         while (!isStarted() && !isStopRequested()) {
 //            myCamera.runDoubleVision();
@@ -254,18 +233,18 @@ public class AutoBlueRight extends LinearOpMode {
 //                    dashboardTelemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
                     if (recognition.getLabel() == "BlueCube") {
                         tagFound = true;
-                        if (x < 300 && x > 80 && Math.abs(y-176) < 40 && Math.abs(recognition.getWidth()-88) < 20 && Math.abs(recognition.getHeight()-93) < 20) {
-                            tagID = 4;
-                            targetSide = "Left";
-                            targetRoad = pathLeft;
-                        } else if (x > 280 && Math.abs(y-150) < 40 && Math.abs(recognition.getWidth()-81) < 20 && Math.abs(recognition.getHeight()-85) < 20) {
+                        if (Math.abs(x-470) < 48 && Math.abs(y-214) < 40 && Math.abs(recognition.getWidth()-86) < 20 && Math.abs(recognition.getHeight()-96) < 20) {
+                            tagID = 6;
+                            targetSide = "Right";
+                            targetRoad = pathRight;
+                        } else if (Math.abs(x-258) < 48 && Math.abs(y-191) < 40 && Math.abs(recognition.getWidth()-79) < 20 && Math.abs(recognition.getHeight()-84) < 20) {
                             tagID = 5;
                             targetSide = "Middle";
                             targetRoad = pathMiddle;
                         } else {
-                            tagID = 6;
-                            targetSide = "Right";
-                            targetRoad = pathRight2;
+                            tagID = 4;
+                            targetSide = "Left";
+                            targetRoad = pathLeft;
                         }
                     }
                 }
