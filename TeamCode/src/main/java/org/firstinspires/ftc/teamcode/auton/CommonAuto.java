@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.subsystem.MyCamera;
 import org.firstinspires.ftc.teamcode.subsystem.TestMotor;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
-@Autonomous
+//@Autonomous
 @Config
 public class CommonAuto extends LinearOpMode {
     SampleMecanumFaster drive;

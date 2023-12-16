@@ -37,6 +37,10 @@ public class DrivePose extends SubsystemBase {
         );
     }
 
+    public void resetIMU() {
+        drive.resetIMU();
+    }
+
     public void autoMoveXY(double runTime) {
         drive.autoMoveXY(25.0, 0.3, 15.0, 0.3, runTime, 8000.0, 6.0, 0.5);
     }

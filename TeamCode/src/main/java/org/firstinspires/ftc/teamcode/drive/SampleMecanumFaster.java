@@ -74,7 +74,6 @@ public class SampleMecanumFaster extends MecanumDrive {
     private Telemetry telemetry;
     private List<DcMotorEx> motors;
     private VoltageSensor batteryVoltageSensor;
-
     double pastv = 0;
     double pastv1 = 0;
     double pastv2 = 0;
@@ -318,7 +317,7 @@ public class SampleMecanumFaster extends MecanumDrive {
         double x = left_stick_x * 1.1;
         double rx = right_stick_x;
 
-        double botHeading = getRawExternalHeading();
+        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) - AutoConstants.initAngle;
 
         // Rotate the movement direction counter to the robot's rotation
         double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
@@ -335,11 +334,14 @@ public class SampleMecanumFaster extends MecanumDrive {
         rightFront.setPower(frontRightPower);
         rightRear.setPower(backRightPower);
 
-        telemetry.addData("Heading", AngleUnit.RADIANS.toDegrees(getPoseEstimate().getHeading()));
-        telemetry.addData("HeadingPos", AngleUnit.RADIANS.toDegrees(botHeading));
-        telemetry.addData("DriveType", AutoConstants.isFieldControl);
+//        telemetry.addData("Heading", AngleUnit.RADIANS.toDegrees(getPoseEstimate().getHeading()));
+//        telemetry.addData("HeadingPos", AngleUnit.RADIANS.toDegrees(botHeading));
+//        telemetry.addData("DriveType", AutoConstants.isFieldControl);
     }
 
+    public void resetIMU() {
+        imu.resetYaw();
+    }
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
         return new TrajectoryBuilder(startPose, VEL_CONSTRAINT, ACCEL_CONSTRAINT);
     }

@@ -9,9 +9,12 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.auton.AutoConstants;
 import org.firstinspires.ftc.teamcode.command.AlignAprilTag;
 import org.firstinspires.ftc.teamcode.command.DriveAuto;
 import org.firstinspires.ftc.teamcode.command.DriveControlType;
+import org.firstinspires.ftc.teamcode.command.IMUReset;
 import org.firstinspires.ftc.teamcode.command.IntakeControl;
 import org.firstinspires.ftc.teamcode.command.LaunchPlane;
 import org.firstinspires.ftc.teamcode.command.LaunchPrepare;
@@ -39,6 +42,7 @@ public class RedTeleop extends CommandOpMode {
     @Override
     public void initialize() {
         myCamera = new MyCamera(hardwareMap, dashboardTelemetry);
+        AutoConstants.initAngle  = AngleUnit.DEGREES.toRadians(-90.0);
         DrivePose drive = new DrivePose(hardwareMap, dashboardTelemetry);
         drive.setDefaultCommand(new RedTeleopDrive(drive, gamepad1));
 
@@ -62,6 +66,8 @@ public class RedTeleop extends CommandOpMode {
         dd.whenPressed(new MovePosition(climb,-100));
         Button du = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_UP);
         du.whenPressed(new MovePosition(climb,-2950));
+        Button dl = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_LEFT);
+        dl.whenPressed(new IMUReset(drive));
 
 
         Button a2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.A);
