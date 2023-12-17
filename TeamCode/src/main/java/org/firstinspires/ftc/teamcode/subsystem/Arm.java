@@ -59,23 +59,26 @@ public class Arm extends SubsystemBase {
     }
 
     public void loop() {
-        currentVoltage = potentiometer.getVoltage();
-//        arm2Motor.setVelocity(MathUtils.clamp((mRotatePos - currentVoltage) * 2600, -800,1200));
-        errorVel = mRotatePos - currentVoltage;
-        xP = errorVel * kXYP;
-        xI += errorVel;
-        xI *= kXYI;
-        xD = errorVel - xLastError;
-        xD *= kXYD;
-        vel = xP + xI + xD;
-        vel = vel + addFriction(xP);
-        xLastError = errorVel;
-        vel = MathUtils.clamp(vel, -0.35, 0.4);
-        telemetry.addData("ArmPIDVelP", xP);
-        telemetry.addData("ArmPIDVelI", xI);
-        telemetry.addData("ArmPIDVelD", xD);
-        telemetry.addData("ArmPIDVel", vel);
-        arm2Motor.setVelocity(vel*5000);
+        if (mRotatePos == 0.0) {
+            arm2Motor.setVelocity(127.0);
+        } else {
+            currentVoltage = potentiometer.getVoltage();
+            errorVel = mRotatePos - currentVoltage;
+            xP = errorVel * kXYP;
+            xI += errorVel;
+            xI *= kXYI;
+            xD = errorVel - xLastError;
+            xD *= kXYD;
+            vel = xP + xI + xD;
+            vel = vel + addFriction(xP);
+            xLastError = errorVel;
+            vel = MathUtils.clamp(vel, -0.35, 0.4);
+            telemetry.addData("ArmPIDVelP", xP);
+            telemetry.addData("ArmPIDVelI", xI);
+            telemetry.addData("ArmPIDVelD", xD);
+            telemetry.addData("ArmPIDVel", vel);
+            arm2Motor.setVelocity(vel*5000);
+        }
     }
 
     public double addFriction(double value) {

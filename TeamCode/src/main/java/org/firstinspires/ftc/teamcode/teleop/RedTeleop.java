@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.auton.AutoConstants;
 import org.firstinspires.ftc.teamcode.command.AlignAprilTag;
 import org.firstinspires.ftc.teamcode.command.DriveAuto;
 import org.firstinspires.ftc.teamcode.command.DriveControlType;
-import org.firstinspires.ftc.teamcode.command.IMUReset;
+import org.firstinspires.ftc.teamcode.command.RevieseDirec;
 import org.firstinspires.ftc.teamcode.command.IntakeControl;
 import org.firstinspires.ftc.teamcode.command.LaunchPlane;
 import org.firstinspires.ftc.teamcode.command.LaunchPrepare;
@@ -24,7 +24,6 @@ import org.firstinspires.ftc.teamcode.command.PixelHold;
 import org.firstinspires.ftc.teamcode.command.PixelIntake;
 import org.firstinspires.ftc.teamcode.command.PixelPut;
 import org.firstinspires.ftc.teamcode.command.PixelRelease;
-import org.firstinspires.ftc.teamcode.command.BlueTeleopDrive;
 import org.firstinspires.ftc.teamcode.command.RedTeleopDrive;
 import org.firstinspires.ftc.teamcode.drive.DrivePose;
 import org.firstinspires.ftc.teamcode.subsystem.Arm;
@@ -43,6 +42,7 @@ public class RedTeleop extends CommandOpMode {
     public void initialize() {
         myCamera = new MyCamera(hardwareMap, dashboardTelemetry);
         AutoConstants.initAngle  = AngleUnit.DEGREES.toRadians(-90.0);
+        AutoConstants.isBlueOrRed = false;
         DrivePose drive = new DrivePose(hardwareMap, dashboardTelemetry);
         drive.setDefaultCommand(new RedTeleopDrive(drive, gamepad1));
 
@@ -67,7 +67,9 @@ public class RedTeleop extends CommandOpMode {
         Button du = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_UP);
         du.whenPressed(new MovePosition(climb,-2950));
         Button dl = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_LEFT);
-        dl.whenPressed(new IMUReset(drive));
+        dl.whenPressed(new RevieseDirec(-1.0));
+        Button dr = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_RIGHT);
+        dr.whenPressed(new RevieseDirec(1.0));
 
 
         Button a2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.A);

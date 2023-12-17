@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.auton.AutoConstants;
 import org.firstinspires.ftc.teamcode.command.AlignAprilTag;
 import org.firstinspires.ftc.teamcode.command.DriveAuto;
 import org.firstinspires.ftc.teamcode.command.DriveControlType;
-import org.firstinspires.ftc.teamcode.command.IMUReset;
+import org.firstinspires.ftc.teamcode.command.RevieseDirec;
 import org.firstinspires.ftc.teamcode.command.IntakeControl;
 import org.firstinspires.ftc.teamcode.command.LaunchPlane;
 import org.firstinspires.ftc.teamcode.command.LaunchPrepare;
@@ -42,6 +42,7 @@ public class BlueTeleOp extends CommandOpMode {
     public void initialize() {
         myCamera = new MyCamera(hardwareMap, dashboardTelemetry);
         AutoConstants.initAngle  = AngleUnit.DEGREES.toRadians(90.0);
+        AutoConstants.isBlueOrRed = true;
         DrivePose drive = new DrivePose(hardwareMap, dashboardTelemetry);
         drive.setDefaultCommand(new BlueTeleopDrive(drive, gamepad1));
 
@@ -67,7 +68,9 @@ public class BlueTeleOp extends CommandOpMode {
         Button du = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_UP);
         du.whenPressed(new MovePosition(climb,-2950));
         Button dl = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_LEFT);
-        dl.whenPressed(new IMUReset(drive));
+        dl.whenPressed(new RevieseDirec(-1.0));
+        Button dr = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_RIGHT);
+        dr.whenPressed(new RevieseDirec(1.0));
 
 
         Button a2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.A);

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.command;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
+import org.firstinspires.ftc.teamcode.auton.AutoConstants;
 import org.firstinspires.ftc.teamcode.subsystem.Climb;
 
 public class MovePosition extends CommandBase {
@@ -16,6 +17,9 @@ public class MovePosition extends CommandBase {
     @Override
     public void initialize() {
         climb.setClimbPos(mPosition);
+        if (Math.abs(mPosition)>2000) {
+            AutoConstants.isOpRevise = -1;
+        }
     }
 
     @Override

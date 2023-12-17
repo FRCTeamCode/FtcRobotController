@@ -14,7 +14,8 @@ public class LaunchPrepare extends SequentialCommandGroup {
                 new ArmControl(arm, 2.0),
                 new ClawControl(claw, 4.0),
                 new WaitCommand(300),
-                new ArmControl(arm, 3.1)
+                new ArmControl(arm, 3.1),
+                new ReviseDirec2()
         );
         addRequirements(arm, claw, intake);
     }

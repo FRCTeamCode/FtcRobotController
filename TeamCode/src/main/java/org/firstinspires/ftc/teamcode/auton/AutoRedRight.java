@@ -94,9 +94,8 @@ public class AutoRedRight extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);
                 })
-
-
                 .lineToLinearHeading(AutoConstants.RL1_STOP)
+                .lineToLinearHeading(AutoConstants.RL1_STOP_BACK)
                 .build();
 
         TrajectorySequence pathMiddle = drive.trajectorySequenceBuilder(AutoConstants.START)
@@ -137,6 +136,7 @@ public class AutoRedRight extends LinearOpMode {
                     armAuto.setArmPos(0.58);
                 })
                 .lineToLinearHeading(AutoConstants.RM1_STOP)
+                .lineToLinearHeading(AutoConstants.RM1_STOP_BACK)
                 .build();
         TrajectorySequence pathRight = drive.trajectorySequenceBuilder(AutoConstants.START)
                 .setVelConstraint(AutoConstants.PARK_VEL)
@@ -150,19 +150,25 @@ public class AutoRedRight extends LinearOpMode {
                 .addTemporalMarker(2.1, () -> {
                     intake.openIntake();
                 })
+                .addTemporalMarker(2.5, () -> {
+                    claw.middleClaw();
+                })
                 .lineToLinearHeading(AutoConstants.RR1_PUT)
                 .addTemporalMarker(3.0, () -> {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.0, () -> {
-                    armAuto.setArmPos(2.2);
+                    armAuto.setArmPos(2.36);
                 })
                 .addTemporalMarker(3.5, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.RR1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.1);
+                    armAuto.setArmPos(2.8);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(1.8, () -> {
+                    armAuto.setArmPos(2.9);
                 })
                 .waitSeconds(1.5)
                 .lineToLinearHeading(AutoConstants.RR1_Tag)
@@ -176,6 +182,7 @@ public class AutoRedRight extends LinearOpMode {
                     armAuto.setArmPos(0.58);
                 })
                 .lineToLinearHeading(AutoConstants.RR1_STOP)
+                .lineToLinearHeading(AutoConstants.RR1_STOP_BACK)
                 .build();
 
         targetRoad = pathRight;
