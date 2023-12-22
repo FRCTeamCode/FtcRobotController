@@ -65,7 +65,7 @@ public class AutoRedRight extends LinearOpMode {
                 .addTemporalMarker(0.9, () -> {
                     claw.lowClaw();
                 })
-                .addTemporalMarker(1.6, () -> {
+                .addTemporalMarker(2.0, () -> {
                     intake.openIntake();
                 })
                 .lineToLinearHeading(AutoConstants.RL1_PUT)
@@ -73,7 +73,7 @@ public class AutoRedRight extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.0, () -> {
-                    armAuto.setArmPos(2.2);
+                    armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
                 .addTemporalMarker(3.6, () -> {
                     claw.lowerClaw();
@@ -81,7 +81,7 @@ public class AutoRedRight extends LinearOpMode {
                 //robot move to BACKSTAGE
                 .lineToLinearHeading(AutoConstants.RL1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.1);
+                    armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
                 .waitSeconds(1.5)
                 .lineToLinearHeading(AutoConstants.RL1_Tag)
@@ -104,7 +104,7 @@ public class AutoRedRight extends LinearOpMode {
                 .addTemporalMarker(0.0, () -> {
                     armAuto.setArmPos(1.08);
                 })
-                .addTemporalMarker(2.0, () -> {
+                .addTemporalMarker(1.3, () -> {
                     claw.lowClaw();
                 })
                 .addTemporalMarker(2.8, () -> {
@@ -115,14 +115,14 @@ public class AutoRedRight extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.6, () -> {
-                    armAuto.setArmPos(2.2);
+                    armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
                 .addTemporalMarker(4.2, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.RM1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.1);
+                    armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
                 .waitSeconds(1.5)
                 .lineToLinearHeading(AutoConstants.RM1_Tag)
@@ -144,31 +144,28 @@ public class AutoRedRight extends LinearOpMode {
                 .addTemporalMarker(0.0, () -> {
                     armAuto.setArmPos(1.08);
                 })
-                .addTemporalMarker(1.6, () -> {
+                .addTemporalMarker(0.9, () -> {
                     claw.lowClaw();
                 })
-                .addTemporalMarker(2.1, () -> {
+                .addTemporalMarker(1.6, () -> {
                     intake.openIntake();
                 })
-                .addTemporalMarker(2.5, () -> {
-                    claw.middleClaw();
+                .addTemporalMarker(1.8, () -> {
+                    armAuto.setArmPos(1.6);
                 })
                 .lineToLinearHeading(AutoConstants.RR1_PUT)
                 .addTemporalMarker(3.0, () -> {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.0, () -> {
-                    armAuto.setArmPos(2.36);
+                    armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
                 .addTemporalMarker(3.5, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.RR1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(2.8);
-                })
-                .UNSTABLE_addTemporalMarkerOffset(1.8, () -> {
-                    armAuto.setArmPos(2.9);
+                    armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
                 .waitSeconds(1.5)
                 .lineToLinearHeading(AutoConstants.RR1_Tag)
@@ -185,7 +182,7 @@ public class AutoRedRight extends LinearOpMode {
                 .lineToLinearHeading(AutoConstants.RR1_STOP_BACK)
                 .build();
 
-        targetRoad = pathRight;
+        targetRoad = pathLeft;
 
         while (!isStarted() && !isStopRequested()) {
 //            myCamera.runDoubleVision();
@@ -208,18 +205,18 @@ public class AutoRedRight extends LinearOpMode {
 //                    dashboardTelemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
                     if (recognition.getLabel() == "RedCube") {
                         tagFound = true;
-                        if (Math.abs(x-78) < 60 && Math.abs(y-180) < 50 && Math.abs(recognition.getWidth()-105) < 20 && Math.abs(recognition.getHeight()-102) < 20) {
+                        if (Math.abs(x-515) < 60 && Math.abs(y-153) < 60 && Math.abs(recognition.getWidth()-100) < 30 && Math.abs(recognition.getHeight()-96) < 30) {
                             tagID = 1;
-                            targetSide = "Left";
-                            targetRoad = pathLeft;
-                        } else if (Math.abs(x-317) < 120 && Math.abs(y-153) < 40 && Math.abs(recognition.getWidth()-78) < 20 && Math.abs(recognition.getHeight()-94) < 20) {
+                            targetSide = "Right";
+                            targetRoad = pathRight;
+                        } else if (Math.abs(x-274) < 120 && Math.abs(y-122) < 60 && Math.abs(recognition.getWidth()-73) < 30 && Math.abs(recognition.getHeight()-82) < 30) {
                             tagID = 2;
                             targetSide = "Middle";
                             targetRoad = pathMiddle;
                         } else {
                             tagID = 3;
-                            targetSide = "Right";
-                            targetRoad = pathRight;
+                            targetSide = "Left";
+                            targetRoad = pathLeft;
                         }
                     }
                 }

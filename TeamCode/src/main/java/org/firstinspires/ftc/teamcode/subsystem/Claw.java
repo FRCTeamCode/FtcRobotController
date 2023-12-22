@@ -9,7 +9,8 @@ public class Claw extends SubsystemBase {
     public Servo clawServo;
     private final Telemetry telemetry;
     public static double lowerClaw = 0.29;
-    public static double lowClaw = 0.314;
+    public static double lowClaw = 0.31;
+    public static double middleLowClaw = 0.375;
     public static double middleClaw = 0.3865;
     public static double highClaw = 0.406;
     public static double highLowerClaw = 0.394;
@@ -39,5 +40,8 @@ public class Claw extends SubsystemBase {
     }
     public void highLowerClaw() {
         clawServo.setPosition(highLowerClaw);
+    }
+    public void middleLowClaw() {
+        clawServo.setPosition(middleLowClaw);
     }
 }

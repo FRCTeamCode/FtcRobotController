@@ -41,7 +41,6 @@ public class AutoBlueLeft extends LinearOpMode {
     public static double cycleDelay = .52;
     public static double turretAfterScoreDelay = .7;
     private boolean isAutoEnd = false;
-    //test branch
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -77,17 +76,14 @@ public class AutoBlueLeft extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.0, () -> {
-                    armAuto.setArmPos(2.0);
+                    armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
                 .addTemporalMarker(3.6, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE)
-//                .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-//                    armAuto.setArmPos(2.8);
-//                })
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.2);
+                    armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
                 .waitSeconds(2.0)
                 .lineToLinearHeading(AutoConstants.BL1_Tag)
@@ -121,7 +117,7 @@ public class AutoBlueLeft extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.6, () -> {
-                    armAuto.setArmPos(2.0);
+                    armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
                 .addTemporalMarker(4.2, () -> {
                     claw.lowerClaw();
@@ -131,7 +127,7 @@ public class AutoBlueLeft extends LinearOpMode {
 //                    armAuto.setArmPos(2.8);
 //                })
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.2);
+                    armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
                 .waitSeconds(2.0)
                 .lineToLinearHeading(AutoConstants.BM1_Tag)
@@ -153,7 +149,7 @@ public class AutoBlueLeft extends LinearOpMode {
                 .addTemporalMarker(0.0, () -> {
                     armAuto.setArmPos(1.08);
                 })
-                .addTemporalMarker(1.6, () -> {
+                .addTemporalMarker(1.2, () -> {
                     claw.lowClaw();
                 })
                 .addTemporalMarker(2.1, () -> {
@@ -165,14 +161,14 @@ public class AutoBlueLeft extends LinearOpMode {
                     intake.closeIntake();
                 })
                 .addTemporalMarker(3.8, () -> {
-                    armAuto.setArmPos(2.0);
+                    armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
                 .addTemporalMarker(4.3, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.BR1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
-                    armAuto.setArmPos(3.2);
+                    armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
                 .waitSeconds(2.0)
                 .lineToLinearHeading(AutoConstants.BR1_Tag)
@@ -212,11 +208,11 @@ public class AutoBlueLeft extends LinearOpMode {
 //                    dashboardTelemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
                     if (recognition.getLabel() == "BlueCube") {
                         tagFound = true;
-                        if (Math.abs(x-223) < 48 && Math.abs(y-191) < 48 && Math.abs(recognition.getWidth()-86) < 24 && Math.abs(recognition.getHeight()-93) < 24) {
+                        if (Math.abs(x-290) < 48 && Math.abs(y-154) < 48 && Math.abs(recognition.getWidth()-86) < 24 && Math.abs(recognition.getHeight()-100) < 24) {
                             tagID = 4;
                             targetSide = "Left";
                             targetRoad = pathLeft;
-                        } else if (Math.abs(x-458) < 48 && Math.abs(y-162) < 48 && Math.abs(recognition.getWidth()-75) < 24 && Math.abs(recognition.getHeight()-83) < 24) {
+                        } else if (Math.abs(x-520) < 48 && Math.abs(y-128) < 48 && Math.abs(recognition.getWidth()-82) < 24 && Math.abs(recognition.getHeight()-88) < 24) {
                             tagID = 5;
                             targetSide = "Middle";
                             targetRoad = pathMiddle;

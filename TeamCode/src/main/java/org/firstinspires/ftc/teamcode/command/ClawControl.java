@@ -24,6 +24,8 @@ public class ClawControl extends CommandBase {
             mClaw.highClaw();
         } else if (mClawPos == 4.0) {
             mClaw.highLowerClaw();
+        } else if (mClawPos == 6.0) {
+            mClaw.middleLowClaw();
         }
     }
 
