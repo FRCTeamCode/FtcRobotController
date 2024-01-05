@@ -14,7 +14,7 @@ public class Arm extends SubsystemBase {
     AnalogInput potentiometer;
     double currentVoltage;
     private final Telemetry telemetry;
-    private double mRotatePos = 0.575;
+    private double mRotatePos = 0.575 - 0.477;
     private double errorVel, xP, xI, xD, xLastError, vel;
     private double kXYP = 0.16, kXYI = 0.05, kXYD = 0.35, friction = 0.02;
 
@@ -33,7 +33,7 @@ public class Arm extends SubsystemBase {
         arm2Motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         arm2Motor.setRunMode(Motor.RunMode.VelocityControl);
         arm2Motor.setVeloCoefficients(0.05, 0.01, 0.01);
-        arm2Motor.setInverted(true);//0.577-low, 0.66-middle, 2.8-high
+        arm2Motor.setInverted(true);//0.577-low, 0.66-middle, 2.8-high//new:low-0.1
     }
 //    public void configPosition() {
 //        armMotor.setRunMode(Motor.RunMode.PositionControl);
@@ -42,7 +42,7 @@ public class Arm extends SubsystemBase {
 //    }
 
     public void setArmPos(double pos) {
-        mRotatePos = pos;
+        mRotatePos = pos - 0.477;
     }
 
     public void setVol(double vol) {
@@ -59,7 +59,7 @@ public class Arm extends SubsystemBase {
     }
 
     public void loop() {
-        if (mRotatePos == 0.0) {
+        if (mRotatePos == -0.477) {
             arm2Motor.setVelocity(127.0);
         } else {
             currentVoltage = potentiometer.getVoltage();
@@ -73,10 +73,10 @@ public class Arm extends SubsystemBase {
             vel = vel + addFriction(xP);
             xLastError = errorVel;
             vel = MathUtils.clamp(vel, -0.35, 0.4);
-            telemetry.addData("ArmPIDVelP", xP);
-            telemetry.addData("ArmPIDVelI", xI);
-            telemetry.addData("ArmPIDVelD", xD);
-            telemetry.addData("ArmPIDVel", vel);
+//            telemetry.addData("ArmPIDVelP", xP);
+//            telemetry.addData("ArmPIDVelI", xI);
+//            telemetry.addData("ArmPIDVelD", xD);
+//            telemetry.addData("ArmPIDVel", vel);
             arm2Motor.setVelocity(vel*5000);
         }
     }
@@ -96,9 +96,10 @@ public class Arm extends SubsystemBase {
 //        setSpeed(0.25);
 //        telemetry.addData("ArmPos", armMotor.getCurrentPosition());
         loop();
+//        currentVoltage = potentiometer.getVoltage();
         telemetry.addData("Potentiometer voltage", currentVoltage);
-        telemetry.addData("ArmVel", arm2Motor.getVelocity());
-        telemetry.addData("ArmCorVel", arm2Motor.getCorrectedVelocity());
+//        telemetry.addData("ArmVel", arm2Motor.getVelocity());
+//        telemetry.addData("ArmCorVel", arm2Motor.getCorrectedVelocity());
     }
 //    public void setSpeed(double speed) {
 //        armMotor.set(speed);

@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 @Config
 public class AutoConstants {
 
-    public static Boolean isFieldControl = true;
+    public static Boolean isFieldControl = false;
     public static Boolean isBlueOrRed = true;
     public  static double initAngle = AngleUnit.DEGREES.toRadians(90.0);
     public static double isOpRevise = 1.0;
@@ -27,6 +27,7 @@ public class AutoConstants {
 
     //Blue near BACKSTAGE side - Left
     public static final Pose2d BL1_PUT = new Pose2d(20.0, 9.25-3.15, 0.0);
+    public static final Pose2d BL1_PUT_tag = new Pose2d(20.0, 10, Math.toRadians(-81.8));
     public static final Pose2d BL1_BACKSTAGE = new Pose2d(20.5, 40.0-3.15, Math.toRadians(-81.8));
     public static final Pose2d BL1_Tag = new Pose2d(20.5, 34.0-3.15, Math.toRadians(-81.8));
     public static final Pose2d BL1_STOP = new Pose2d(47.4, 38.0-3.15, Math.toRadians(-81.8));

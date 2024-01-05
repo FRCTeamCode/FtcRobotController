@@ -209,7 +209,7 @@ public class AutoRedRight extends LinearOpMode {
                             tagID = 1;
                             targetSide = "Right";
                             targetRoad = pathRight;
-                        } else if (Math.abs(x-274) < 120 && Math.abs(y-122) < 60 && Math.abs(recognition.getWidth()-73) < 30 && Math.abs(recognition.getHeight()-82) < 30) {
+                        } else if (Math.abs(x-274) < 60 && Math.abs(y-122) < 60 && Math.abs(recognition.getWidth()-73) < 30 && Math.abs(recognition.getHeight()-82) < 30) {
                             tagID = 2;
                             targetSide = "Middle";
                             targetRoad = pathMiddle;
@@ -218,12 +218,19 @@ public class AutoRedRight extends LinearOpMode {
                             targetSide = "Left";
                             targetRoad = pathLeft;
                         }
+                    } else {
+                        tagID = 3;
+                        targetSide = "Left";
+                        targetRoad = pathLeft;
                     }
                 }
 
                 if (tagFound) {
                     dashboardTelemetry.addLine("Tag of interest is in sight!\n\nLocation data: " + targetSide);
                 } else {
+                    tagID = 3;
+                    targetSide = "Left";
+                    targetRoad = pathLeft;
                     dashboardTelemetry.addLine("Don't see tag of interest :(");
 
                     if (tagOfInterest == null) {
@@ -234,6 +241,9 @@ public class AutoRedRight extends LinearOpMode {
                 }
 
             } else {
+                tagID = 3;
+                targetSide = "Left";
+                targetRoad = pathLeft;
                 dashboardTelemetry.addLine("Don't see tag of interest :(");
                 if (tagOfInterest == null) {
                     dashboardTelemetry.addLine("(The tag has never been seen2)");

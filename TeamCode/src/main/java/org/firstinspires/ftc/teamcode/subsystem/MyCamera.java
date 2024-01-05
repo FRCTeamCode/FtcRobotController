@@ -31,18 +31,18 @@ public class MyCamera extends SubsystemBase {
     private static final String[] CustomLabeles = {"BlueCube", "RedCube", "Pixel", "Z1", "Z2", "Z3"};
     public MyCamera(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
-//        initAprilTag(hardwareMap);
-        initDoubleVision(hardwareMap);
+        initAprilTag(hardwareMap);
+//        initDoubleVision(hardwareMap);
         telemetry.addData("DS" + " preview on/off", "Select init, then tape 3 dots, MyCamera Stream");
     }
-    public void runAprilVision(Gamepad gamepad) {
+    public void runAprilVision() {
         telemetryAprilTag();
         // Save CPU resources; can resume streaming when needed.
-        if (gamepad.dpad_up) {
-            visionPortal.stopStreaming();
-        } else if (gamepad.dpad_down) {
-            visionPortal.resumeStreaming();
-        }
+//        if (gamepad.dpad_up) {
+//            visionPortal.stopStreaming();
+//        } else if (gamepad.dpad_down) {
+//            visionPortal.resumeStreaming();
+//        }
         try {
             Thread.sleep(20); // Share the CPU.
         } catch (InterruptedException e) {
@@ -92,7 +92,11 @@ public class MyCamera extends SubsystemBase {
     }
     public void visionClose() {
         // Save more CPU resources when camera is no longer needed.
-        visionPortal.close();
+//        visionPortal.close();
+        visionPortal.stopStreaming();
+    }
+    public void visionOpen() {
+        visionPortal.resumeStreaming();
     }
     private void initDoubleVision(HardwareMap hardwareMap) {
         // -----------------------------------------------------------------------------------------

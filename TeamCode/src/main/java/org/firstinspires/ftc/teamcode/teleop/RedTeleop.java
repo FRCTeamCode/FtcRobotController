@@ -14,6 +14,9 @@ import org.firstinspires.ftc.teamcode.auton.AutoConstants;
 import org.firstinspires.ftc.teamcode.command.AlignAprilTag;
 import org.firstinspires.ftc.teamcode.command.DriveAuto;
 import org.firstinspires.ftc.teamcode.command.DriveControlType;
+import org.firstinspires.ftc.teamcode.command.LaunchFinished;
+import org.firstinspires.ftc.teamcode.command.PixelPutLow;
+import org.firstinspires.ftc.teamcode.command.PixelPutMiddle;
 import org.firstinspires.ftc.teamcode.command.RevieseDirec;
 import org.firstinspires.ftc.teamcode.command.IntakeControl;
 import org.firstinspires.ftc.teamcode.command.LaunchPlane;
@@ -55,9 +58,9 @@ public class RedTeleop extends CommandOpMode {
 //        schedule(new CameraStream(myCamera, gamepad1));
 
         Button lsb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.LEFT_STICK_BUTTON);
-        lsb.whenPressed(new DriveControlType(true));
+        lsb.whenPressed(new DriveControlType(true, drive));
         Button rsb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.RIGHT_STICK_BUTTON);
-        rsb.whenPressed(new DriveControlType(false));
+        rsb.whenPressed(new DriveControlType(false, drive));
         Button lb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.LEFT_BUMPER);
         lb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 2, 6.0, 0.0, 2.9));
         Button rb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.RIGHT_BUMPER);
@@ -77,7 +80,7 @@ public class RedTeleop extends CommandOpMode {
         Button b2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.B);
         b2.whenPressed(new PixelIntake(arm, claw, intake));
         Button x2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.X);
-        x2.whenPressed(new PixelPut(arm, claw, intake));
+        x2.whenPressed(new LaunchFinished(arm, claw, intake));
         Button y2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.Y);
         y2.whenPressed(new PixelArmReset(arm, claw, intake));
 
@@ -90,6 +93,15 @@ public class RedTeleop extends CommandOpMode {
         s2.whenPressed(new LaunchPlane(launch, 2.0));
         Button ba2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.BACK);
         ba2.whenPressed(new LaunchPrepare(arm, claw, intake));
+
+//        Button dd2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.DPAD_DOWN);
+//        dd2.whenPressed(new LaunchFinished(arm, claw, intake));
+        Button du2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.DPAD_UP);
+        du2.whenPressed(new PixelPut(arm, claw, intake));
+        Button dl2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.DPAD_LEFT);
+        dl2.whenPressed(new PixelPutMiddle(arm, claw, intake));
+        Button dd2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.DPAD_DOWN);
+        dd2.whenPressed(new PixelPutLow(arm, claw, intake));
 
 //
         Button a = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);

@@ -11,6 +11,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumFaster;
 import org.firstinspires.ftc.teamcode.hardware.ArmAuto;
+import org.firstinspires.ftc.teamcode.hardware.CameraPro;
 import org.firstinspires.ftc.teamcode.subsystem.CameraAuto;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
@@ -23,14 +24,14 @@ import java.util.List;
 @Config
 public class AutoBlueRight extends LinearOpMode {
     SampleMecanumFaster drive;
-    //    MyCamera myCamera;
-    CameraAuto cameraAuto;
+    CameraPro cameraPro;
     ArmAuto armAuto;
     Claw claw;
     Intake intake;
     private final FtcDashboard dashboard = FtcDashboard.getInstance();
     private final Telemetry dashboardTelemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
     AprilTagDetection tagOfInterest = null;
+    private Boolean isCameraUpdated = false;
     String targetSide = "";
     TrajectorySequence targetRoad;
     ElapsedTime timer = new ElapsedTime();
@@ -50,8 +51,7 @@ public class AutoBlueRight extends LinearOpMode {
         armAuto = new ArmAuto(hardwareMap, dashboardTelemetry);
         claw = new Claw(hardwareMap, dashboardTelemetry);
         intake = new Intake(hardwareMap, dashboardTelemetry);
-//        myCamera = new MyCamera(hardwareMap, dashboardTelemetry);
-        cameraAuto = new CameraAuto(hardwareMap, dashboardTelemetry);
+        cameraPro = new CameraPro(hardwareMap, dashboardTelemetry, true);
 
         isAutoEnd = false;
 
@@ -218,15 +218,14 @@ public class AutoBlueRight extends LinearOpMode {
         targetRoad = pathLeft;
 
         while (!isStarted() && !isStopRequested()) {
-//            myCamera.runDoubleVision();
-            cameraAuto.runDoubleVision();
+            cameraPro.loop();
             dashboardTelemetry.addLine("Robot is (!isStarted() && !isStopRequested())");
             dashboardTelemetry.addData("minT", dashboardTelemetry.getMsTransmissionInterval());
 
             currentTime = timer.milliseconds();
             dashboardTelemetry.addLine("run-time: " + currentTime/1000);
 
-            List<Recognition> currentRecognitions = cameraAuto.getTfodData();
+            List<Recognition> currentRecognitions = cameraPro.currentRecognitions();
             if (currentRecognitions.size() != 0) {
                 boolean tagFound = false;
                 for (Recognition recognition : currentRecognitions) {
@@ -251,12 +250,19 @@ public class AutoBlueRight extends LinearOpMode {
                             targetSide = "Left";
                             targetRoad = pathLeft;
                         }
+                    } else {
+                        tagID = 4;
+                        targetSide = "Left";
+                        targetRoad = pathLeft;
                     }
                 }
 
                 if (tagFound) {
                     dashboardTelemetry.addLine("Tag of interest is in sight!\n\nLocation data: " + targetSide);
                 } else {
+                    tagID = 4;
+                    targetSide = "Left";
+                    targetRoad = pathLeft;
                     dashboardTelemetry.addLine("Don't see tag of interest :(");
 
                     if (tagOfInterest == null) {
@@ -267,6 +273,9 @@ public class AutoBlueRight extends LinearOpMode {
                 }
 
             } else {
+                tagID = 4;
+                targetSide = "Left";
+                targetRoad = pathLeft;
                 dashboardTelemetry.addLine("Don't see tag of interest :(" + targetSide);
                 if (tagOfInterest == null) {
                     dashboardTelemetry.addLine("(The tag has never been seen2)" + targetSide);
@@ -278,19 +287,27 @@ public class AutoBlueRight extends LinearOpMode {
             dashboardTelemetry.update();
             sleep(20);
         }
-        drive.followTrajectorySequenceAsync(targetRoad);
+//        drive.followTrajectorySequenceAsync(targetRoad);
         lastTime = timer.milliseconds();
 
         while (!isStopRequested() && opModeIsActive()) {
             drive.update();
             armAuto.loop();
-//            myCamera.runDoubleVision();
+            cameraPro.loop();
 
-//            if (!drive.isBusy()&&!isAutoEnd) {
-//                //path has finished
-//                double[] idData = myCamera.getAprilTagIDData(tagID);
-//                drive.alignAprilTag(10.0, 0.0, 0.0, idData[0], idData[1], idData[2], idData[3]);
-//                dashboardTelemetry.addLine("AprilTag Tracking");
+            if (!(!isStarted() && !isStopRequested())&&!isCameraUpdated) {
+                cameraPro.visionClose();
+                cameraPro = new CameraPro(hardwareMap, dashboardTelemetry, false);
+                isCameraUpdated = true;
+                dashboardTelemetry.addLine("Camera updated!");
+            }
+
+            if (!drive.isBusy()) {
+                //path has finished
+                double[] idData = cameraPro.getAprilTagIDData(tagID);
+                drive.alinTag(idData, tagID, timer.milliseconds());
+//                drive.alignAprilTag(20.0, 0.0, 0.0, idData[0], idData[1], idData[2], idData[3]);
+                dashboardTelemetry.addLine("AprilTag Tracking" + cameraPro.getAprilTagIDData(tagID)[0] + ", " + cameraPro.getAprilTagIDData(tagID)[1] + ", " + cameraPro.getAprilTagIDData(tagID)[2] + ", " + cameraPro.getAprilTagIDData(tagID)[3] + ";" );
 //                if (drive.isEndAlign()) {
 //                    isAutoEnd = true;
 //                    if (targetSide == "Left") {
@@ -301,8 +318,8 @@ public class AutoBlueRight extends LinearOpMode {
 //                        drive.followTrajectorySequenceAsync(pathRightPark);
 //                    }
 //                }
-//
-//            }
+
+            }
             currentTime = timer.milliseconds();
             dashboardTelemetry.addLine("run-time: " + currentTime/1000);
             dashboardTelemetry.addLine("loop-time: " + (currentTime - lastTime)/1000);

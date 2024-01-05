@@ -15,7 +15,7 @@ public class ArmAuto {
     AnalogInput potentiometer;
     double currentVoltage;
     private final Telemetry telemetry;
-    private double mRotatePos = 0.575;
+    private double mRotatePos = 0.575 - 0.477;
     private double errorVel, xP, xI, xD, xLastError, vel;
     private double kXYP = 0.16, kXYI = 0.05, kXYD = 0.35, friction = 0.02;
 
@@ -42,7 +42,7 @@ public class ArmAuto {
 //    }
 
     public void setArmPos(double pos) {
-        mRotatePos = pos;
+        mRotatePos = pos - 0.477;
     }
 
     public void setVol(double vol) {
@@ -71,10 +71,10 @@ public class ArmAuto {
         vel = vel + addFriction(xP);
         xLastError = errorVel;
         vel = MathUtils.clamp(vel, -0.35, 0.4);
-        telemetry.addData("ArmPIDVelP", xP);
-        telemetry.addData("ArmPIDVelI", xI);
-        telemetry.addData("ArmPIDVelD", xD);
-        telemetry.addData("ArmPIDVel", vel);
+//        telemetry.addData("ArmPIDVelP", xP);
+//        telemetry.addData("ArmPIDVelI", xI);
+//        telemetry.addData("ArmPIDVelD", xD);
+//        telemetry.addData("ArmPIDVel", vel);
         arm2Motor.setVelocity(vel*5000);
     }
 

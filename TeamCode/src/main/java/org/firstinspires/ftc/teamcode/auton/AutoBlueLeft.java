@@ -212,7 +212,7 @@ public class AutoBlueLeft extends LinearOpMode {
                             tagID = 4;
                             targetSide = "Left";
                             targetRoad = pathLeft;
-                        } else if (Math.abs(x-520) < 48 && Math.abs(y-128) < 48 && Math.abs(recognition.getWidth()-82) < 24 && Math.abs(recognition.getHeight()-88) < 24) {
+                        } else if (Math.abs(x-515) < 48 && Math.abs(y-128) < 48 && Math.abs(recognition.getWidth()-82) < 24 && Math.abs(recognition.getHeight()-88) < 24) {
                             tagID = 5;
                             targetSide = "Middle";
                             targetRoad = pathMiddle;
@@ -221,13 +221,20 @@ public class AutoBlueLeft extends LinearOpMode {
                             targetSide = "Right";
                             targetRoad = pathRight;
                         }
+                    } else {
+                        tagID = 6;
+                        targetSide = "Right";
+                        targetRoad = pathRight;
                     }
                 }
 
                 if (tagFound) {
                     dashboardTelemetry.addLine("Tag of interest is in sight!\n\nLocation data: " + targetSide);
                 } else {
-                    dashboardTelemetry.addLine("Don't see tag of interest :(");
+                    tagID = 6;
+                    targetSide = "Right";
+                    targetRoad = pathRight;
+                    dashboardTelemetry.addLine("Don't see tag of interest :(" + targetSide);
 
                     if (tagOfInterest == null) {
                         dashboardTelemetry.addLine("(The tag has never been seen1)");
@@ -237,6 +244,9 @@ public class AutoBlueLeft extends LinearOpMode {
                 }
 
             } else {
+                tagID = 6;
+                targetSide = "Right";
+                targetRoad = pathRight;
                 dashboardTelemetry.addLine("Don't see tag of interest :(");
                 if (tagOfInterest == null) {
                     dashboardTelemetry.addLine("(The tag has never been seen2)");

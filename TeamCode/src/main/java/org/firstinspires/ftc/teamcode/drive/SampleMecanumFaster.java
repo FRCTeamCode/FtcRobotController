@@ -36,6 +36,8 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
 import org.firstinspires.ftc.teamcode.util.LynxModuleUtil;
+import org.firstinspires.ftc.teamcode.util.RollingAverage;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -54,6 +56,7 @@ import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kV;
 public class SampleMecanumFaster extends MecanumDrive {
     private StandardTrackingWheelLocalizer sTWLoclizer;
     private BHI260IMU imu;
+    private Pose2d poseEstimate;
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(6.5, 0, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(5, 0, 0);
 
@@ -78,8 +81,10 @@ public class SampleMecanumFaster extends MecanumDrive {
     double pastv1 = 0;
     double pastv2 = 0;
     double pastv3 = 0;
-    private boolean tolerance = false;
     private List<Double> tWheelPos;
+    private double strafe = 6.0, translation = 0.0, rotation = 0.0;
+    private double translationVal, strafeVal, rotationVal, translationFriction, strafeFriction, rotationFriction;
+    private boolean  isHasTarget, tolerance, standStill, isHasFindTarget;
 
     public SampleMecanumFaster(HardwareMap hardwareMap, Telemetry telemetry) {
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
@@ -231,6 +236,77 @@ public class SampleMecanumFaster extends MecanumDrive {
     public boolean isEndAutoMove() {
         return tolerance;
     }
+    public boolean isHasTarget() {
+        return isHasTarget;
+    }
+
+    public void initTagPara() {
+        tolerance = false;
+        isHasFindTarget = false;
+    }
+
+    public boolean isEndAlign() {
+        return tolerance;
+    }
+
+    public boolean isHasFindTarget() {
+        return isHasFindTarget;
+    }
+
+    public void alinTag(double[] tag, int targetID, double time) {
+        if (tag[0] == 0) {
+            if (tag[0] != -1.0) {
+                isHasTarget = true;
+            } else {
+                isHasTarget = false;
+            }
+        } else {
+            if (tag[0] == targetID) {
+                isHasTarget = true;
+            } else {
+                isHasTarget = false;
+            }
+        }
+        if (isHasTarget) {
+            if (!isHasFindTarget) {
+                isHasFindTarget = true;
+            }
+            //move forward and backward
+            if (tag[1] - strafe < 30.0) {
+                strafeVal = MathUtils.clamp((tag[1] - strafe) * 0.1, -0.4, 0.4);
+                strafeFriction = Math.signum(strafeVal) * 0.01;
+            } else {
+                strafeVal = 0.0;
+            }
+            //Move left and right
+            double dist = Math.abs(tag[1] - strafe);
+            double kp2 = dist > 4.0 ? dist / 3.0 * dist / 3.0 : 1.0;
+            translationVal = MathUtils.clamp((tag[2] - translation) * 0.35 * kp2, -0.32, 0.32);
+            translationFriction = Math.signum(translationVal) * 0.006;
+            //move rotate
+            double kp3 = dist > 4.0 ? 1.3 : 1.0;
+            rotationVal = MathUtils.clamp((rotation - tag[3]) * 0.2 * kp3, -0.13, 0.13);
+            rotationFriction = Math.signum(rotationVal) * 0.01;
+            updateRobotDrive(
+                    (strafeVal * 0.5 + strafeFriction),             //forward and backward
+                    -(translationVal * 0.5 + translationFriction),  //left and right
+                    (rotationVal * 0.5 + rotationFriction),         //rotate left and right
+                    1.0
+            );
+//            telemetry.addData("Error1", strafeVal);
+//            telemetry.addData("Error2", translationVal);
+//            telemetry.addData("Error3", rotationVal);
+//            if ((Math.abs(strafeVal) < 0.07) && (Math.abs(translationVal) < 0.1) && (Math.abs(rotationVal) < 0.07)) {
+//                tolerance = true;
+//            }
+            tolerance = false;
+        } else {
+            if (isHasFindTarget) {
+                tolerance = true;
+            }
+            updateRobotDrive(0.18,0.0,0.0,1.0);
+        }
+    }
 
     public void alignAprilTag(double x, double y, double r, double id, double X, double Y, double R) {
         double strafeVal = 0.0, strafeFriction;
@@ -244,7 +320,7 @@ public class SampleMecanumFaster extends MecanumDrive {
         double translationFriction = Math.abs(translationVal) < 0.01 ? 0.0 :  Math.signum(translationVal) * 0.04;
         //move rotate
         double kp3 = dist > 4.0 ? 1.3 : 1.0;
-        double rotationVal = MathUtils.clamp((R - r) * 0.2 * kp3, -0.13, 0.13);
+        double rotationVal = -MathUtils.clamp((R - r) * 0.2 * kp3, -0.13, 0.13);
         double rotationFriction = Math.abs(rotationVal) < 0.01 ? 0.0 :  Math.signum(rotationVal) * 0.012;
         //move forward and backward
         if (Math.abs(errorY) < 0.3 && Math.abs(rotationVal) < 0.08) {
@@ -253,45 +329,40 @@ public class SampleMecanumFaster extends MecanumDrive {
         } else {
             strafeFriction = 0.0;
         }
-        telemetry.addData("Error0", y - Y);
-        telemetry.addData("Error1", strafeVal);
-        telemetry.addData("Error2", translationVal);
-        telemetry.addData("Error3", rotationVal);
-        tWheelPos = sTWLoclizer.getWheelPos();
-        telemetry.addData("LeftEnc1", tWheelPos.get(0));
-        telemetry.addData("LeftEnc2", tWheelPos.get(1));
-        telemetry.addData("LeftEnc3", tWheelPos.get(2));
+        telemetry.addData("Error1-front-back", strafeVal);
+        telemetry.addData("Error2-left-right", translationVal);
+        telemetry.addData("Error3-rotate", rotationVal);
         tolerance = (Math.abs(strafeVal) < 0.02) && (Math.abs(translationVal) < 0.033) && (Math.abs(rotationVal) < 0.024);
-        if (id != 0) {
-            setWeightedDrivePower(
-                    new Pose2d(
-                            strafeVal * 0.4 + strafeFriction,
-                            translationVal * 0.4 + translationFriction,
-                            (rotationVal * 0.4 + rotationFriction)
-                    )
-            );
-        } else {
-            setWeightedDrivePower(new Pose2d(0.0, 0.0, 0.0));
-        }
-    }
-
-    public boolean isEndAlign() {
-        return tolerance;
+//        if (id != 0) {
+//            setWeightedDrivePower(
+//                    new Pose2d(
+//                            strafeVal * 0.4 + strafeFriction,
+//                            translationVal * 0.4 + translationFriction,
+//                            (rotationVal * 0.4 + rotationFriction)
+//                    )
+//            );
+//        } else {
+//            setWeightedDrivePower(new Pose2d(0.0, 0.0, 0.0));
+//        }
     }
 
     public void update() {
-        telemetry.addData("left", sTWLoclizer.getWheelPos().get(0));
-        telemetry.addData("right", sTWLoclizer.getWheelPos().get(1));
-        telemetry.addData("front", sTWLoclizer.getWheelPos().get(2));
+//        telemetry.addData("left", sTWLoclizer.getWheelPos().get(0));
+//        telemetry.addData("right", sTWLoclizer.getWheelPos().get(1));
+//        telemetry.addData("front", sTWLoclizer.getWheelPos().get(2));
         telemetry.addData("ImuHeading", Math.toDegrees(getRawExternalHeading()));
         telemetry.update();
         updatePoseEstimate();
-        Pose2d poseEstimate = getPoseEstimate();
+        poseEstimate = getPoseEstimate();
         telemetry.addData("TWLPoseX", poseEstimate.getX());
         telemetry.addData("TWLPoseY", poseEstimate.getY());
         telemetry.addData("TWLPoseH", Math.toDegrees(poseEstimate.getHeading()));
         DriveSignal signal = trajectorySequenceRunner.update(getPoseEstimate(), getPoseVelocity());
         if (signal != null) setDriveSignal(signal);
+    }
+
+    public Pose2d getMyPose() {
+        return poseEstimate;
     }
 
     public void updateRobotDrive(double left_stick_y, double left_stick_x, double right_stick_x, double driveK) {
@@ -317,7 +388,8 @@ public class SampleMecanumFaster extends MecanumDrive {
         double x = left_stick_x * 1.1;
         double rx = right_stick_x;
 
-        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) - AutoConstants.initAngle;
+//        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) - AutoConstants.initAngle;
+        double botHeading = getRawExternalHeading() - AutoConstants.initAngle;
 
         // Rotate the movement direction counter to the robot's rotation
         double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
@@ -335,7 +407,7 @@ public class SampleMecanumFaster extends MecanumDrive {
         rightRear.setPower(backRightPower);
 
 //        telemetry.addData("Heading", AngleUnit.RADIANS.toDegrees(getPoseEstimate().getHeading()));
-//        telemetry.addData("HeadingPos", AngleUnit.RADIANS.toDegrees(botHeading));
+        telemetry.addData("HeadingPos", AngleUnit.RADIANS.toDegrees(botHeading));
 //        telemetry.addData("DriveType", AutoConstants.isFieldControl);
     }
 

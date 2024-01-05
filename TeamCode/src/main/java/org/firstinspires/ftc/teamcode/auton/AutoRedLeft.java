@@ -252,12 +252,19 @@ public class AutoRedLeft extends LinearOpMode {
                             targetSide = "Right";
                             targetRoad = pathRight;
                         }
+                    } else {
+                        tagID = 3;
+                        targetSide = "Right";
+                        targetRoad = pathRight;
                     }
                 }
 
                 if (tagFound) {
                     dashboardTelemetry.addLine("Tag of interest is in sight!\n\nLocation data: " + targetSide);
                 } else {
+                    tagID = 3;
+                    targetSide = "Right";
+                    targetRoad = pathRight;
                     dashboardTelemetry.addLine("Don't see tag of interest :(");
 
                     if (tagOfInterest == null) {
@@ -268,6 +275,9 @@ public class AutoRedLeft extends LinearOpMode {
                 }
 
             } else {
+                tagID = 3;
+                targetSide = "Right";
+                targetRoad = pathRight;
                 dashboardTelemetry.addLine("Don't see tag of interest :(");
                 if (tagOfInterest == null) {
                     dashboardTelemetry.addLine("(The tag has never been seen2)");
