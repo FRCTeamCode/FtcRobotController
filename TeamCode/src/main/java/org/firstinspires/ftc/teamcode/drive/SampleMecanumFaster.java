@@ -565,6 +565,10 @@ public class SampleMecanumFaster extends MecanumDrive {
         return orientation.getYaw(AngleUnit.RADIANS);
     }
 
+    public double getImuRad() {
+        return getRawExternalHeading();
+    }
+
     @Override
     public Double getExternalHeadingVelocity() {
         AngularVelocity angularVelocity = imu.getRobotAngularVelocity(AngleUnit.RADIANS);

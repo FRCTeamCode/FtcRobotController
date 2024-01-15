@@ -12,12 +12,12 @@ public class PixelIntake extends SequentialCommandGroup {
 
     public PixelIntake(Arm arm, Claw claw, Intake intake) {
         addCommands(
-                new ArmControl(arm, 1.15),
+                new ArmControl(arm, 1.25),
+                new ClawControl(claw, 1.0),
                 new WaitCommand(200),
-                new ParallelCommandGroup(
-                        new ClawControl(claw, 1.0),
-                        new IntakeControl(intake, 1.0)
-                ),
+                new IntakeControl(intake, 1.0),
+                new ArmControl(arm, 0.6),
+                new WaitCommand(200),
                 new ArmControl(arm, 0.0)
         );
         addRequirements(arm, claw, intake);

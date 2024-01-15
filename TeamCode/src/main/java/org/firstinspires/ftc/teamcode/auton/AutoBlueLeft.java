@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumFaster;
 import org.firstinspires.ftc.teamcode.hardware.ArmAuto;
@@ -183,6 +184,9 @@ public class AutoBlueLeft extends LinearOpMode {
                 })
                 .lineToLinearHeading(AutoConstants.BR1_STOP)
                 .lineToLinearHeading(AutoConstants.BR1_STOP_BACK)
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+                    AutoConstants.initAngle = AngleUnit.DEGREES.toRadians(drive.getImuRad());
+                })
                 .build();
 
         targetRoad = pathRight;
