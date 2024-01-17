@@ -61,7 +61,7 @@ import org.firstinspires.ftc.teamcode.drive.StandardTrackingWheelLocalizer;
  * slightly but your heading will still be fine. This does not affect your overall tracking
  * precision. The heading should still line up.
  */
-@Config
+//@Config
 //@TeleOp(group = "drive")
 public class TrackingWheelLateralDistanceTuner extends LinearOpMode {
     public static int NUM_TURNS = 10;
@@ -115,7 +115,7 @@ public class TrackingWheelLateralDistanceTuner extends LinearOpMode {
             telemetry.addLine("Press Y/△ to conclude routine");
 //            telemetry.update();
 
-            if (gamepad2.y || Math.toDegrees(headingAccumulator) > 3596.0) {
+            if (gamepad1.y || Math.abs(Math.toDegrees(headingAccumulator)) > 3596.0) {
                 drive.setDrivePower(new Pose2d(0, 0, 0.0));
                 tuningFinished = true;
             }

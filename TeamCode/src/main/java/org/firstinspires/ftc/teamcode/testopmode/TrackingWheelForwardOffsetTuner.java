@@ -34,11 +34,11 @@ import org.firstinspires.ftc.teamcode.drive.StandardTrackingWheelLocalizer;
  * for the forward offset. You can run this procedure as many times as necessary until a
  * satisfactory result is produced.
  */
-@Config
+//@Config
 //@Autonomous(group="drive")
 public class TrackingWheelForwardOffsetTuner extends LinearOpMode {
     public static double ANGLE = 180; // deg
-    public static int NUM_TRIALS = 8;
+    public static int NUM_TRIALS = 5;
     public static int DELAY = 1000; // ms
 
     @Override
@@ -55,7 +55,7 @@ public class TrackingWheelForwardOffsetTuner extends LinearOpMode {
 
         telemetry.addLine("Press play to begin the forward offset tuner");
         telemetry.addLine("Make sure your robot has enough clearance to turn smoothly");
-//        telemetry.update();
+        telemetry.update();
 
         waitForStart();
 
