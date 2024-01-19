@@ -14,7 +14,8 @@ public class Arm extends SubsystemBase {
     AnalogInput potentiometer;
     double currentVoltage;
     private final Telemetry telemetry;
-    private double mRotatePos = 0.575 - 0.477;
+    private double offsetPos = 0.477;
+    private double mRotatePos = 0.575 - offsetPos;
     private double errorVel, xP, xI, xD, xLastError, vel;
     private double kXYP = 0.16, kXYI = 0.05, kXYD = 0.35, friction = 0.02;
 
@@ -32,8 +33,9 @@ public class Arm extends SubsystemBase {
         arm2Motor = new MotorEx(hardwareMap, "right", Motor.GoBILDA.RPM_84);
         arm2Motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         arm2Motor.setRunMode(Motor.RunMode.VelocityControl);
-        arm2Motor.setVeloCoefficients(0.05, 0.01, 0.01);
+        arm2Motor.setVeloCoefficients(0.1, 0.015, 0.01);
         arm2Motor.setInverted(true);//0.577-low, 0.66-middle, 2.8-high//new:low-0.1
+                                    //0.218-low, 0.66-middle, 2.8-high//new:low-0.1
     }
 //    public void configPosition() {
 //        armMotor.setRunMode(Motor.RunMode.PositionControl);
@@ -42,7 +44,7 @@ public class Arm extends SubsystemBase {
 //    }
 
     public void setArmPos(double pos) {
-        mRotatePos = pos - 0.477;
+        mRotatePos = pos - offsetPos;
     }
 
     public void setVol(double vol) {
@@ -59,7 +61,7 @@ public class Arm extends SubsystemBase {
     }
 
     public void loop() {
-        if (mRotatePos == -0.477) {
+        if (mRotatePos == -offsetPos) {
             arm2Motor.setVelocity(127.0);
         } else {
             currentVoltage = potentiometer.getVoltage();
@@ -77,7 +79,7 @@ public class Arm extends SubsystemBase {
 //            telemetry.addData("ArmPIDVelI", xI);
 //            telemetry.addData("ArmPIDVelD", xD);
 //            telemetry.addData("ArmPIDVel", vel);
-            arm2Motor.setVelocity(vel*5000);
+            arm2Motor.setVelocity(vel*8000);
         }
     }
 
@@ -96,7 +98,7 @@ public class Arm extends SubsystemBase {
         currentVoltage = potentiometer.getVoltage();
 //        setSpeed(0.25);
 //        telemetry.addData("ArmPos", armMotor.getCurrentPosition());
-//        loop();
+        loop();
 //        currentVoltage = potentiometer.getVoltage();
         telemetry.addData("Potentiometer voltage", currentVoltage);
 //        telemetry.addData("ArmVel", arm2Motor.getVelocity());

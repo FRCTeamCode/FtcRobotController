@@ -17,7 +17,7 @@ public class ClawControl extends CommandBase {
     @Override
     public void initialize() {
         if (mClawPos == 0.0) {
-            mClaw.lowMidClaw();
+            mClaw.lowerClaw();
         }else if (mClawPos == 1.0) {
             mClaw.lowClaw();
         } else if (mClawPos == 2.0) {

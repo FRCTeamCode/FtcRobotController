@@ -12,7 +12,9 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.auton.AutoConstants;
 import org.firstinspires.ftc.teamcode.command.AlignAprilTag;
+import org.firstinspires.ftc.teamcode.command.ArmControl;
 import org.firstinspires.ftc.teamcode.command.CameraStream;
+import org.firstinspires.ftc.teamcode.command.ClawControl;
 import org.firstinspires.ftc.teamcode.command.DriveAuto;
 import org.firstinspires.ftc.teamcode.command.DriveControlType;
 import org.firstinspires.ftc.teamcode.command.LaunchFinished;
@@ -105,10 +107,12 @@ public class BlueTeleOp extends CommandOpMode {
 
 //
         Button a = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);
-//        a.whenPressed(new ArmControl(arm, 2.5));
-        a.whenPressed(new DriveAuto(drive, gamepad1));
-        Button b = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.B);
-//        b.whenPressed(new ArmControl(arm, 0.8));
+//        a.whenPressed(new ArmControl(arm, 2.0));
+        a.whenPressed(new ClawControl(claw, 0.0));
+//        a.whenPressed(new DriveAuto(drive, gamepad1));
+//        Button b = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.B);
+//        b.whenPressed(new ArmControl(arm, 1.0));
+//        b.whenPressed(new ClawControl(claw, 2.0));
 //        Button x = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.X);
 //        x.whenPressed(new PixelPut(arm, claw, intake));
 //        Button y = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.Y);

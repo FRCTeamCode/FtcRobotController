@@ -8,15 +8,15 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Claw extends SubsystemBase {
     public Servo clawServo;
     private final Telemetry telemetry;
-    public static double lowerClaw = 0.29;
-    public static double lowClaw = 0.31;
-    public static double lowMidClaw = 0.34;
+    public static double lowerClaw = 0.15;
+    public static double lowClaw = 0.35;//
+    public static double lowMidClaw = 0.27;
     public static double middleLowClaw = 0.375;
-    public static double middleClaw = 0.3865;
-    public static double highClaw = 0.406;
+    public static double middleClaw = 0.735;//
+    public static double highClaw = 0.84;
     public static double highLowerClaw = 0.394;
-    public static double pixelPutLowClaw = 0.385;
-    public static double pixelPutMidClaw = 0.3895;
+    public static double pixelPutLowClaw = 0.735;
+    public static double pixelPutMidClaw = 0.78;
 
     public Claw(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
@@ -35,7 +35,7 @@ public class Claw extends SubsystemBase {
     public void lowClaw() {
         clawServo.setPosition(lowClaw);
     }public void lowMidClaw() {
-        clawServo.setPosition(lowClaw);
+        clawServo.setPosition(lowMidClaw);
     }
     public void middleClaw() {
         clawServo.setPosition(middleClaw);

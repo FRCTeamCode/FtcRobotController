@@ -18,7 +18,7 @@ public class PixelArmReset extends SequentialCommandGroup {
 //                new WaitCommand(100),
 //                new ArmControl(arm, 1.05),
                 new WaitCommand(100),
-                new ArmControl(arm, 0.57)
+                new ArmControl(arm, 0.56)
         );
         addRequirements(arm, claw, intake);
     }
