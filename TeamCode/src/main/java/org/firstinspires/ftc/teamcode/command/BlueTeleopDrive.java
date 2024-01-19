@@ -37,16 +37,16 @@ public class BlueTeleopDrive extends CommandBase {
 //                mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
 //                mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.5);
 
-        if (AutoConstants.isFieldControl) {
-            mDrive.driveField(
-                    mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
-                    mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
-                    mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.65);
-        } else{
+//        if (AutoConstants.isFieldControl) {
+//            mDrive.driveField(
+//                    mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
+//                    mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
+//                    mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.65);
+//        } else{
             mDrive.mecanumCentricDrive(-mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75) * AutoConstants.isOpRevise,
                 -mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75) * AutoConstants.isOpRevise,
                 -mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.5, 1.0);
-        }
+//        }
 
 //        mDrive.driveJoy(-mGamepad.left_stick_y, mGamepad.left_stick_x, mGamepad.right_stick_x);//normal drive
 
