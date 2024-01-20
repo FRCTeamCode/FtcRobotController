@@ -78,7 +78,9 @@ public class BlueTeleOp extends CommandOpMode {
         Button dl = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_LEFT);
         dl.whenPressed(new RevieseDirec(-1.0));
         Button du0 = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_UP);
-        du0.whenPressed(new ReverseUp(true));
+        du0.whenPressed(new ReverseUp(true, false));
+        Button dud = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_DOWN);
+        dud.whenPressed(new ReverseUp(true, true));
         Button dr = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_RIGHT);
         dr.whenPressed(new RevieseDirec(1.0));
 
