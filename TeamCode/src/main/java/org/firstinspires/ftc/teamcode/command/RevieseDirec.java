@@ -17,6 +17,8 @@ public class RevieseDirec extends CommandBase {
     @Override
     public void initialize() {
 //        drivePose.resetIMU();
+        AutoConstants.isUp = false;
+        AutoConstants.isDown = false;
         AutoConstants.isOpRevise = isRevise;
     }
 

@@ -18,6 +18,7 @@ import org.firstinspires.ftc.teamcode.command.DriveControlType;
 import org.firstinspires.ftc.teamcode.command.LaunchFinished;
 import org.firstinspires.ftc.teamcode.command.PixelPutLow;
 import org.firstinspires.ftc.teamcode.command.PixelPutMiddle;
+import org.firstinspires.ftc.teamcode.command.ReverseUp;
 import org.firstinspires.ftc.teamcode.command.RevieseDirec;
 import org.firstinspires.ftc.teamcode.command.IntakeControl;
 import org.firstinspires.ftc.teamcode.command.LaunchPlane;
@@ -66,10 +67,16 @@ public class BlueTeleOp extends CommandOpMode {
         lb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 2, 6.0, 0.0, 2.9));
         Button rb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.RIGHT_BUMPER);
         rb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 0, 6.0, 0.0, 0.0));
-        Button dd = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_DOWN);
+
+        Button dd = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);
         dd.whenPressed(new MovePosition(climb,-100));
-        Button du = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_UP);
+        Button du = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.Y);
         du.whenPressed(new MovePosition(climb,-2950));
+
+        Button du0 = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_UP);
+        du0.whenPressed(new ReverseUp(true, false));
+        Button dud = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_DOWN);
+        dud.whenPressed(new ReverseUp(true, true));
         Button dl = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_LEFT);
         dl.whenPressed(new RevieseDirec(-1.0));
         Button dr = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_RIGHT);
@@ -104,10 +111,10 @@ public class BlueTeleOp extends CommandOpMode {
         dd2.whenPressed(new PixelPutLow(arm, claw, intake));
 
 //
-        Button a = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);
+//        Button a = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);
 //        a.whenPressed(new ArmControl(arm, 2.5));
-        a.whenPressed(new DriveAuto(drive, gamepad1));
-        Button b = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.B);
+//        a.whenPressed(new DriveAuto(drive, gamepad1));
+//        Button b = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.B);
 //        b.whenPressed(new ArmControl(arm, 0.8));
 //        Button x = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.X);
 //        x.whenPressed(new PixelPut(arm, claw, intake));
