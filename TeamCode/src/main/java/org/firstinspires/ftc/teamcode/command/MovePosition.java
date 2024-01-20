@@ -17,9 +17,9 @@ public class MovePosition extends CommandBase {
     @Override
     public void initialize() {
         climb.setClimbPos(mPosition);
-        if (Math.abs(mPosition)>2000) {
-            AutoConstants.isOpRevise = -1;
-        }
+//        if (Math.abs(mPosition)>2000) {
+//            AutoConstants.isOpRevise = -1;
+//        }
     }
 
     @Override
