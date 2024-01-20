@@ -54,7 +54,7 @@ public class AutoDoubleCamera extends LinearOpMode {
 //        FtcDashboard.getInstance().startCameraStream(camera2, 20);
 
         isAutoEnd = false;
-        cameraPro = new CameraPro(hardwareMap, dashboardTelemetry, true);
+        cameraPro = new CameraPro(hardwareMap, dashboardTelemetry, false);
 
         TrajectorySequence pathLeft = drive.trajectorySequenceBuilder(AutoConstants.START)
                 .setVelConstraint(AutoConstants.PARK_VEL)

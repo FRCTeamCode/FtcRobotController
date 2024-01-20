@@ -4,21 +4,16 @@ import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.auton.AutoConstants;
 
-public class RevieseDirec extends CommandBase {
+public class ReverseUp extends CommandBase {
+    private boolean isRevise;
 
-//    private DrivePose drivePose;
-    private double isRevise;
-
-    public RevieseDirec(double isRevise) {
-//        this.drivePose = drivePose;
+    public ReverseUp(boolean isRevise) {
         this.isRevise = isRevise;
     }
 
     @Override
     public void initialize() {
-//        drivePose.resetIMU();
-        AutoConstants.isUp = false;
-        AutoConstants.isOpRevise = isRevise;
+        AutoConstants.isUp = isRevise;
     }
 
     @Override

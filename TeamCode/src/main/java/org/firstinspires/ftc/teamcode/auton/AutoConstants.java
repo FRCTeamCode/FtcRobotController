@@ -13,6 +13,7 @@ public class AutoConstants {
 
     public static Boolean isFieldControl = false;
     public static Boolean isBlueOrRed = true;
+    public static boolean isUp = false;
     public  static double initAngle = AngleUnit.DEGREES.toRadians(90.0);
     public static double isOpRevise = 1.0;
     public  static  double autoPutArmPre = 2.18;
