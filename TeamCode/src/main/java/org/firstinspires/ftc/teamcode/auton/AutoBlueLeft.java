@@ -61,7 +61,7 @@ public class AutoBlueLeft extends LinearOpMode {
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .addTemporalMarker(0.0, () -> {
-                    armAuto.setArmPos(1.08);
+                    armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
                 .addTemporalMarker(0.9, () -> {
                     claw.lowClaw();
@@ -69,14 +69,20 @@ public class AutoBlueLeft extends LinearOpMode {
                 .addTemporalMarker(1.6, () -> {
                     intake.openIntake();
                 })
-                .addTemporalMarker(2.0, () -> {
-                    claw.middleClaw();
-                })
+//                .addTemporalMarker(2.0, () -> {
+//                    claw.middleClaw();
+//                })
+//                .addTemporalMarker(2.3, () -> {
+//                    intake.closeIntake();
+//                })
                 .lineToLinearHeading(AutoConstants.BL1_PUT)
+//                .addTemporalMarker(3.4, () -> {
+//                    claw.middleClaw();
+//                })
                 .addTemporalMarker(3.0, () -> {
                     intake.closeIntake();
                 })
-                .addTemporalMarker(3.0, () -> {
+                .addTemporalMarker(3.3, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
                 .addTemporalMarker(3.6, () -> {
@@ -105,12 +111,12 @@ public class AutoBlueLeft extends LinearOpMode {
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .addTemporalMarker(0.0, () -> {
-                    armAuto.setArmPos(1.08);
+                    armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
                 .addTemporalMarker(2.0, () -> {
                     claw.lowClaw();
                 })
-                .addTemporalMarker(2.5, () -> {
+                .addTemporalMarker(2.9, () -> {
                     intake.openIntake();
                 })
                 .lineToLinearHeading(AutoConstants.BM1_PUT)
@@ -148,7 +154,7 @@ public class AutoBlueLeft extends LinearOpMode {
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .addTemporalMarker(0.0, () -> {
-                    armAuto.setArmPos(1.08);
+                    armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
                 .addTemporalMarker(1.2, () -> {
                     claw.lowClaw();
@@ -212,18 +218,14 @@ public class AutoBlueLeft extends LinearOpMode {
 //                    dashboardTelemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
                     if (recognition.getLabel() == "BlueCube") {
                         tagFound = true;
-                        if (Math.abs(x-290) < 48 && Math.abs(y-154) < 48 && Math.abs(recognition.getWidth()-86) < 24 && Math.abs(recognition.getHeight()-100) < 24) {
+                        if (Math.abs(x-260) < 48 && Math.abs(y-217) < 48 && Math.abs(recognition.getWidth()-89) < 24 && Math.abs(recognition.getHeight()-94) < 24) {
                             tagID = 4;
                             targetSide = "Left";
                             targetRoad = pathLeft;
-                        } else if (Math.abs(x-515) < 48 && Math.abs(y-128) < 48 && Math.abs(recognition.getWidth()-82) < 24 && Math.abs(recognition.getHeight()-88) < 24) {
+                        } else if (Math.abs(x-480) < 48 && Math.abs(y-187) < 48 && Math.abs(recognition.getWidth()-82) < 24 && Math.abs(recognition.getHeight()-82) < 24) {
                             tagID = 5;
                             targetSide = "Middle";
                             targetRoad = pathMiddle;
-                        } else {
-                            tagID = 6;
-                            targetSide = "Right";
-                            targetRoad = pathRight;
                         }
                     } else {
                         tagID = 6;

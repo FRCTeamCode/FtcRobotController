@@ -16,8 +16,9 @@ public class AutoConstants {
     public static boolean isUp = false;
     public  static double initAngle = AngleUnit.DEGREES.toRadians(90.0);
     public static double isOpRevise = 1.0;
+    public  static  double autoPutLowPixel = 0.68;
     public  static  double autoPutArmPre = 2.18;
-    public  static  double autoPutArm = 2.9;
+    public  static  double autoPutArm = 2.7;
 
     // Cycle parking constraints
     public static final TrajectoryVelocityConstraint PARK_VEL = SampleMecanumDrive.getVelocityConstraint(24, 4.0, 10.2);
@@ -27,26 +28,26 @@ public class AutoConstants {
     public static final Pose2d START = new Pose2d(0.0, 0.0, 0.0);
 
     //Blue near BACKSTAGE side - Left
-    public static final Pose2d BL1_PUT = new Pose2d(20.0, 9.25-3.15, 0.0);
-    public static final Pose2d BL1_PUT_tag = new Pose2d(20.0, 10, Math.toRadians(-81.8));
-    public static final Pose2d BL1_BACKSTAGE = new Pose2d(20.5, 40.0-3.15, Math.toRadians(-81.8));
-    public static final Pose2d BL1_Tag = new Pose2d(20.5, 34.0-3.15, Math.toRadians(-81.8));
-    public static final Pose2d BL1_STOP = new Pose2d(47.4, 38.0-3.15, Math.toRadians(-81.8));
-    public static final Pose2d BL1_STOP_BACK = new Pose2d(47.4, 47.0-3.15, Math.toRadians(-81.8));
+    public static final Pose2d BL1_PUT = new Pose2d(23.5, 10.0, 0.0);
+    public static final Pose2d BL1_PUT_tag = new Pose2d(21.0, 15, Math.toRadians(-84.5));
+    public static final Pose2d BL1_BACKSTAGE = new Pose2d(21.0, 40.0-3.15+1.85, Math.toRadians(-84.5));
+    public static final Pose2d BL1_Tag = new Pose2d(21.0, 34.0-3.15, Math.toRadians(-84.5));
+    public static final Pose2d BL1_STOP = new Pose2d(3.0, 33, Math.toRadians(-84.5));
+    public static final Pose2d BL1_STOP_BACK = new Pose2d(3.0, 40, Math.toRadians(-84.5));
 
     //Red near BACKSTAGE side - Right
     public static final Pose2d RR1_PUT = new Pose2d(19.6, -9.25+3.5, 0.0);
-    public static final Pose2d RR1_BACKSTAGE = new Pose2d(20.5, -40.0+3.15, Math.toRadians(81.8));
-    public static final Pose2d RR1_Tag = new Pose2d(20.5, -34.0+3.15, Math.toRadians(81.8));
-    public static final Pose2d RR1_STOP = new Pose2d(44.6, -38.0+3.15, Math.toRadians(81.8));
-    public static final Pose2d RR1_STOP_BACK = new Pose2d(44.6, -47.0+3.15, Math.toRadians(81.8));
+    public static final Pose2d RR1_BACKSTAGE = new Pose2d(20.5, -40.0+3.15, Math.toRadians(84.5));
+    public static final Pose2d RR1_Tag = new Pose2d(20.5, -34.0+3.15, Math.toRadians(84.5));
+    public static final Pose2d RR1_STOP = new Pose2d(3.0, -38.0+3.15, Math.toRadians(84.5));
+    public static final Pose2d RR1_STOP_BACK = new Pose2d(3.0, -47.0+3.15, Math.toRadians(84.5));
 
     //Blue near BACKSTAGE side - Middle
-    public static final Pose2d BM1_PUT = new Pose2d(35.3, 12.8-3.5, Math.toRadians(-56.0));
-    public static final Pose2d BM1_BACKSTAGE = new Pose2d(22.0, 40.0-3.15, Math.toRadians(-81.8));
-    public static final Pose2d BM1_Tag = new Pose2d(22.0, 34.0-3.15, Math.toRadians(-81.8));
-    public static final Pose2d BM1_STOP = new Pose2d(46.0, 38.0-3.15, Math.toRadians(-81.8));
-    public static final Pose2d BM1_STOP_BACK = new Pose2d(46.0, 47.0-3.15, Math.toRadians(-81.8));
+    public static final Pose2d BM1_PUT = new Pose2d(35.9, 12.8-3.5, Math.toRadians(-56.0));
+    public static final Pose2d BM1_BACKSTAGE = new Pose2d(24.5, 40.0-3.15+1.85, Math.toRadians(-85.0));
+    public static final Pose2d BM1_Tag = new Pose2d(24.5, 34.0-3.15, Math.toRadians(-85.0));
+    public static final Pose2d BM1_STOP = new Pose2d(3.0, 33.0, Math.toRadians(-85.0));
+    public static final Pose2d BM1_STOP_BACK = new Pose2d(3.0, 40.0, Math.toRadians(-85.0));
 
     //Red near BACKSTAGE side - Middle
     public static final Pose2d RM1_PUT = new Pose2d(34.0, -12.45+3.0, Math.toRadians(56.0));

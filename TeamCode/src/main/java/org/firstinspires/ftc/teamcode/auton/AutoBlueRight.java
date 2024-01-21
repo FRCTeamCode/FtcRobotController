@@ -245,10 +245,6 @@ public class AutoBlueRight extends LinearOpMode {
                             tagID = 5;
                             targetSide = "Middle";
                             targetRoad = pathMiddle;
-                        } else {
-                            tagID = 4;
-                            targetSide = "Left";
-                            targetRoad = pathLeft;
                         }
                     } else {
                         tagID = 4;

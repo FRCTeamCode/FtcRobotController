@@ -9,13 +9,13 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class ArmAuto {
-
     //    public Motor armMotor;
     public MotorEx arm2Motor;
     AnalogInput potentiometer;
     double currentVoltage;
     private final Telemetry telemetry;
-    private double mRotatePos = 0.575 - 0.477;
+    private double offsetPos = 0.477;
+    private double mRotatePos = 0.575 - offsetPos;
     private double errorVel, xP, xI, xD, xLastError, vel;
     private double kXYP = 0.16, kXYI = 0.05, kXYD = 0.35, friction = 0.02;
 
@@ -27,13 +27,15 @@ public class ArmAuto {
 //        armMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 //        armMotor.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        armMotor.motor.setDirection(DcMotor.Direction.REVERSE);//REVERSE:1000->3000 arm up
+//        armMotor.resetEncoder();
 //        configPosition();//Pos:0-hold, 60-intake, 900-put
 
         arm2Motor = new MotorEx(hardwareMap, "right", Motor.GoBILDA.RPM_84);
         arm2Motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         arm2Motor.setRunMode(Motor.RunMode.VelocityControl);
-        arm2Motor.setVeloCoefficients(0.05, 0.01, 0.01);
-        arm2Motor.setInverted(true);//0.577-low, 0.66-middle, 2.8-high
+        arm2Motor.setVeloCoefficients(0.1, 0.015, 0.01);
+        arm2Motor.setInverted(true);//0.577-low, 0.66-middle, 2.8-high//new:low-0.1
+        //0.218-low, 0.66-middle, 2.8-high//new:low-0.1
     }
 //    public void configPosition() {
 //        armMotor.setRunMode(Motor.RunMode.PositionControl);
@@ -42,7 +44,7 @@ public class ArmAuto {
 //    }
 
     public void setArmPos(double pos) {
-        mRotatePos = pos - 0.477;
+        mRotatePos = pos - offsetPos;
     }
 
     public void setVol(double vol) {
@@ -59,23 +61,26 @@ public class ArmAuto {
     }
 
     public void loop() {
-        currentVoltage = potentiometer.getVoltage();
-//        arm2Motor.setVelocity(MathUtils.clamp((mRotatePos - currentVoltage) * 2600, -800,1200));
-        errorVel = mRotatePos - currentVoltage;
-        xP = errorVel * kXYP;
-        xI += errorVel;
-        xI *= kXYI;
-        xD = errorVel - xLastError;
-        xD *= kXYD;
-        vel = xP + xI + xD;
-        vel = vel + addFriction(xP);
-        xLastError = errorVel;
-        vel = MathUtils.clamp(vel, -0.35, 0.4);
-//        telemetry.addData("ArmPIDVelP", xP);
-//        telemetry.addData("ArmPIDVelI", xI);
-//        telemetry.addData("ArmPIDVelD", xD);
-//        telemetry.addData("ArmPIDVel", vel);
-        arm2Motor.setVelocity(vel*5000);
+        if (mRotatePos == -offsetPos) {
+            arm2Motor.setVelocity(127.0);
+        } else {
+            currentVoltage = potentiometer.getVoltage();
+            errorVel = mRotatePos - currentVoltage;
+            xP = errorVel * kXYP;
+            xI += errorVel;
+            xI *= kXYI;
+            xD = errorVel - xLastError;
+            xD *= kXYD;
+            vel = xP + xI + xD;
+            vel = vel + addFriction(xP);
+            xLastError = errorVel;
+            vel = MathUtils.clamp(vel, -0.35, 0.4);
+//            telemetry.addData("ArmPIDVelP", xP);
+//            telemetry.addData("ArmPIDVelI", xI);
+//            telemetry.addData("ArmPIDVelD", xD);
+//            telemetry.addData("ArmPIDVel", vel);
+            arm2Motor.setVelocity(vel*8000);
+        }
     }
 
     public double addFriction(double value) {
