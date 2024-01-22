@@ -80,7 +80,7 @@ public class AlignAprilTag extends CommandBase {
             //Normal drive use rear camera track Tag
             drive.driveJoy(-(strafeVal * 0.5 + strafeFriction), //forward and backward
                            -(translationVal * 0.5 + translationFriction), //left and right
-                            (rotationVal * 0.5 + rotationFriction)); //rotate left and right
+                            -(rotationVal * 0.5 + rotationFriction)); //rotate left and right
             //Red Rotate drive use rear camera track Tag
 //            drive.driveJoy(
 //                    -(translationVal * 0.5 + translationFriction), //left and right

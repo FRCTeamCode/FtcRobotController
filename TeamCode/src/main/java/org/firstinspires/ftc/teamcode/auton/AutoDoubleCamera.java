@@ -34,7 +34,7 @@ public class AutoDoubleCamera extends LinearOpMode {
     ElapsedTime timer = new ElapsedTime();
     double lastTime = 0;
     double alingnTagTime = 0;
-    private int tagID = 4;
+    private int tagID = 5;
     private boolean isAutoEnd;
     @Override
     public void runOpMode() throws InterruptedException {
@@ -60,7 +60,7 @@ public class AutoDoubleCamera extends LinearOpMode {
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .addTemporalMarker(0.0, () -> {
-                    armAuto.setArmPos(1.08);
+                    armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
                 .addTemporalMarker(0.9, () -> {
                     claw.lowClaw();
@@ -106,7 +106,7 @@ public class AutoDoubleCamera extends LinearOpMode {
 
                 .build();
 
-        TrajectorySequence pathLeftPark = drive.trajectorySequenceBuilder(AutoConstants.BL1_BACKSTAGE)
+        TrajectorySequence pathLeftPark = drive.trajectorySequenceBuilder(AutoConstants.BL1_Tag)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
 //                .addTemporalMarker(0.0, () -> {
@@ -132,7 +132,7 @@ public class AutoDoubleCamera extends LinearOpMode {
 //                    claw.lowerClaw();
 //                })
 //                .lineToLinearHeading(AutoConstants.BL1_PUT_tag)
-//                .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE)
+                .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
@@ -158,9 +158,13 @@ public class AutoDoubleCamera extends LinearOpMode {
             cameraPro.loop();
             dashboardTelemetry.addLine("init: ");
             dashboardTelemetry.update();
+//            targetRoad = pathLeft;
+//            tagID = 2;
+//            targetSide = "Middle";
             targetRoad = pathLeft;
-            tagID = 4;
+            tagID = 1;
             targetSide = "Left";
+            telemetry.addData("AisEndAl", drive.isEndAlign());
         }
         drive.followTrajectorySequenceAsync(targetRoad);
         //Enable Mode
@@ -179,14 +183,24 @@ public class AutoDoubleCamera extends LinearOpMode {
             if (!drive.isBusy()) {
                 //path has finished
                 double[] idData = cameraPro.getAprilTagIDData(tagID);
-                drive.alinTag(idData, tagID, timer.milliseconds());
+                if (targetSide == "Left") {
+                    drive.alinTag(idData, tagID, 11.0, 0.0, -1.2, timer.milliseconds());
+//                        drive.followTrajectorySequenceAsync(pathLeftPark);
+                } else if (targetSide == "Middle") {
+                    drive.alinTag(idData, tagID, 11.0, 0.0, -0.75, timer.milliseconds());
+//                        drive.followTrajectorySequenceAsync(pathMiddlePark);
+                } else {
+                    drive.alinTag(idData, tagID, 11.0, 0.0, 0.0, timer.milliseconds());
+//                        drive.followTrajectorySequenceAsync(pathRightPark);
+                }
                 dashboardTelemetry.addLine("AlignTagTime: " + (timer.milliseconds()-alingnTagTime));
+                telemetry.addData("Auto is End Align2", drive.isEndAlign());
 //                dashboardTelemetry.addLine("AprilTag Tracking" + cameraPro.getAprilTagIDData(tagID)[0] + ", " + cameraPro.getAprilTagIDData(tagID)[1] + ", " + cameraPro.getAprilTagIDData(tagID)[2] + ", " + cameraPro.getAprilTagIDData(tagID)[3] + ";" );
-                if (drive.isHasFindTarget()&&drive.isEndAlign()&&!isAutoEnd&&(timer.milliseconds()-alingnTagTime) > 3700/*&&(Math.abs(drive.getMyPose().getY()-35.46) < 1.0)&&(Math.abs(drive.getMyPose().getHeading()-277.2) < 3.75)*/) {
+                if (drive.isHasFindTarget()&&drive.isEndAlign()&&!isAutoEnd/*&&(timer.milliseconds()-alingnTagTime) > 3700&&(Math.abs(drive.getMyPose().getY()-35.46) < 1.0)&&(Math.abs(drive.getMyPose().getHeading()-277.2) < 3.75)*/) {
                     dashboardTelemetry.addLine("Parked now");
                     isAutoEnd = true;
-                    drive.setPoseEstimate(AutoConstants.BL1_BACKSTAGE);
                     if (targetSide == "Left") {
+                        drive.setPoseEstimate(AutoConstants.BL1_Tag);
                         drive.followTrajectorySequenceAsync(pathLeftPark);
                     } else if (targetSide == "Middle") {
 //                        drive.followTrajectorySequenceAsync(pathMiddlePark);
