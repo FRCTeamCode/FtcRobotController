@@ -67,11 +67,11 @@ public class AutoBlueRight extends LinearOpMode {
                     armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
                 .lineToLinearHeading(AutoConstants.BL2_PUT)
-                .waitSeconds(1.0)
+                .waitSeconds(0.7)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.openIntake();
                 })
-                .waitSeconds(1.0)
+                .waitSeconds(0.7)
                 .lineToLinearHeading(AutoConstants.BL2_PUTBack)
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
