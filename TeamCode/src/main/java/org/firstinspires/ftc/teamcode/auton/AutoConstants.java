@@ -111,9 +111,9 @@ public class AutoConstants {
     public static final Pose2d BR2_PUTBack = new Pose2d(25.0+5.8, 8.0, Math.toRadians(-84.0));
     public static final Pose2d BR2_way0 = new Pose2d(45.0+5.3, 8.0, Math.toRadians(-84.0));
     public static final Pose2d BR2_way1 = new Pose2d(35.0+5.3, 80.0, Math.toRadians(-84.0));
-    public static final Pose2d BR2_way2 = new Pose2d(21.0, 78.0, Math.toRadians(-84.0));
-    public static final Pose2d BR2_BACKSTAGE = new Pose2d(21.0, 99.0, Math.toRadians(-84.0));
-    public static final Pose2d BR2_Tag = new Pose2d(21.0, 90.0, Math.toRadians(-84.0));
+    public static final Pose2d BR2_way2 = new Pose2d(23.5, 78.0, Math.toRadians(-84.0));
+    public static final Pose2d BR2_BACKSTAGE = new Pose2d(23.5, 99.0, Math.toRadians(-84.0));
+    public static final Pose2d BR2_Tag = new Pose2d(23.5, 90.0, Math.toRadians(-84.0));
 
     //Red far BACKSTAGE side - Left - after put pixel, run straight to BACKSTAGE
     public static final Pose2d RL2_PUT = new Pose2d(30.8, -6.4, Math.toRadians(84.0));
