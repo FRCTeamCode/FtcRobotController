@@ -76,19 +76,24 @@ public class AutoBlueLeft extends LinearOpMode {
 //                    intake.closeIntake();
 //                })
                 .lineToLinearHeading(AutoConstants.BL1_PUT)
-//                .addTemporalMarker(3.4, () -> {
-//                    claw.middleClaw();
-//                })
-                .addTemporalMarker(3.0, () -> {
-                    intake.closeIntake();
+                .waitSeconds(0.5)
+                .lineToLinearHeading(AutoConstants.BL1_PUT_Back)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                    intake.closeOpenIntake();
                 })
-                .addTemporalMarker(3.3, () -> {
+                .waitSeconds(0.5)
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
-                .addTemporalMarker(3.6, () -> {
+                .waitSeconds(0.5)
+                .UNSTABLE_addTemporalMarkerOffset(0.7, () -> {
+                    intake.closeIntake();
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.8, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE)
+                .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE_better)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })

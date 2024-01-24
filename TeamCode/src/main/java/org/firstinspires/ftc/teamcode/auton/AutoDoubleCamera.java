@@ -81,10 +81,10 @@ public class AutoDoubleCamera extends LinearOpMode {
                 .addTemporalMarker(3.6, () -> {
                     claw.lowerClaw();
                 })
-                .lineToLinearHeading(AutoConstants.BL1_PUT_tag)
-                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-                    alingnTagTime = timer.milliseconds();
-                })
+//                .lineToLinearHeading(AutoConstants.BL1_PUT_tag)
+//                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+//                    alingnTagTime = timer.milliseconds();
+//                })
 //                .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE)
 //                .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
 //                    armAuto.setArmPos(AutoConstants.autoPutArm);
