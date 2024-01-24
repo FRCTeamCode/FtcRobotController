@@ -17,8 +17,8 @@ public class AutoConstants {
     public static Boolean isDown = false;
     public  static double initAngle = AngleUnit.DEGREES.toRadians(90.0);
     public static double isOpRevise = 1.0;
-    public  static  double autoPutArmPre = 2.1;
-    public  static  double autoPutArm = 2.9;
+    public  static  double autoPutArmPre = 1.8;
+    public  static  double autoPutArm = 2.2;
 
     // Cycle parking constraints
     public static final TrajectoryVelocityConstraint PARK_VEL = SampleMecanumDrive.getVelocityConstraint(24, 4.0, 10.2);
