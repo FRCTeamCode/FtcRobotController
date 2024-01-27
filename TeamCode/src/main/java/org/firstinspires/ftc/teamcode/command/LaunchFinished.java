@@ -17,7 +17,7 @@ public class LaunchFinished extends SequentialCommandGroup {
                 new IntakeControl(intake, 3.0),
                 new ArmControl(arm, 1.0),
                 new WaitCommand(100),
-                new ArmControl(arm, 0.8)
+                new ArmControl(arm, 0.56)
         );
         addRequirements(arm, claw, intake);
     }
