@@ -23,7 +23,7 @@ public class Climb extends SubsystemBase {
     }
     public void configPosition() {
         climbMotor.setRunMode(Motor.RunMode.PositionControl);
-        climbMotor.setPositionCoefficient(0.013);
+        climbMotor.setPositionCoefficient(0.025);
         climbMotor.setPositionTolerance(2.0);
     }
 
@@ -33,8 +33,9 @@ public class Climb extends SubsystemBase {
 
     @Override
     public void periodic() {
-        setSpeed(0.15);
+        setSpeed(0.3);
         telemetry.addData("ClimbPos", climbMotor.getCurrentPosition());
+        telemetry.addData("ClimbPower", climbMotor.getCorrectedVelocity());
     }
     public void setSpeed(double speed) {
         climbMotor.set(speed);
