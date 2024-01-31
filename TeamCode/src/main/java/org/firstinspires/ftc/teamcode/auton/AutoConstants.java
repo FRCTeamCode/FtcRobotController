@@ -30,15 +30,15 @@ public class AutoConstants {
     //Blue near BACKSTAGE side - Left
     public static final Pose2d BL1_PUT = new Pose2d(21.0, 7.0, 0.0);
     public static final Pose2d BL1_PUT_Back = new Pose2d(14.0, 7.0, 0.0);
-    public static final Pose2d BL1_BACKSTAGE = new Pose2d(20.5, 30.0, Math.toRadians(-84.0));
-    public static final Pose2d BL1_BACKSTAGE_better = new Pose2d(20.5, 38.7, Math.toRadians(-84.0));
-    public static final Pose2d BL1_Tag = new Pose2d(20.5, 30.0, Math.toRadians(-84.0));
+    public static final Pose2d BL1_BACKSTAGE = new Pose2d(20.3, 30.0, Math.toRadians(-84.0));
+    public static final Pose2d BL1_BACKSTAGE_better = new Pose2d(20.3, 38.7, Math.toRadians(-84.0));
+    public static final Pose2d BL1_Tag = new Pose2d(20.3, 30.0, Math.toRadians(-84.0));
     public static final Pose2d BL1_STOP = new Pose2d(3.0, 30.0, Math.toRadians(-84.0));
     public static final Pose2d BL1_STOP_BACK = new Pose2d(3.0, 40.0, Math.toRadians(-84.0));
 
     //Red near BACKSTAGE side - Right
     public static final Pose2d RR1_PUT = new Pose2d(21.0, -7.0, 0.0);
-    public static final Pose2d RR1_PUT_Back = new Pose2d(16.0, -6.75, 0.0);
+    public static final Pose2d RR1_PUT_Back = new Pose2d(14.0, -6.75, 0.0);
     public static final Pose2d RR1_BACKSTAGE = new Pose2d(20.3, -30.0, Math.toRadians(84.0));
     public static final Pose2d RR1_BACKSTAGE_better = new Pose2d(20.3, -38.7, Math.toRadians(84.0));
     public static final Pose2d RR1_Tag = new Pose2d(20.3, -30.0, Math.toRadians(84.0));
