@@ -190,6 +190,7 @@ public class AutoBlueRight extends LinearOpMode {
                 })
                 .waitSeconds(1.25)
                 .lineToLinearHeading(AutoConstants.BM2_way)
+                .lineToLinearHeading(AutoConstants.BM2_way0)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     claw.middleClaw();
                 })
