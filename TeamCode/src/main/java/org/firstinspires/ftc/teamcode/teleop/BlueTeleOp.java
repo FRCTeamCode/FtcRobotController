@@ -17,7 +17,11 @@ import org.firstinspires.ftc.teamcode.command.CameraStream;
 import org.firstinspires.ftc.teamcode.command.ClawControl;
 import org.firstinspires.ftc.teamcode.command.DriveAuto;
 import org.firstinspires.ftc.teamcode.command.DriveControlType;
+import org.firstinspires.ftc.teamcode.command.EleControl;
 import org.firstinspires.ftc.teamcode.command.LaunchFinished;
+import org.firstinspires.ftc.teamcode.command.PixelArmResetCom;
+import org.firstinspires.ftc.teamcode.command.PixelPutHigher;
+import org.firstinspires.ftc.teamcode.command.PixelPutHighest;
 import org.firstinspires.ftc.teamcode.command.PixelPutLow;
 import org.firstinspires.ftc.teamcode.command.PixelPutMiddle;
 import org.firstinspires.ftc.teamcode.command.ReverseUp;
@@ -36,6 +40,7 @@ import org.firstinspires.ftc.teamcode.drive.DrivePose;
 import org.firstinspires.ftc.teamcode.subsystem.Arm;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
 import org.firstinspires.ftc.teamcode.subsystem.Climb;
+import org.firstinspires.ftc.teamcode.subsystem.Elevator;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
 import org.firstinspires.ftc.teamcode.subsystem.Launch;
 import org.firstinspires.ftc.teamcode.subsystem.MyCamera;
@@ -59,6 +64,7 @@ public class BlueTeleOp extends CommandOpMode {
         Intake intake  = new Intake(hardwareMap, dashboardTelemetry);
         Launch launch  = new Launch(hardwareMap, dashboardTelemetry);
         Climb climb = new Climb(hardwareMap, dashboardTelemetry);
+        Elevator ele = new Elevator(hardwareMap,dashboardTelemetry);
 
         Button lsb = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.LEFT_STICK_BUTTON);
         lsb.whenPressed(new DriveControlType(true, drive));
@@ -74,6 +80,9 @@ public class BlueTeleOp extends CommandOpMode {
         dd.whenPressed(new MovePosition(climb,-100));
         Button du = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.Y);
         du.whenPressed(new MovePosition(climb,-2950));
+//        dd.whenPressed(new EleControl(ele, 3));
+//        du.whenPressed(new EleControl(ele, 2));
+//        du.whenPressed(new PixelArmResetCom(arm, claw, intake,ele));
 
         Button dl = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_LEFT);
         dl.whenPressed(new RevieseDirec(-1.0));
@@ -86,13 +95,15 @@ public class BlueTeleOp extends CommandOpMode {
 
 
         Button a2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.A);
-        a2.whenPressed(new PixelHold(arm, claw, intake));
+//        a2.whenPressed(new PixelHold(arm, claw, intake, ele));
+        a2.whenPressed(new PixelArmResetCom(arm, claw, intake,ele));
         Button b2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.B);
-        b2.whenPressed(new PixelIntake(arm, claw, intake));
+        b2.whenPressed(new PixelIntake(arm, claw, intake, ele));
         Button x2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.X);
         x2.whenPressed(new LaunchFinished(arm, claw, intake));
         Button y2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.Y);
-        y2.whenPressed(new PixelArmReset(arm, claw, intake));
+//        y2.whenPressed(new PixelArmReset(arm, claw, intake, ele));
+        y2.whenPressed(new PixelArmResetCom(arm, claw, intake,ele));
 
         Button lb2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.LEFT_BUMPER);
         lb2.whenPressed(new IntakeControl(intake,3.0));
@@ -107,6 +118,10 @@ public class BlueTeleOp extends CommandOpMode {
 //        dd2.whenPressed(new LaunchFinished(arm, claw, intake));
         Button du2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.DPAD_UP);
         du2.whenPressed(new PixelPut(arm, claw, intake));
+        Button dr2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.DPAD_RIGHT);
+        dr2.whenPressed(new PixelPutHigher(arm, claw, intake, ele));
+        Button lsb2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.LEFT_STICK_BUTTON);
+        lsb2.whenPressed(new PixelPutHighest(arm, claw, intake, ele));
         Button dl2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.DPAD_LEFT);
         dl2.whenPressed(new PixelPutMiddle(arm, claw, intake));
         Button dd2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.DPAD_DOWN);

@@ -13,9 +13,9 @@ public class Claw extends SubsystemBase {
     public static double lowMidClaw = 0.27;
     public static double middleLowClaw = 0.375;
     public static double middleClaw = 0.735;//
-    public static double highClaw = 0.84;
+    public static double highClaw = 0.86;
     public static double highLowerClaw = 0.394;
-    public static double pixelPutLowClaw = 0.735;
+    public static double pixelPutLowClaw = 0.748;
     public static double pixelPutMidClaw = 0.775;
 
     public Claw(HardwareMap hardwareMap, Telemetry telemetry) {
