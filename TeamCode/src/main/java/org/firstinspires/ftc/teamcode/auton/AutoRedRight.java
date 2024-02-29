@@ -15,6 +15,7 @@ import org.firstinspires.ftc.teamcode.hardware.ArmAuto;
 import org.firstinspires.ftc.teamcode.subsystem.Arm;
 import org.firstinspires.ftc.teamcode.subsystem.CameraAuto;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
+import org.firstinspires.ftc.teamcode.subsystem.Elevator;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
@@ -30,6 +31,7 @@ public class AutoRedRight extends LinearOpMode {
     ArmAuto armAuto;
     Claw claw;
     Intake intake;
+    Elevator elevator;
     private final FtcDashboard dashboard = FtcDashboard.getInstance();
     private final Telemetry dashboardTelemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
     AprilTagDetection tagOfInterest = null;
@@ -52,6 +54,7 @@ public class AutoRedRight extends LinearOpMode {
         armAuto = new ArmAuto(hardwareMap, dashboardTelemetry);
         claw = new Claw(hardwareMap, dashboardTelemetry);
         intake = new Intake(hardwareMap, dashboardTelemetry);
+        elevator = new Elevator(hardwareMap, dashboardTelemetry);
 //        myCamera = new MyCamera(hardwareMap, dashboardTelemetry);
         cameraAuto = new CameraAuto(hardwareMap, dashboardTelemetry);
 
@@ -60,17 +63,20 @@ public class AutoRedRight extends LinearOpMode {
         TrajectorySequence pathRight = drive.trajectorySequenceBuilder(AutoConstants.START)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
-                .addTemporalMarker(0.0, () -> {
+                .lineToLinearHeading(AutoConstants.RR1_PUT)
+                .addTemporalMarker(0.1, () -> {
+                    elevator.eleIntake();
+                })
+                .addTemporalMarker(0.5, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
-                .addTemporalMarker(0.9, () -> {
+                .addTemporalMarker(1.4, () -> {
                     claw.lowClaw();
                 })
-                .addTemporalMarker(1.6, () -> {
+                .addTemporalMarker(2.1, () -> {
                     intake.openIntake();
                 })
-                .lineToLinearHeading(AutoConstants.RR1_PUT)
-                .waitSeconds(0.5)
+                .waitSeconds(1.0)
                 .lineToLinearHeading(AutoConstants.RR1_PUT_Back)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.closeOpenIntake();
@@ -98,6 +104,7 @@ public class AutoRedRight extends LinearOpMode {
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     claw.middleClaw();
+                    elevator.defaultEle();
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);
@@ -109,7 +116,11 @@ public class AutoRedRight extends LinearOpMode {
         TrajectorySequence pathMiddle = drive.trajectorySequenceBuilder(AutoConstants.START)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
-                .addTemporalMarker(0.0, () -> {
+                .lineToLinearHeading(AutoConstants.RM1_PUT)
+                .addTemporalMarker(0.1, () -> {
+                    elevator.eleIntake();
+                })
+                .addTemporalMarker(0.5, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
                 .addTemporalMarker(2.0, () -> {
@@ -118,7 +129,6 @@ public class AutoRedRight extends LinearOpMode {
                 .addTemporalMarker(2.9, () -> {
                     intake.openIntake();
                 })
-                .lineToLinearHeading(AutoConstants.RM1_PUT)
                 .addTemporalMarker(3.6, () -> {
                     intake.closeIntake();
                 })
@@ -142,6 +152,7 @@ public class AutoRedRight extends LinearOpMode {
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     claw.middleClaw();
+                    elevator.defaultEle();
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);
@@ -152,7 +163,11 @@ public class AutoRedRight extends LinearOpMode {
         TrajectorySequence pathLeft = drive.trajectorySequenceBuilder(AutoConstants.START)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
-                .addTemporalMarker(0.0, () -> {
+                .lineToLinearHeading(AutoConstants.RL1_PUT)
+                .addTemporalMarker(0.1, () -> {
+                    elevator.eleIntake();
+                })
+                .addTemporalMarker(0.5, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
                 .addTemporalMarker(1.2, () -> {
@@ -161,7 +176,6 @@ public class AutoRedRight extends LinearOpMode {
                 .addTemporalMarker(2.1, () -> {
                     intake.openIntake();
                 })
-                .lineToLinearHeading(AutoConstants.RL1_PUT)
                 .waitSeconds(0.85)
                 .addTemporalMarker(3.8, () -> {
                     intake.closeIntake();
@@ -183,6 +197,7 @@ public class AutoRedRight extends LinearOpMode {
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     claw.middleClaw();
+                    elevator.defaultEle();
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);

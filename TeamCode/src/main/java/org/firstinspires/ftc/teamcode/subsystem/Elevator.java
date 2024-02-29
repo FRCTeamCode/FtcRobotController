@@ -9,7 +9,7 @@ public class Elevator extends SubsystemBase {
     public Servo elevatorServo;
     private final Telemetry telemetry;
     public static double defaultEle = 0.185;
-    public static double eleIntake = 0.285;
+    public static double eleIntake = 0.26;
     public static double middleEle = 0.43;
     public static double highEle = 0.62;
 

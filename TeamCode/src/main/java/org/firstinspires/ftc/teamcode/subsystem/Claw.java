@@ -8,11 +8,11 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Claw extends SubsystemBase {
     public Servo clawServo;
     private final Telemetry telemetry;
-    public static double lowerClaw = 0.15;
-    public static double lowClaw = 0.35;//
+    public static double lowerClaw = 0.23;
+    public static double lowClaw = 0.39;//
     public static double lowMidClaw = 0.27;
     public static double middleLowClaw = 0.375;
-    public static double middleClaw = 0.735;//
+    public static double middleClaw = 0.742;//
     public static double highClaw = 0.86;
     public static double highLowerClaw = 0.394;
     public static double pixelPutLowClaw = 0.748;

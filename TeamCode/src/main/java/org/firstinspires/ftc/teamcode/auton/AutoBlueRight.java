@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.hardware.ArmAuto;
 import org.firstinspires.ftc.teamcode.hardware.CameraPro;
 import org.firstinspires.ftc.teamcode.subsystem.CameraAuto;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
+import org.firstinspires.ftc.teamcode.subsystem.Elevator;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
@@ -28,6 +29,7 @@ public class AutoBlueRight extends LinearOpMode {
     ArmAuto armAuto;
     Claw claw;
     Intake intake;
+    Elevator elevator;
     private final FtcDashboard dashboard = FtcDashboard.getInstance();
     private final Telemetry dashboardTelemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
     AprilTagDetection tagOfInterest = null;
@@ -51,6 +53,7 @@ public class AutoBlueRight extends LinearOpMode {
         armAuto = new ArmAuto(hardwareMap, dashboardTelemetry);
         claw = new Claw(hardwareMap, dashboardTelemetry);
         intake = new Intake(hardwareMap, dashboardTelemetry);
+        elevator = new Elevator(hardwareMap, dashboardTelemetry);
         cameraPro = new CameraPro(hardwareMap, dashboardTelemetry, true);
 
         isAutoEnd = false;
