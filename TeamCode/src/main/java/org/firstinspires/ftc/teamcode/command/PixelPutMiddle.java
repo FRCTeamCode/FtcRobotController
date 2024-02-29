@@ -15,7 +15,7 @@ public class PixelPutMiddle extends SequentialCommandGroup {
 //                new WaitCommand(200),
 //                new ArmControl(arm, 2.3),
 //                new WaitCommand(400),
-                new ArmControl(arm, 2.74),
+                new ArmControl(arm, 2.64),
                 new WaitCommand(400),
                 new ClawControl(claw, 8.0)
         );

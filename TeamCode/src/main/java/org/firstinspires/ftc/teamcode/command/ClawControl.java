@@ -32,6 +32,8 @@ public class ClawControl extends CommandBase {
             mClaw.pixelPutLowClaw();
         } else if (mClawPos == 8.0) {
             mClaw.pixelPutMidClaw();
+        } else if (mClawPos == 9.0) {
+            mClaw.pixelPutHigherClaw();
         }
     }
 

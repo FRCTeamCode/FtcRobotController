@@ -97,7 +97,7 @@ public class AutoRedRight extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(2.0)
+                .waitSeconds(2.5)
                 .lineToLinearHeading(AutoConstants.RR1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);

@@ -95,8 +95,8 @@ public class BlueTeleOp extends CommandOpMode {
 
 
         Button a2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.A);
-//        a2.whenPressed(new PixelHold(arm, claw, intake, ele));
-        a2.whenPressed(new PixelArmResetCom(arm, claw, intake,ele));
+        a2.whenPressed(new PixelHold(arm, claw, intake, ele));
+//        a2.whenPressed(new PixelArmResetCom(arm, claw, intake,ele));
         Button b2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.B);
         b2.whenPressed(new PixelIntake(arm, claw, intake, ele));
         Button x2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.X);
@@ -117,7 +117,7 @@ public class BlueTeleOp extends CommandOpMode {
 //        Button dd2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.DPAD_DOWN);
 //        dd2.whenPressed(new LaunchFinished(arm, claw, intake));
         Button du2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.DPAD_UP);
-        du2.whenPressed(new PixelPut(arm, claw, intake));
+        du2.whenPressed(new PixelPut(arm, claw, intake, ele));
         Button dr2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.DPAD_RIGHT);
         dr2.whenPressed(new PixelPutHigher(arm, claw, intake, ele));
         Button lsb2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.LEFT_STICK_BUTTON);

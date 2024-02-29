@@ -14,9 +14,10 @@ public class Claw extends SubsystemBase {
     public static double middleLowClaw = 0.375;
     public static double middleClaw = 0.742;//
     public static double highClaw = 0.86;
+    public static double higherClaw = 0.853;
     public static double highLowerClaw = 0.394;
-    public static double pixelPutLowClaw = 0.748;
-    public static double pixelPutMidClaw = 0.775;
+    public static double pixelPutLowClaw = 0.76;
+    public static double pixelPutMidClaw = 0.826;
 
     public Claw(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
@@ -54,5 +55,8 @@ public class Claw extends SubsystemBase {
     }
     public void pixelPutMidClaw() {
         clawServo.setPosition(pixelPutMidClaw);
+    }
+    public void pixelPutHigherClaw() {
+        clawServo.setPosition(higherClaw);
     }
 }

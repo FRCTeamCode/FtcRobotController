@@ -6,13 +6,15 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.subsystem.Arm;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
+import org.firstinspires.ftc.teamcode.subsystem.Elevator;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
 
 public class PixelPut extends SequentialCommandGroup {
 
-    public PixelPut(Arm arm, Claw claw, Intake intake) {
+    public PixelPut(Arm arm, Claw claw, Intake intake, Elevator ele) {
         addCommands(
                 new ClawControl(claw, 2.0),
+                new EleControl(ele, 3.0),
                 new ArmControl(arm, 1.8),
                 new ArmControl(arm, 2.43),
                 new WaitCommand(400),

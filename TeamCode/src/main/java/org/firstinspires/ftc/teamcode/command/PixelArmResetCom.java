@@ -46,14 +46,14 @@ public class PixelArmResetCom extends CommandBase {
                 intake.closeIntake();
             }
             if (mElePos > 0.5) {
-                if (timer.milliseconds() > 3000) {
+                if (timer.milliseconds() > 3500) {
                     isBackNow = true;
                 }
             } else {
 //                if (timer.milliseconds() > 1.5) {
 //                    isBackNow = true;
 //                }
-                if (timer.milliseconds() > (mElePos - 0.185) * 4800.0) {
+                if (timer.milliseconds() > (mElePos - 0.185) * 5500.0) {
                     isBackNow = true;
                 }
             }
@@ -62,7 +62,7 @@ public class PixelArmResetCom extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        arm.setArmPos(0.56);
+        arm.setArmPos(0.6);
     }
 
     @Override
