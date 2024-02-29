@@ -63,39 +63,42 @@ public class AutoRedLeft extends LinearOpMode {
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .lineToLinearHeading(AutoConstants.RR2_way)
                 .lineToLinearHeading(AutoConstants.RR2_way_m)
-                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+                .addTemporalMarker(0.1, () -> {
+                    elevator.eleIntake();
+                })
+                .UNSTABLE_addTemporalMarkerOffset(1.2, () -> {
                     claw.lowClaw();
                 })
-                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
                 .lineToLinearHeading(AutoConstants.RR2_PUT)
-                .waitSeconds(1.0)
+                .waitSeconds(1.2)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.openIntake();
                 })
-                .waitSeconds(1.0)
+                .waitSeconds(0.35)
                 .lineToLinearHeading(AutoConstants.RR2_PUTBack)
-                .waitSeconds(0.5)
+                .waitSeconds(0.35)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.closeOpenIntake();
                 })
-                .waitSeconds(0.5)
+                .waitSeconds(0.35)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(0.8);
                 })
-                .waitSeconds(0.5)
+                .waitSeconds(0.35)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     claw.middleClaw();
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.7, () -> {
                     intake.closeIntake();
                 })
-                .waitSeconds(0.8)
+                .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0.9, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .waitSeconds(0.5)
+                .waitSeconds(0.35)
                 .lineToLinearHeading(AutoConstants.RR2_way0)
                 .lineToLinearHeading(AutoConstants.RR2_way1)
                 .lineToLinearHeading(AutoConstants.RR2_way2)
@@ -120,6 +123,7 @@ public class AutoRedLeft extends LinearOpMode {
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     claw.middleClaw();
+                    elevator.defaultEle();
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);
@@ -129,14 +133,17 @@ public class AutoRedLeft extends LinearOpMode {
         TrajectorySequence pathMiddle = drive.trajectorySequenceBuilder(AutoConstants.START)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
-                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                .addTemporalMarker(0.1, () -> {
+                    elevator.eleIntake();
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
-                .UNSTABLE_addTemporalMarkerOffset(1.1, () -> {
+                .UNSTABLE_addTemporalMarkerOffset(1.2, () -> {
                     claw.lowClaw();
                 })
                 .lineToLinearHeading(AutoConstants.RM2_PUT)
-                .waitSeconds(1.0)
+                .waitSeconds(1.2)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.openIntake();
                 })
@@ -152,7 +159,7 @@ public class AutoRedLeft extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .waitSeconds(8.0)
+                .waitSeconds(7.0)
                 .lineToLinearHeading(AutoConstants.RM2_BACKSTAGE_way)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
@@ -175,6 +182,7 @@ public class AutoRedLeft extends LinearOpMode {
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     claw.middleClaw();
+                    elevator.defaultEle();
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);
@@ -185,7 +193,10 @@ public class AutoRedLeft extends LinearOpMode {
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .lineToLinearHeading(AutoConstants.RL2_PUT)
-                .addTemporalMarker(0.2, () -> {
+                .addTemporalMarker(0.1, () -> {
+                    elevator.eleIntake();
+                })
+                .addTemporalMarker(0.5, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
                 .addTemporalMarker(2.0, () -> {
@@ -239,6 +250,7 @@ public class AutoRedLeft extends LinearOpMode {
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     claw.middleClaw();
+                    elevator.defaultEle();
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.0);
@@ -332,11 +344,11 @@ public class AutoRedLeft extends LinearOpMode {
                 //path has finished
                 double[] idData = cameraPro.getAprilTagIDData(tagID);
                 if (targetSide == "Left") {
-                    drive.alinTag(idData, tagID, 11.0, -0.3, -1.2, timer.milliseconds());
+                    drive.alinTag(idData, tagID, 11.0, -0.3, -0.25, timer.milliseconds());
                 } else if (targetSide == "Middle") {
                     drive.alinTag(idData, tagID, 11.0, 0.0, -0.75, timer.milliseconds());
                 } else {
-                    drive.alinTag(idData, tagID, 11.0, 0.0, -0.5, timer.milliseconds());
+                    drive.alinTag(idData, tagID, 11.0, 0.0, -0.0, timer.milliseconds());
                 }
                 if (drive.isHasFindTarget()&&drive.isEndAlign()&&!isAutoEnd) {
                     dashboardTelemetry.addLine("Parked now");
