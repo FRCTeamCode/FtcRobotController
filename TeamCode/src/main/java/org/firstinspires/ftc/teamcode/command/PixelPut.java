@@ -13,7 +13,7 @@ public class PixelPut extends SequentialCommandGroup {
 
     public PixelPut(Arm arm, Claw claw, Intake intake, Elevator ele) {
         addCommands(
-                new ClawControl(claw, 2.0),
+//                new ClawControl(claw, 2.0),
                 new EleControl(ele, 3.0),
                 new ArmControl(arm, 1.8),
                 new ArmControl(arm, 2.43),

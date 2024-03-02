@@ -15,7 +15,7 @@ public class PixelPutHigher extends SequentialCommandGroup {
         addCommands(
                 new ArmControl(arm, 1.8),
                 new EleControl(ele, 1.0),
-                new ClawControl(claw, 2.0),
+//                new ClawControl(claw, 2.0),
                 new ArmControl(arm, 2.43),
                 new WaitCommand(400),
                 new ClawControl(claw, 9.0)
