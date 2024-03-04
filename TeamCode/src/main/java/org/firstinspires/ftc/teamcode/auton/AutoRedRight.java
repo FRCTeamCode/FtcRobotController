@@ -229,7 +229,8 @@ public class AutoRedRight extends LinearOpMode {
 //                    dashboardTelemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
                     if (recognition.getLabel() == "RedCube") {
                         tagFound = true;
-                        if (Math.abs(x-497) < 48 && Math.abs(y-215) < 48 && Math.abs(recognition.getWidth()-101) < 24 && Math.abs(recognition.getHeight()-101) < 24) {
+                        if (Math.abs(x-497) < 48 && Math.abs(y-215) < 48 && Math.abs(recognition.getWidth()-101) < 24 &&
+                                Math.abs(recognition.getHeight()-101) < 24) {
                             tagID = 6;
                             targetSide = "Right";
                             targetRoad = pathRight;

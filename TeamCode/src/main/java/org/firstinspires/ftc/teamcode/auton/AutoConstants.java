@@ -18,11 +18,16 @@ public class AutoConstants {
     public static double isOpRevise = 1.0;
     public  static  double autoPutLowPixel = 0.78;//0.68 -> 0.74
     public  static  double autoPutArmPre = 1.85;
-    public  static  double autoPutArm = 2.35;
+    public  static  double autoPutArm = 2.5;
 
     // Cycle parking constraints
     public static final TrajectoryVelocityConstraint PARK_VEL = SampleMecanumDrive.getVelocityConstraint(24, 4.0, 10.2);
     public static final TrajectoryAccelerationConstraint PARK_ACCEL = SampleMecanumDrive.getAccelerationConstraint(24);
+
+
+    public static final TrajectoryVelocityConstraint PARK_VEL2 = SampleMecanumDrive.getVelocityConstraint(32, 4.0, 10.2);
+    public static final TrajectoryAccelerationConstraint PARK_ACCEL2 = SampleMecanumDrive.getAccelerationConstraint(32);
+
 
     // GLOBAL
     public static final Pose2d START = new Pose2d(0.0, 0.0, 0.0);
@@ -126,6 +131,70 @@ public class AutoConstants {
     public static final Pose2d RL2_way2 = new Pose2d(23.5, -78.0, Math.toRadians(84.0));
     public static final Pose2d RL2_BACKSTAGE = new Pose2d(23.5, -99.0, Math.toRadians(84.0));
     public static final Pose2d RL2_Tag = new Pose2d(23.5, -90.0, Math.toRadians(84.0));
+
+    public static class AutoFar2 {
+
+        //Blue far BACKSTAGE side - Left
+        public static final Pose2d BL2_way = new Pose2d(24.0, 0.0, Math.toRadians(-84.0));
+        public static final Pose2d BL2_way_m = new Pose2d(24.0, 28.4, Math.toRadians(-84.0));
+        public static final Pose2d BL2_PUT = new Pose2d(27.5, 28.4, Math.toRadians(-84.0));
+        public static final Pose2d BL2_PUTBack = new Pose2d(27.5, 31.8, Math.toRadians(-84.0));
+        public static final Pose2d BL2_way0 = new Pose2d(7.0, 31.8, Math.toRadians(-84.0));
+        public static final Pose2d BL2_way1 = new Pose2d(7.0, 80.0, Math.toRadians(-84.0));
+        public static final Pose2d BL2_way2 = new Pose2d(16.0, 80.0, Math.toRadians(-84.0));
+        public static final Pose2d BL2_BACKSTAGE = new Pose2d(10.0, 99.5, Math.toRadians(-84.0));
+        public static final Pose2d BL2_Tag = new Pose2d(10.0, 90.0, Math.toRadians(-84.0));
+        public static final Pose2d BL2_STOP = new Pose2d(41.0, 90.0, Math.toRadians(-84.0));
+        public static final Pose2d BL2_STOP_BACK = new Pose2d(41.0, 100.0, Math.toRadians(-84.0));
+        //Red far BACKSTAGE side - Right
+        public static final Pose2d RR2_way = new Pose2d(24.0, 0.0, Math.toRadians(84.0));
+        public static final Pose2d RR2_way_m = new Pose2d(24.0, -28.4, Math.toRadians(84.0));
+        public static final Pose2d RR2_PUT = new Pose2d(27.5, -28.4, Math.toRadians(84.0));
+        public static final Pose2d RR2_PUTBack = new Pose2d(27.5, -31.8, Math.toRadians(84.0));
+        public static final Pose2d RR2_way0 = new Pose2d(27.5, -31.8, Math.toRadians(84.0));
+        public static final Pose2d RR2_way1 = new Pose2d(27.5, -80.0, Math.toRadians(84.0));
+        public static final Pose2d RR2_way2 = new Pose2d(12.0, -78.0, Math.toRadians(84.0));
+        public static final Pose2d RR2_BACKSTAGE = new Pose2d(10.0, -99.0, Math.toRadians(84.0));
+        public static final Pose2d RR2_Tag = new Pose2d(10.0, -90.0, Math.toRadians(84.0));
+
+        //Blue far BACKSTAGE side - Middle
+        public static final Pose2d BM2_PUT = new Pose2d(30.0, 4.0, Math.toRadians(0.0));
+        public static final Pose2d BM2_way = new Pose2d(26.5, 24.0, Math.toRadians(-84.0));
+        public static final Pose2d BM2_way0 = new Pose2d(23.0, 32.0, Math.toRadians(-84.0));
+        public static final Pose2d BM2_BACKSTAGE_way = new Pose2d(23.0, 80.0, Math.toRadians(-84.0));
+        public static final Pose2d BM2_BACKSTAGE = new Pose2d(23.0, 99.0, Math.toRadians(-84.0));
+        public static final Pose2d BM2_Tag = new Pose2d(23.0, 90.0, Math.toRadians(-84.0));
+        public static final Pose2d BM2_STOP = new Pose2d(43.0, 90.0, Math.toRadians(-84.0));
+        public static final Pose2d BM2_STOP_BACK = new Pose2d(43.0, 99.0, Math.toRadians(-84.0));
+        //Red far BACKSTAGE side - Middle
+        public static final Pose2d RM2_PUT = new Pose2d(30.0, -4.0, Math.toRadians(0.0));
+        public static final Pose2d RM2_way = new Pose2d(26.5, -24.0, Math.toRadians(84.0));
+        public static final Pose2d RM2_way0 = new Pose2d(23.0, -24.0, Math.toRadians(84.0));
+        public static final Pose2d RM2_BACKSTAGE_way = new Pose2d(23.0, -80.0, Math.toRadians(84.0));
+        public static final Pose2d RM2_BACKSTAGE = new Pose2d(23.0, -99.0, Math.toRadians(84.0));
+        public static final Pose2d RM2_Tag = new Pose2d(23.5, -90.0, Math.toRadians(84.0));
+
+        //Blue far BACKSTAGE side - Right - after put pixel, run straight to BACKSTAGE
+        public static final Pose2d BR2_PUT = new Pose2d(25.0+5.8, 6.8, Math.toRadians(-84.0));
+        public static final Pose2d BR2_PUTBack = new Pose2d(25.0+5.8, 8.0, Math.toRadians(-84.0));
+        public static final Pose2d BR2_way0 = new Pose2d(45.0+5.3, 8.0, Math.toRadians(-84.0));
+        public static final Pose2d BR2_way1 = new Pose2d(40.0, 80.0, Math.toRadians(-84.0));
+        public static final Pose2d BR2_way2 = new Pose2d(23.5, 78.0, Math.toRadians(-84.0));
+        public static final Pose2d BR2_BACKSTAGE = new Pose2d(23.5, 99.0, Math.toRadians(-84.0));
+        public static final Pose2d BR2_Tag = new Pose2d(23.5, 90.0, Math.toRadians(-84.0));
+        public static final Pose2d BR2_STOP = new Pose2d(42.0, 90.0, Math.toRadians(-84.0));
+        public static final Pose2d BR2_STOP_BACK = new Pose2d(42.0, 100.0, Math.toRadians(-84.0));
+
+        //Red far BACKSTAGE side - Left - after put pixel, run straight to BACKSTAGE
+        public static final Pose2d RL2_PUT = new Pose2d(30.8, -6.4, Math.toRadians(84.0));
+        public static final Pose2d RL2_PUTBack = new Pose2d(30.8, -8.0, Math.toRadians(84.0));
+        public static final Pose2d RL2_way0 = new Pose2d(53.0, -8.0, Math.toRadians(84.0));
+        public static final Pose2d RL2_way1 = new Pose2d(44.0, -80.0, Math.toRadians(84.0));
+        public static final Pose2d RL2_way2 = new Pose2d(23.5, -78.0, Math.toRadians(84.0));
+        public static final Pose2d RL2_BACKSTAGE = new Pose2d(23.5, -99.0, Math.toRadians(84.0));
+        public static final Pose2d RL2_Tag = new Pose2d(23.5, -90.0, Math.toRadians(84.0));
+    }
+
 
 
 }
