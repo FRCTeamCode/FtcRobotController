@@ -13,12 +13,19 @@ public class PixelPutHighest extends SequentialCommandGroup {
 
     public PixelPutHighest(Arm arm, Claw claw, Intake intake, Elevator ele) {
         addCommands(
+//                new ArmControl(arm, 1.8),
+//                new EleControl(ele, 2.0),
+////                new ClawControl(claw, 2.0),
+//                new ArmControl(arm, 2.43),
+//                new WaitCommand(400),
+//                new ClawControl(claw, 9.0)
+                //verson 2
                 new ArmControl(arm, 1.8),
                 new EleControl(ele, 2.0),
 //                new ClawControl(claw, 2.0),
-                new ArmControl(arm, 2.43),
+                new ArmControl(arm, 2.36),
                 new WaitCommand(400),
-                new ClawControl(claw, 9.0)
+                new ClawControl(claw, 10.0)
         );
         addRequirements(arm, claw, intake);
     }

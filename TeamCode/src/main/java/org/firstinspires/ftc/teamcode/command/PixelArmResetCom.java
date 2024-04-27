@@ -45,15 +45,15 @@ public class PixelArmResetCom extends CommandBase {
                 claw.middleClaw();
                 intake.closeIntake();
             }
-            if (mElePos > 0.5) {
-                if (timer.milliseconds() > 3500) {
+            if (mElePos > 0.35) {
+                if (timer.milliseconds() > 1800) {
                     isBackNow = true;
                 }
             } else {
 //                if (timer.milliseconds() > 1.5) {
 //                    isBackNow = true;
 //                }
-                if (timer.milliseconds() > (mElePos - 0.185) * 5500.0) {
+                if (timer.milliseconds() > (mElePos - 0.185) * 4000.0) {
                     isBackNow = true;
                 }
             }

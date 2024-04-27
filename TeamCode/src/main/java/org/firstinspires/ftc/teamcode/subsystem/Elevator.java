@@ -9,14 +9,14 @@ public class Elevator extends SubsystemBase {
     public Servo elevatorServo;
     private final Telemetry telemetry;
     public static double defaultEle = 0.185;
-    public static double eleIntake = 0.26;
-    public static double middleEle = 0.43;
-    public static double highEle = 0.62;
+    public static double eleIntake = 0.26-(0.26-0.185)/2;
+    public static double middleEle = 0.43-(0.43-0.185)/2;
+    public static double highEle = 0.635-(0.62-0.185)/2;
 
     public Elevator(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
         elevatorServo = hardwareMap.get(Servo.class, "goB3");//0.23->0.4 intake open
-        elevatorServo.setDirection(Servo.Direction.REVERSE);
+        elevatorServo.setDirection(Servo.Direction.FORWARD);
         defaultEle();
     }
 

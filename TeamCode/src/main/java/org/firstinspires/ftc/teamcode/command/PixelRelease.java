@@ -12,11 +12,11 @@ public class PixelRelease extends SequentialCommandGroup {
     public PixelRelease(Intake intake) {
         addCommands(
                 new IntakeControl(intake, 2.0),
-                new WaitCommand(300),
+                new WaitCommand(100),
                 new IntakeControl(intake, 4.0),
-                new WaitCommand(310),
+                new WaitCommand(480),
                 new IntakeControl(intake, 5.0),
-                new WaitCommand(290),
+                new WaitCommand(100),
                 new IntakeControl(intake, 6.0)
         );
         addRequirements(intake);

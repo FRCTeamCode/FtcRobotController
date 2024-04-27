@@ -11,12 +11,12 @@ public class PixelPutLow extends SequentialCommandGroup {
     public PixelPutLow(Arm arm, Claw claw, Intake intake) {
         addCommands(
 //                new ClawControl(claw, 2.0),
-                new ArmControl(arm, 1.8),
+//                new ArmControl(arm, 2.4),
 //                new WaitCommand(200),
 //                new ArmControl(arm, 2.8),
 //                new WaitCommand(200),
-                new ArmControl(arm, 2.95),
-                new WaitCommand(400),
+                new ArmControl(arm, 3.1),
+                new WaitCommand(200),
                 new ClawControl(claw, 7.0)
         );
         addRequirements(arm, claw, intake);
