@@ -33,7 +33,7 @@ public class AutoConstants {
     public static final Pose2d START = new Pose2d(0.0, 0.0, 0.0);
 
     //Blue near BACKSTAGE side - Left
-    public static final Pose2d BL1_PUT = new Pose2d(21.0, 5.9, 0.0);
+    public static final Pose2d BL1_PUT = new Pose2d(20.5, 5.9, 0.0);
     public static final Pose2d BL1_PUT_Back = new Pose2d(14.0, 5.9, 0.0);
     public static final Pose2d BL1_BACKSTAGE = new Pose2d(20.7, 27.0, Math.toRadians(-84.0));
     public static final Pose2d BL1_BACKSTAGE_better = new Pose2d(20.7, 38.0, Math.toRadians(-84.0));
@@ -42,7 +42,7 @@ public class AutoConstants {
     public static final Pose2d BL1_STOP_BACK = new Pose2d(3.0, 40.0, Math.toRadians(-84.0));
 
     //Red near BACKSTAGE side - Right
-    public static final Pose2d RR1_PUT = new Pose2d(21.0, -5.9, 0.0);
+    public static final Pose2d RR1_PUT = new Pose2d(20.5, -5.9, 0.0);
     public static final Pose2d RR1_PUT_Back = new Pose2d(14.0, -5.9, 0.0);
     public static final Pose2d RR1_BACKSTAGE = new Pose2d(20.3, -27.0, Math.toRadians(84.0));
     public static final Pose2d RR1_BACKSTAGE_better = new Pose2d(20.3, -38.0, Math.toRadians(84.0));
