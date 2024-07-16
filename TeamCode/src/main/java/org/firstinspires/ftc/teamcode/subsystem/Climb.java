@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.subsystem;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -16,7 +17,7 @@ public class Climb extends SubsystemBase {
         climbMotor = new Motor(hardwareMap, "climb", Motor.GoBILDA.RPM_312);
         climbMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         climbMotor.motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        climbMotor.motor.setDirection(DcMotor.Direction.REVERSE);//REVERSE:1000->3000 arm up
+        climbMotor.motor.setDirection(DcMotor.Direction.FORWARD);//REVERSE:1000->3000 arm up
 //        climbMotor.resetEncoder();
         configPosition();//Pos:0-hold, 60-intake, 900-put
         setClimbPos(0);

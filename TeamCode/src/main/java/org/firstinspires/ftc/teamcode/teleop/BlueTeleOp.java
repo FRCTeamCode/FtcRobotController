@@ -79,7 +79,7 @@ public class BlueTeleOp extends CommandOpMode {
         Button dd = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);
         dd.whenPressed(new MovePosition(climb,-100));
         Button du = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.Y);
-        du.whenPressed(new MovePosition(climb,-2950));
+        du.whenPressed(new MovePosition(climb,-2950));//-2950
 //        dd.whenPressed(new EleControl(ele, 3));
 //        du.whenPressed(new EleControl(ele, 2));
 //        du.whenPressed(new PixelArmResetCom(arm, claw, intake,ele));
