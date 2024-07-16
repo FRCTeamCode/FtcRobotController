@@ -13,6 +13,8 @@ public class PixelHold extends SequentialCommandGroup {
 
     public PixelHold(Arm arm, Claw claw, Intake intake, Elevator ele) {
         addCommands(
+                new IntakeControl(intake,3.0),
+                new WaitCommand(300),
                 new ParallelCommandGroup(
                         new ClawControl(claw, 2.0),
                         new IntakeControl(intake, 3.0),
