@@ -21,7 +21,7 @@ public class DriveConstants {
     /*
      * These are motor constants that should be listed online for your motors.
      */
-    public static final double TICKS_PER_REV = 8192.0;
+    public static final double TICKS_PER_REV = 2000.0;//8192.0;
     public static final double MAX_RPM = 312;
 
     /*
@@ -44,7 +44,7 @@ public class DriveConstants {
      * angular distances although most angular parameters are wrapped in Math.toRadians() for
      * convenience. Make sure to exclude any gear ratio included in MOTOR_CONFIG from GEAR_RATIO.
      */
-    public static double WHEEL_RADIUS = 0.68897638; // in, 1.476
+    public static double WHEEL_RADIUS = 0.94488;//0.68897638; // in, 1.476
     public static double GEAR_RATIO = 1.0; //output (wheel) speed / input (encoder) speed
     public static double TRACK_WIDTH = 9.0; // in
     public static double FORWARD_OFFSET = -0.5;
