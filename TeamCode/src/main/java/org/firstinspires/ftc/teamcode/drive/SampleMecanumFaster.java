@@ -16,7 +16,9 @@ import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationCon
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 import com.arcrobotics.ftclib.util.MathUtils;
+import com.kauailabs.navx.ftc.AHRS;
 import com.qualcomm.hardware.bosch.BHI260IMU;
+import com.qualcomm.hardware.kauailabs.NavxMicroNavigationSensor;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -52,10 +54,12 @@ import static org.firstinspires.ftc.teamcode.drive.DriveConstants.encoderTicksTo
 import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kA;
 import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kStatic;
 import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kV;
+import java.text.DecimalFormat;
 
 public class SampleMecanumFaster extends MecanumDrive {
     private StandardTrackingWheelLocalizer sTWLoclizer;
     private BHI260IMU imu;
+    private final AHRS navx2micro;
     private Pose2d poseEstimate;
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(6.5, 0, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(5, 0, 0);
@@ -77,6 +81,11 @@ public class SampleMecanumFaster extends MecanumDrive {
     private Telemetry telemetry;
     private List<DcMotorEx> motors;
     private VoltageSensor batteryVoltageSensor;
+
+    DecimalFormat df = new DecimalFormat("#.##");
+    private final byte NAVX_DEVICE_UPDATE_RATE_HZ = 50;
+    private boolean calibration_complete = false;
+
     double pastv = 0;
     double pastv1 = 0;
     double pastv2 = 0;
@@ -106,6 +115,11 @@ public class SampleMecanumFaster extends MecanumDrive {
         );
         imu.initialize(parameters);
         imu.resetYaw();
+
+        navx2micro = AHRS.getInstance(hardwareMap.get(NavxMicroNavigationSensor.class, "navx"),
+                AHRS.DeviceDataType.kProcessedData,
+                NAVX_DEVICE_UPDATE_RATE_HZ);
+
 
         // TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
         // not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
@@ -389,7 +403,9 @@ public class SampleMecanumFaster extends MecanumDrive {
         double rx = right_stick_x;
 
 //        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) - AutoConstants.initAngle;
-        double botHeading = getRawExternalHeading() - AutoConstants.initAngle;
+//        double botHeading = getRawExternalHeading() - AutoConstants.initAngle;
+
+        double botHeading = AngleUnit.DEGREES.toRadians(-navx2micro.getYaw()) - AutoConstants.initAngle;
 
         // Rotate the movement direction counter to the robot's rotation
         double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
