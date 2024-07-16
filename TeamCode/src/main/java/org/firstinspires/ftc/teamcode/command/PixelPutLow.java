@@ -15,7 +15,7 @@ public class PixelPutLow extends SequentialCommandGroup {
 //                new WaitCommand(200),
 //                new ArmControl(arm, 2.8),
 //                new WaitCommand(200),
-                new ArmControl(arm, 3.1),
+                new ArmControl(arm, 3.04),
                 new WaitCommand(200),
                 new ClawControl(claw, 7.0)
         );

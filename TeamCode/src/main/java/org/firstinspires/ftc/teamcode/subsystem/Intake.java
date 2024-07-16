@@ -12,6 +12,7 @@ public class Intake extends SubsystemBase {
     public static double closeOpenIntake = 0.3;
     public static double looseIntake = 0.21;
     public static double openIntake = 0.37;
+    public static double openIntakePro = 0.42;
 
     public Intake(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
@@ -29,6 +30,9 @@ public class Intake extends SubsystemBase {
 
     public void openIntake() {
         intakeServo.setPosition(openIntake);
+    }
+    public void openIntakePro() {
+        intakeServo.setPosition(openIntakePro);
     }
 
     public void looseIntake() {

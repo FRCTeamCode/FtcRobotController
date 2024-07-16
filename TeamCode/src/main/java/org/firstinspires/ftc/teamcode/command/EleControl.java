@@ -25,6 +25,8 @@ public class EleControl extends CommandBase {
             mEle.highEle();
         } else if (mClawPos == 3.0) {
             mEle.eleIntake();
+        } else if (mClawPos == 4.0) {
+            mEle.eleIntakePro();
         }
     }
 

@@ -33,7 +33,9 @@ public class PixelArmResetCom extends CommandBase {
         isArmSafe = false;
         isBackNow = false;
         ele.defaultEle();
-        arm.setArmPos(1.35);
+//        if (arm.getPotVol() > 1.35) {
+            arm.setArmPos(1.35);
+//        }
         timer.reset();
     }
 

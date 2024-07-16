@@ -19,6 +19,8 @@ public class IntakeControl extends CommandBase {
     public void initialize() {
         if (mIntakePos == 1.0) {
             mIntake.openIntake();
+        } else if (mIntakePos == 1.5) {
+            mIntake.openIntakePro();
         } else if (mIntakePos == 2.0) {
             mIntake.looseIntake();
         } else if (mIntakePos == 3.0) {

@@ -10,6 +10,7 @@ public class Elevator extends SubsystemBase {
     private final Telemetry telemetry;
     public static double defaultEle = 0.185;
     public static double eleIntake = 0.26-(0.26-0.185)/2;
+    public static double eleIntakePro = 0.29-(0.26-0.185)/2;
     public static double middleEle = 0.43-(0.43-0.185)/2;
     public static double highEle = 0.635-(0.62-0.185)/2;
 
@@ -41,6 +42,9 @@ public class Elevator extends SubsystemBase {
     }
     public void eleIntake() {
         elevatorServo.setPosition(eleIntake);
+    }
+    public void eleIntakePro() {
+        elevatorServo.setPosition(eleIntakePro);
     }
     public double getPosition() {
         return elevatorServo.getPosition();

@@ -97,7 +97,7 @@ public class Arm extends SubsystemBase {
     public void periodic() {
         currentVoltage = potentiometer.getVoltage();
 //        setSpeed(0.25);
-//        telemetry.addData("ArmPos", armMotor.getCurrentPosition());
+//        telemetry.addData("ArmPos", arm2Motor.getCurrentPosition());
         loop();
 //        currentVoltage = potentiometer.getVoltage();
         telemetry.addData("Potentiometer voltage", currentVoltage);
