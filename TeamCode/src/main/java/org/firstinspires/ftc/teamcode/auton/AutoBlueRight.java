@@ -67,25 +67,22 @@ public class AutoBlueRight extends LinearOpMode {
                     armAuto.setArmPos(1.08);
                 })
                 .lineToLinearHeading(AutoConstants.BL2_PUT)
-                .waitSeconds(1.0)
+                .waitSeconds(0.2)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.openIntake();
                 })
-                .waitSeconds(1.25)
+                .waitSeconds(0.5)
                 .lineToLinearHeading(AutoConstants.BL2_PUTBack)
-                .waitSeconds(2.0)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     claw.middleClaw();
                 })
-                .waitSeconds(0.8)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.closeIntake();
                 })
-                .waitSeconds(0.8)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .waitSeconds(1.0)
+//                .waitSeconds(0.5)
                 .lineToLinearHeading(AutoConstants.BL2_way0)
                 .lineToLinearHeading(AutoConstants.BL2_way1)
                 .lineToLinearHeading(AutoConstants.BL2_way2)
@@ -104,7 +101,7 @@ public class AutoBlueRight extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(2.25)
+                .waitSeconds(2.0)
                 .lineToLinearHeading(AutoConstants.BL2_BACKSTAGE_back)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);

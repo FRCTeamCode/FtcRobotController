@@ -76,15 +76,15 @@ public class AutoConstants {
 
     //Blue far BACKSTAGE side - Left
     public static final Pose2d BL2_way = new Pose2d(24.0, 0.0, Math.toRadians(-92.0));
-    public static final Pose2d BL2_way_m = new Pose2d(24.0, 27.75, Math.toRadians(-92.0));
-    public static final Pose2d BL2_PUT = new Pose2d(27.0, 27.35, Math.toRadians(-92.0));
-    public static final Pose2d BL2_PUTBack = new Pose2d(27.0, 29.5, Math.toRadians(-92.0));
-    public static final Pose2d BL2_way0 = new Pose2d(20.0, 40.0, Math.toRadians(-92.0));
-    public static final Pose2d BL2_way1 = new Pose2d(15.0, 60.0, Math.toRadians(-92.0));
-    public static final Pose2d BL2_way2 = new Pose2d(10.0, 80.0, Math.toRadians(-92.0));
-    public static final Pose2d BL2_BACKSTAGE = new Pose2d(10.0, 96.5, Math.toRadians(-92.0));
-    public static final Pose2d BL2_Tag = new Pose2d(10.0, 80.0, Math.toRadians(-92.0));
-    public static final Pose2d BL2_BACKSTAGE_back = new Pose2d(10.0, 87.0, Math.toRadians(-92.0));
+    public static final Pose2d BL2_way_m = new Pose2d(24.0, 26.5, Math.toRadians(-92.0));
+    public static final Pose2d BL2_PUT = new Pose2d(31.5, 26.5, Math.toRadians(-92.0));
+    public static final Pose2d BL2_PUTBack = new Pose2d(31.5, 35.0, Math.toRadians(-92.0));
+    public static final Pose2d BL2_way0 = new Pose2d(25.0, 48.0, Math.toRadians(-92.0));
+    public static final Pose2d BL2_way1 = new Pose2d(20.0, 60.0, Math.toRadians(-92.0));
+    public static final Pose2d BL2_way2 = new Pose2d(25.0, 80.0, Math.toRadians(-92.0));
+    public static final Pose2d BL2_BACKSTAGE = new Pose2d(25.0, 97.5, Math.toRadians(-92.0));
+    public static final Pose2d BL2_Tag = new Pose2d(25.0, 80.0, Math.toRadians(-92.0));
+    public static final Pose2d BL2_BACKSTAGE_back = new Pose2d(25.0, 87.0, Math.toRadians(-92.0));
     public static final Pose2d BL2_STOP = new Pose2d(3.0, 87.0, Math.toRadians(-92.0));
     public static final Pose2d BL2_STOP_BACK = new Pose2d(3.0, 102.0, Math.toRadians(-92.0));
     //Red far BACKSTAGE side - Right
