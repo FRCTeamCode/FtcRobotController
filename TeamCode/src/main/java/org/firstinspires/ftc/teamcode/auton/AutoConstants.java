@@ -30,7 +30,8 @@ public class AutoConstants {
 
 
     // GLOBAL
-    public static final Pose2d START = new Pose2d(0.0, 0.0, 0.0);
+    public static final Pose2d redSTART = new Pose2d(0.0, 1.0, 0.0);
+    public static final Pose2d blueSTART = new Pose2d(0.0, -1.0, 0.0);
 
     //Blue near BACKSTAGE side - Left
     public static final Pose2d BL1_PUT = new Pose2d(20.5, 5.9, 0.0);
@@ -115,7 +116,7 @@ public class AutoConstants {
     public static final Pose2d RM2_Tag = new Pose2d(23.5, -90.0, Math.toRadians(84.0));
 
     //Blue far BACKSTAGE side - Right - after put pixel, run straight to BACKSTAGE
-    public static final Pose2d BR2_PUT = new Pose2d(25.0+5.8, 6.8, Math.toRadians(-84.0));
+    public static final Pose2d BR2_PUT = new Pose2d(25.0+5.8, 5.8, Math.toRadians(-84.0));
     public static final Pose2d BR2_PUTBack = new Pose2d(25.0+5.8, 8.0, Math.toRadians(-84.0));
     public static final Pose2d BR2_way0 = new Pose2d(45.0+5.3, 8.0, Math.toRadians(-84.0));
     public static final Pose2d BR2_way1 = new Pose2d(40.0, 80.0, Math.toRadians(-84.0));

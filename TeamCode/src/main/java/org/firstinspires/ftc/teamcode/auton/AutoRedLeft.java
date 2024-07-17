@@ -12,7 +12,6 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumFaster;
 import org.firstinspires.ftc.teamcode.hardware.ArmAuto;
 import org.firstinspires.ftc.teamcode.hardware.CameraPro;
-import org.firstinspires.ftc.teamcode.subsystem.CameraAuto;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
 import org.firstinspires.ftc.teamcode.subsystem.Elevator;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
@@ -48,7 +47,7 @@ public class AutoRedLeft extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         drive = new SampleMecanumFaster(hardwareMap, dashboardTelemetry);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        drive.setPoseEstimate(AutoConstants.START);
+        drive.setPoseEstimate(AutoConstants.redSTART);
 
         armAuto = new ArmAuto(hardwareMap, dashboardTelemetry);
         claw = new Claw(hardwareMap, dashboardTelemetry);
@@ -58,7 +57,7 @@ public class AutoRedLeft extends LinearOpMode {
 
         isAutoEnd = false;
 
-        TrajectorySequence pathRight = drive.trajectorySequenceBuilder(AutoConstants.START)
+        TrajectorySequence pathRight = drive.trajectorySequenceBuilder(AutoConstants.redSTART)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .lineToLinearHeading(AutoConstants.RR2_way)
@@ -130,7 +129,7 @@ public class AutoRedLeft extends LinearOpMode {
                 })
                 .build();
 
-        TrajectorySequence pathMiddle = drive.trajectorySequenceBuilder(AutoConstants.START)
+        TrajectorySequence pathMiddle = drive.trajectorySequenceBuilder(AutoConstants.redSTART)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .addTemporalMarker(0.1, () -> {
@@ -189,7 +188,7 @@ public class AutoRedLeft extends LinearOpMode {
                 })
                 .build();
 
-        TrajectorySequence pathLeft = drive.trajectorySequenceBuilder(AutoConstants.START)
+        TrajectorySequence pathLeft = drive.trajectorySequenceBuilder(AutoConstants.redSTART)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .lineToLinearHeading(AutoConstants.RL2_PUT)

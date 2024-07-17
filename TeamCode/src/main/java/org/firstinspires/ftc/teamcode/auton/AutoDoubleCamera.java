@@ -40,7 +40,7 @@ public class AutoDoubleCamera extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         drive = new SampleMecanumFaster(hardwareMap, dashboardTelemetry);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        drive.setPoseEstimate(AutoConstants.START);
+        drive.setPoseEstimate(AutoConstants.redSTART);
 
         armAuto = new ArmAuto(hardwareMap, dashboardTelemetry);
         claw = new Claw(hardwareMap, dashboardTelemetry);
@@ -56,7 +56,7 @@ public class AutoDoubleCamera extends LinearOpMode {
         isAutoEnd = false;
         cameraPro = new CameraPro(hardwareMap, dashboardTelemetry, false);
 
-        TrajectorySequence pathLeft = drive.trajectorySequenceBuilder(AutoConstants.START)
+        TrajectorySequence pathLeft = drive.trajectorySequenceBuilder(AutoConstants.redSTART)
                 .setVelConstraint(AutoConstants.PARK_VEL)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL)
                 .addTemporalMarker(0.0, () -> {
