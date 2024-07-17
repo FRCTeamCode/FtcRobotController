@@ -23,7 +23,7 @@ import java.util.List;
 
 @Autonomous
 @Config
-public class AutoBlueRig2 extends LinearOpMode {
+public class AutoBlueR2Pro extends LinearOpMode {
     SampleMecanumFaster drive;
     CameraPro cameraPro;
     ArmAuto armAuto;
