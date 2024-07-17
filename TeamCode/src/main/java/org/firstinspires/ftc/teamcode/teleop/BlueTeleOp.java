@@ -69,7 +69,7 @@ public class BlueTeleOp extends CommandOpMode {
         rb.whenPressed(new AlignAprilTag(dashboardTelemetry, gamepad1, drive, myCamera, 0, 6.0, 0.0, 0.0));
 
         Button dd = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.A);
-        dd.whenPressed(new MovePosition(climb,-100));
+        dd.whenPressed(new MovePosition(climb,-20));
         Button du = new GamepadButton(new GamepadEx(gamepad1), GamepadKeys.Button.Y);
         du.whenPressed(new MovePosition(climb,-2950));
 
