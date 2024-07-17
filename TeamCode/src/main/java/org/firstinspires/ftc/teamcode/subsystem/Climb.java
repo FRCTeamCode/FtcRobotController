@@ -20,7 +20,7 @@ public class Climb extends SubsystemBase {
         climbMotor.motor.setDirection(DcMotor.Direction.FORWARD);//REVERSE:1000->3000 arm up
 //        climbMotor.resetEncoder();
         configPosition();//Pos:0-hold, 60-intake, 900-put
-        setClimbPos(0);
+        setClimbPos(-20);
     }
     public void configPosition() {
         climbMotor.setRunMode(Motor.RunMode.PositionControl);
