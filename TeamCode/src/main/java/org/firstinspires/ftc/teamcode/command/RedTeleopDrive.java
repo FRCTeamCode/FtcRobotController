@@ -44,7 +44,7 @@ public class RedTeleopDrive extends CommandBase {
 //                    mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75),
 //                    mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75),
 //                    mGamepad.right_stick_x * (1.0 - mGamepad.left_trigger * 0.75)*0.65);
-        } else{
+        } else {
             mDrive.mecanumCentricDrive(
                 mGamepad.left_stick_x * (1.0 - mGamepad.left_trigger * 0.75) * AutoConstants.isOpRevise,
                 mGamepad.left_stick_y * (1.0 - mGamepad.left_trigger * 0.75) * AutoConstants.isOpRevise,
