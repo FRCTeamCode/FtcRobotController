@@ -83,7 +83,7 @@ public class AutoRedRight extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(1.5)
+                .waitSeconds(1.8)
                 .lineToLinearHeading(AutoConstants.RL1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
@@ -124,7 +124,7 @@ public class AutoRedRight extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(1.5)
+                .waitSeconds(1.8)
                 .lineToLinearHeading(AutoConstants.RM1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
@@ -167,7 +167,7 @@ public class AutoRedRight extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(1.5)
+                .waitSeconds(1.8)
                 .lineToLinearHeading(AutoConstants.RR1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);

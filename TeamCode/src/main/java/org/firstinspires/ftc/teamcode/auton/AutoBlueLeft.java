@@ -86,7 +86,7 @@ public class AutoBlueLeft extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(2.0)
+                .waitSeconds(1.8)
                 .lineToLinearHeading(AutoConstants.BL1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
@@ -130,7 +130,7 @@ public class AutoBlueLeft extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(2.0)
+                .waitSeconds(1.8)
                 .lineToLinearHeading(AutoConstants.BM1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
@@ -171,7 +171,7 @@ public class AutoBlueLeft extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(2.0)
+                .waitSeconds(1.8)
                 .lineToLinearHeading(AutoConstants.BR1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
