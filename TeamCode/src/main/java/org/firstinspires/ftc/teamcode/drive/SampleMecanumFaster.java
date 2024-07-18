@@ -57,7 +57,7 @@ import java.text.DecimalFormat;
 public class SampleMecanumFaster extends MecanumDrive {
     private StandardTrackingWheelLocalizer sTWLoclizer;
     private BHI260IMU imu;
-    private final AHRS navx2micro;
+//    private final AHRS navx2micro;
     private Pose2d poseEstimate;
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(6.5, 0, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(5, 0, 0);
@@ -112,22 +112,22 @@ public class SampleMecanumFaster extends MecanumDrive {
         imu.initialize(parameters);
         imu.resetYaw();
 
-        navx2micro = AHRS.getInstance(hardwareMap.get(NavxMicroNavigationSensor.class, "navx"),
-                AHRS.DeviceDataType.kProcessedData,
-                NAVX_DEVICE_UPDATE_RATE_HZ);
-
-        while ( !calibration_complete ) {
-            /* navX-Micro Calibration completes automatically ~15 seconds after it is
-            powered on, as long as the device is still.  To handle the case where the
-            navX-Micro has not been able to calibrate successfully, hold off using
-            the navX-Micro Yaw value until calibration is complete.
-             */
-            calibration_complete = !navx2micro.isCalibrating();
-            if (!calibration_complete) {
-                telemetry.addData("navX-Micro", "Startup Calibration in Progress");
-            }
-        }
-        navx2micro.zeroYaw();
+//        navx2micro = AHRS.getInstance(hardwareMap.get(NavxMicroNavigationSensor.class, "navx"),
+//                AHRS.DeviceDataType.kProcessedData,
+//                NAVX_DEVICE_UPDATE_RATE_HZ);
+//
+//        while ( !calibration_complete ) {
+//            /* navX-Micro Calibration completes automatically ~15 seconds after it is
+//            powered on, as long as the device is still.  To handle the case where the
+//            navX-Micro has not been able to calibrate successfully, hold off using
+//            the navX-Micro Yaw value until calibration is complete.
+//             */
+//            calibration_complete = !navx2micro.isCalibrating();
+//            if (!calibration_complete) {
+//                telemetry.addData("navX-Micro", "Startup Calibration in Progress");
+//            }
+//        }
+//        navx2micro.zeroYaw();
 
         // TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
         // not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
@@ -375,7 +375,7 @@ public class SampleMecanumFaster extends MecanumDrive {
 //        telemetry.addData("right", sTWLoclizer.getWheelPos().get(1));
 //        telemetry.addData("front", sTWLoclizer.getWheelPos().get(2));
         telemetry.addData("ImuHeading", Math.toDegrees(getRawExternalHeading()));
-        telemetry.addData("NavxYaw", df.format(navx2micro.getYaw()));
+//        telemetry.addData("NavxYaw", df.format(navx2micro.getYaw()));
         telemetry.update();
         updatePoseEstimate();
         poseEstimate = getPoseEstimate();
@@ -414,8 +414,8 @@ public class SampleMecanumFaster extends MecanumDrive {
         double rx = right_stick_x;
 
 //        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) - AutoConstants.initAngle;
-//        double botHeading = getRawExternalHeading() - AutoConstants.initAngle;
-        double botHeading = AngleUnit.DEGREES.toRadians(-navx2micro.getYaw()) - AutoConstants.initAngle;
+        double botHeading = getRawExternalHeading() - AutoConstants.initAngle;
+//        double botHeading = AngleUnit.DEGREES.toRadians(-navx2micro.getYaw()) - AutoConstants.initAngle;
 
         // Rotate the movement direction counter to the robot's rotation
         double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);

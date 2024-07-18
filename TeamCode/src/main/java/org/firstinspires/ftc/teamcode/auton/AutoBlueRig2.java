@@ -21,7 +21,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 
 import java.util.List;
 
-@Autonomous
+//@Autonomous
 @Config
 public class AutoBlueRig2 extends LinearOpMode {
     SampleMecanumFaster drive;
