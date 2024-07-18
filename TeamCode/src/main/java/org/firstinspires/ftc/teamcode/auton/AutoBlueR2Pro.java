@@ -61,8 +61,8 @@ public class AutoBlueR2Pro extends LinearOpMode {
         TrajectorySequence pathLeft = drive.trajectorySequenceBuilder(AutoConstants.blueSTART)
                 .setVelConstraint(AutoConstants.PARK_VEL2)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL2)
-                .lineToLinearHeading(AutoConstants.BL2_way)
-                .lineToLinearHeading(AutoConstants.BL2_way_m)
+                .lineToLinearHeading(AutoConstants.BL2p_way)
+                .lineToLinearHeading(AutoConstants.BL2p_way_m)
                 .addTemporalMarker(0.1, () -> {
                     elevator.eleIntake();
                 })
@@ -72,14 +72,13 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
-                .lineToLinearHeading(AutoConstants.BL2_PUT)
-                .waitSeconds(1.2)
+                .lineToLinearHeading(AutoConstants.BL2p_PUT)
+                .waitSeconds(0.2)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.openIntake();
                 })
                 .waitSeconds(0.3)
-                .lineToLinearHeading(AutoConstants.BL2_PUTBack)
-                .waitSeconds(0.3)
+                .lineToLinearHeading(AutoConstants.BL2p_PUTBack)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     claw.middleClaw();
                 })
@@ -90,18 +89,15 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(0.8);
                 })
-                .waitSeconds(0.15)
                 .UNSTABLE_addTemporalMarkerOffset(0.7, () -> {
                     intake.closeIntake();
                 })
-                .waitSeconds(0.15)
                 .UNSTABLE_addTemporalMarkerOffset(0.9, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .waitSeconds(0.15)
-                .lineToLinearHeading(AutoConstants.BL2_way0)
-                .lineToLinearHeading(AutoConstants.BL2_way1)
-                .lineToLinearHeading(AutoConstants.BL2_way2)
+                .lineToLinearHeading(AutoConstants.BL2p_way0)
+                .lineToLinearHeading(AutoConstants.BL2p_way1)
+                .lineToLinearHeading(AutoConstants.BL2p_way2)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
@@ -113,12 +109,12 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .setVelConstraint(AutoConstants.PARK_VEL2)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL2)
 
-                .lineToLinearHeading(AutoConstants.BL2_BACKSTAGE)
+                .lineToLinearHeading(AutoConstants.BL2p_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
                 .waitSeconds(2.0)
-                .lineToLinearHeading(AutoConstants.BL2_Tag)
+                .lineToLinearHeading(AutoConstants.BL2p_BACKSTAGE_back)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
                 })
@@ -129,8 +125,8 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .lineToLinearHeading(AutoConstants.AutoFar2.BL2_STOP)
-                .lineToLinearHeading(AutoConstants.AutoFar2.BL2_STOP_BACK)
+                .lineToLinearHeading(AutoConstants.BL2p_STOP)
+                .lineToLinearHeading(AutoConstants.BL2p_STOP_BACK)
                 .build();
 
         TrajectorySequence pathMiddle = drive.trajectorySequenceBuilder(AutoConstants.blueSTART)
@@ -145,14 +141,14 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(1.2, () -> {
                     claw.lowClaw();
                 })
-                .lineToLinearHeading(AutoConstants.BM2_PUT)
-                .waitSeconds(1.2)
+                .lineToLinearHeading(AutoConstants.BM2p_PUT)
+                .waitSeconds(0.2)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.openIntake();
                 })
                 .waitSeconds(0.5)
-                .lineToLinearHeading(AutoConstants.BM2_way)
-                .lineToLinearHeading(AutoConstants.BM2_way0)
+                .lineToLinearHeading(AutoConstants.BM2p_way)
+                .lineToLinearHeading(AutoConstants.BM2p_way0)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     claw.middleClaw();
                 })
@@ -162,8 +158,8 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .waitSeconds(2.5)
-                .lineToLinearHeading(AutoConstants.BM2_BACKSTAGE_way)
+//                .waitSeconds(0.2)
+                .lineToLinearHeading(AutoConstants.BM2p_BACKSTAGE_way)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
@@ -175,12 +171,12 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .setVelConstraint(AutoConstants.PARK_VEL2)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL2)
 
-                .lineToLinearHeading(AutoConstants.BM2_BACKSTAGE)
+                .lineToLinearHeading(AutoConstants.BM2p_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
                 .waitSeconds(1.8)
-                .lineToLinearHeading(AutoConstants.BM2_Tag)
+                .lineToLinearHeading(AutoConstants.BM2p_BACKSTAGE_back)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
                 })
@@ -191,14 +187,14 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .lineToLinearHeading(AutoConstants.AutoFar2.BM2_STOP)
-                .lineToLinearHeading(AutoConstants.AutoFar2.BM2_STOP_BACK)
+                .lineToLinearHeading(AutoConstants.BM2p_STOP)
+                .lineToLinearHeading(AutoConstants.BM2p_STOP_BACK)
                 .build();
 
         TrajectorySequence pathRight = drive.trajectorySequenceBuilder(AutoConstants.blueSTART)
                 .setVelConstraint(AutoConstants.PARK_VEL2)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL2)
-                .lineToLinearHeading(AutoConstants.BR2_PUT)
+                .lineToLinearHeading(AutoConstants.BR2p_PUT)
                 .addTemporalMarker(0.1, () -> {
                     elevator.eleIntake();
                 })
@@ -214,33 +210,26 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .addTemporalMarker(3.3, () -> {
                     claw.middleClaw();
                 })
-                .waitSeconds(1.8)
-                .lineToLinearHeading(AutoConstants.BR2_PUTBack)
+                .waitSeconds(0.5)
+                .lineToLinearHeading(AutoConstants.BR2p_PUTBack)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.closeOpenIntake();
                 })
-//                .waitSeconds(0.2)
                 .UNSTABLE_addTemporalMarkerOffset(0.3, () -> {
                     armAuto.setArmPos(0.8);
                 })
-//                .waitSeconds(0.5)
-//                .UNSTABLE_addTemporalMarkerOffset(0.7, () -> {
-//                    claw.middleClaw();
-//                })
-//                .waitSeconds(0.3)
                 .UNSTABLE_addTemporalMarkerOffset(0.9, () -> {
                     armAuto.setArmPos(0.58);
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.9, () -> {
                     intake.closeIntake();
                 })
-                .waitSeconds(1.5)
-                .lineToLinearHeading(AutoConstants.BR2_way0)
-                .lineToLinearHeading(AutoConstants.BR2_way1)
+                .lineToLinearHeading(AutoConstants.BR2p_way0)
+                .lineToLinearHeading(AutoConstants.BR2p_way1)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
-                .lineToLinearHeading(AutoConstants.BR2_way2)
+                .lineToLinearHeading(AutoConstants.BR2p_way2)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     claw.lowerClaw();
                 })
@@ -249,12 +238,12 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .setVelConstraint(AutoConstants.PARK_VEL2)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL2)
 
-                .lineToLinearHeading(AutoConstants.BR2_BACKSTAGE)
+                .lineToLinearHeading(AutoConstants.BR2p_BACKSTAGE)
                 .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
                 .waitSeconds(2.8)
-                .lineToLinearHeading(AutoConstants.BR2_Tag)
+                .lineToLinearHeading(AutoConstants.BR2p_BACKSTAGE_back)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
                 })
@@ -269,8 +258,8 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .lineToLinearHeading(AutoConstants.AutoFar2.BR2_STOP)
-                .lineToLinearHeading(AutoConstants.AutoFar2.BR2_STOP_BACK)
+                .lineToLinearHeading(AutoConstants.BR2p_STOP)
+                .lineToLinearHeading(AutoConstants.BR2p_STOP_BACK)
                 .build();
 
         targetRoad = pathLeft;
@@ -370,13 +359,13 @@ public class AutoBlueR2Pro extends LinearOpMode {
                     dashboardTelemetry.addLine("Parked now");
                     isAutoEnd = true;
                     if (targetSide == "Left") {
-                        drive.setPoseEstimate(AutoConstants.BL2_Tag);
+                        drive.setPoseEstimate(AutoConstants.BL2p_Tag);
                         drive.followTrajectorySequenceAsync(pathLeftPark);
                     } else if (targetSide == "Middle") {
-                        drive.setPoseEstimate(AutoConstants.BM2_Tag);
+                        drive.setPoseEstimate(AutoConstants.BM2p_Tag);
                         drive.followTrajectorySequenceAsync(pathMiddlePark);
                     } else {
-                        drive.setPoseEstimate(AutoConstants.BR2_Tag);
+                        drive.setPoseEstimate(AutoConstants.BR2p_Tag);
                         drive.followTrajectorySequenceAsync(pathRightPark);
                     }
                 }
