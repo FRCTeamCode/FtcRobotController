@@ -157,7 +157,7 @@ public class AutoBlueR2Pro extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .waitSeconds(6.0)//wait other robot
+                .waitSeconds(5.0)//wait other robot
                 .lineToLinearHeading(AutoConstants.BM2p_BACKSTAGE_way)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
