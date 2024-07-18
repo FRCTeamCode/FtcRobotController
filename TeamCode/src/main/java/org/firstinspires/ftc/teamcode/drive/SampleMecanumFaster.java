@@ -318,7 +318,7 @@ public class SampleMecanumFaster extends MecanumDrive {
             telemetry.addData("Error1", strafeVal);
             telemetry.addData("Error2", translationVal);
             telemetry.addData("Error3", rotationVal);
-            if ((Math.abs(strafeVal) < 0.11) && (Math.abs(translationVal) < 0.11) && (Math.abs(rotationVal) < 0.08)) {
+            if ((Math.abs(strafeVal) < 0.15) && (Math.abs(translationVal) < 0.15) && (Math.abs(rotationVal) < 0.12)) {
                 tolerance = true;
             } else {
                 tolerance = false;

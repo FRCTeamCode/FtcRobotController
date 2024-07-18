@@ -30,7 +30,7 @@ public class AutoConstants {
 
 
     // GLOBAL
-    public static final Pose2d redSTART = new Pose2d(0.0, 1.0, 0.0);
+    public static final Pose2d redSTART = new Pose2d(0.0, 0.0, 0.0);
     public static final Pose2d blueSTART = new Pose2d(0.0, -1.0, 0.0);
 
     //Blue near BACKSTAGE side - Left
