@@ -47,8 +47,8 @@ public class AutoConstants {
 
     //Blue near BACKSTAGE side - Middle
     public static final Pose2d BM1_PUT = new Pose2d(34.0, 10.0-3.0, Math.toRadians(-56.0));
-    public static final Pose2d BM1_BACKSTAGE = new Pose2d(30.0, 40.0-3.15, Math.toRadians(-92.0));
-    public static final Pose2d BM1_Tag = new Pose2d(30.0, 28.0, Math.toRadians(-92.0));
+    public static final Pose2d BM1_BACKSTAGE = new Pose2d(28.0, 40.0-3.15, Math.toRadians(-92.0));
+    public static final Pose2d BM1_Tag = new Pose2d(28.0, 28.0, Math.toRadians(-92.0));
     public static final Pose2d BM1_STOP = new Pose2d(3.0, 28.0, Math.toRadians(-92.0));
     public static final Pose2d BM1_STOP_BACK = new Pose2d(3.0, 42.0, Math.toRadians(-92.0));
 
