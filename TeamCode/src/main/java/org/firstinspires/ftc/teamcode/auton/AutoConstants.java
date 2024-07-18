@@ -214,7 +214,7 @@ public class AutoConstants {
     public static final Pose2d BL2pp_way_m = new Pose2d(24.0, 28.4, Math.toRadians(-84.0));
     public static final Pose2d BL2pp_PUT = new Pose2d(27.5, 28.4, Math.toRadians(-84.0));
     public static final Pose2d BL2pp_PUTBack = new Pose2d(27.5, 38.0, Math.toRadians(-84.0));
-    public static final Pose2d BL2pp_way0 = new Pose2d(13.5, 48.0, Math.toRadians(-84.0));
+    public static final Pose2d BL2pp_way0 = new Pose2d(16.0, 52.0, Math.toRadians(-84.0));
     public static final Pose2d BL2pp_way1 = new Pose2d(14.5, 80.0, Math.toRadians(-84.0));
     public static final Pose2d BL2pp_way2 = new Pose2d(15.5, 80.0, Math.toRadians(-84.0));
     public static final Pose2d BL2pp_BACKSTAGE = new Pose2d(15.5, 98.0, Math.toRadians(-84.0));
@@ -229,7 +229,7 @@ public class AutoConstants {
     public static final Pose2d RR2pp_PUTBack = new Pose2d(27.5, -38.0, Math.toRadians(84.0));
     public static final Pose2d RR2pp_way0 = new Pose2d(16.0, -56.0, Math.toRadians(84.0));
     public static final Pose2d RR2pp_way1 = new Pose2d(14.0, -80.0, Math.toRadians(84.0));
-    public static final Pose2d RR2pp_way2 = new Pose2d(14.0, -80.0, Math.toRadians(84.0));
+//    public static final Pose2d RR2pp_way2 = new Pose2d(14.0, -80.0, Math.toRadians(84.0));
     public static final Pose2d RR2pp_BACKSTAGE = new Pose2d(14.0, -98.0, Math.toRadians(84.0));
     public static final Pose2d RR2pp_Tag = new Pose2d(14.0, -90.0, Math.toRadians(84.0));
     public static final Pose2d RR2pp_Stop = new Pose2d(3.0, -90.0, Math.toRadians(84.0));

@@ -95,7 +95,7 @@ public class AutoRedL2ProP extends LinearOpMode {
                 .lineToLinearHeading(AutoConstants.RR2pp_way0)
                 .waitSeconds(2.35)//wait other robot
                 .lineToLinearHeading(AutoConstants.RR2pp_way1)
-                .lineToLinearHeading(AutoConstants.RR2pp_way2)
+//                .lineToLinearHeading(AutoConstants.RR2pp_way2)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
