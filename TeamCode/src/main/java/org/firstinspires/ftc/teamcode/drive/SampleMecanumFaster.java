@@ -308,7 +308,7 @@ public class SampleMecanumFaster extends MecanumDrive {
             //move rotate
             double kp3 = dist > 4.0 ? 1.3 : 1.0;
             rotationVal = MathUtils.clamp((rotation - tag[3]) * 0.2 * kp3, -0.13, 0.13);
-            rotationFriction = Math.signum(rotationVal) * 0.009;
+            rotationFriction = Math.signum(rotationVal) * 0.008;
             updateRobotDrive(
                     (strafeVal * 0.5 + strafeFriction),             //forward and backward
                     -(translationVal * 0.5 + translationFriction),  //left and right
@@ -318,7 +318,7 @@ public class SampleMecanumFaster extends MecanumDrive {
             telemetry.addData("Error1", strafeVal);
             telemetry.addData("Error2", translationVal);
             telemetry.addData("Error3", rotationVal);
-            if ((Math.abs(strafeVal) < 0.15) && (Math.abs(translationVal) < 0.15) && (Math.abs(rotationVal) < 0.12)) {
+            if ((Math.abs(strafeVal) < 0.14) && (Math.abs(translationVal) < 0.14) && (Math.abs(rotationVal) < 0.1)) {
                 tolerance = true;
             } else {
                 tolerance = false;
