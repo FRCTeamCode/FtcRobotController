@@ -75,16 +75,16 @@ public class AutoBlueLeft extends LinearOpMode {
                 .addTemporalMarker(2.1, () -> {
                     intake.openIntake();
                 })
-                .waitSeconds(0.5)
+                .waitSeconds(0.4)
                 .lineToLinearHeading(AutoConstants.BL1_PUT_Back)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.closeOpenIntake();
                 })
-                .waitSeconds(0.5)
+                .waitSeconds(0.4)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
-                .waitSeconds(0.5)
+                .waitSeconds(0.3)
                 .UNSTABLE_addTemporalMarkerOffset(0.7, () -> {
                     intake.closeIntake();
                 })
@@ -93,10 +93,10 @@ public class AutoBlueLeft extends LinearOpMode {
                 })
                 .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE)
                 .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE_better)
-                .UNSTABLE_addTemporalMarkerOffset(0.3, () -> {
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(1.3)
+                .waitSeconds(1.0)
                 .lineToLinearHeading(AutoConstants.BL1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
@@ -122,26 +122,26 @@ public class AutoBlueLeft extends LinearOpMode {
                 .addTemporalMarker(0.5, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
-                .addTemporalMarker(1.5, () -> {
+                .addTemporalMarker(1.4, () -> {
                     claw.lowClaw();
                 })
-                .addTemporalMarker(2.9, () -> {
+                .addTemporalMarker(2.8, () -> {
                     intake.openIntake();
                 })
-                .addTemporalMarker(3.6, () -> {
+                .addTemporalMarker(3.5, () -> {
                     intake.closeIntake();
                 })
-                .addTemporalMarker(3.6, () -> {
+                .addTemporalMarker(3.5, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
-                .addTemporalMarker(4.2, () -> {
+                .addTemporalMarker(4.0, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.BM1_BACKSTAGE)
-                .UNSTABLE_addTemporalMarkerOffset(0.3, () -> {
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(1.3)
+                .waitSeconds(1.0)
                 .lineToLinearHeading(AutoConstants.BM1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
@@ -169,24 +169,24 @@ public class AutoBlueLeft extends LinearOpMode {
                 .addTemporalMarker(1.0, () -> {
                     claw.lowClaw();
                 })
-                .addTemporalMarker(2.1, () -> {
+                .addTemporalMarker(2.0, () -> {
                     intake.openIntake();
                 })
-                .waitSeconds(0.6)
-                .addTemporalMarker(3.8, () -> {
+                .waitSeconds(0.5)
+                .addTemporalMarker(3.6, () -> {
                     intake.closeIntake();
                 })
-                .addTemporalMarker(3.8, () -> {
+                .addTemporalMarker(3.6, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
-                .addTemporalMarker(4.3, () -> {
+                .addTemporalMarker(4.0, () -> {
                     claw.lowerClaw();
                 })
                 .lineToLinearHeading(AutoConstants.BR1_BACKSTAGE)
-                .UNSTABLE_addTemporalMarkerOffset(0.3, () -> {
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(1.3)
+                .waitSeconds(1.0)
                 .lineToLinearHeading(AutoConstants.BR1_Tag)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);

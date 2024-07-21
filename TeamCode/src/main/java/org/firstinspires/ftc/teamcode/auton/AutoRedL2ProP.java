@@ -93,7 +93,7 @@ public class AutoRedL2ProP extends LinearOpMode {
                     armAuto.setArmPos(0.58);
                 })
                 .lineToLinearHeading(AutoConstants.RR2pp_way0)
-                .waitSeconds(2.35)//wait other robot
+                .waitSeconds(3.85)//wait other robot
                 .lineToLinearHeading(AutoConstants.RR2pp_way1)
 //                .lineToLinearHeading(AutoConstants.RR2pp_way2)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
@@ -156,7 +156,7 @@ public class AutoRedL2ProP extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     armAuto.setArmPos(0.58);
                 })
-                .waitSeconds(4.0)//wait other robot
+                .waitSeconds(5.5)//wait other robot
                 .lineToLinearHeading(AutoConstants.RM2pp_BACKSTAGE_way)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
@@ -222,7 +222,7 @@ public class AutoRedL2ProP extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.closeIntake();
                 })
-                .waitSeconds(3.0)//wait other robot
+                .waitSeconds(4.5)//wait other robot
                 .lineToLinearHeading(AutoConstants.RL2pp_way0)
                 .lineToLinearHeading(AutoConstants.RL2pp_way1)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
