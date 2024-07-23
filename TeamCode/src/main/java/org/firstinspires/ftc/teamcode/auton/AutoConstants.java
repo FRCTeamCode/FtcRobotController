@@ -90,7 +90,7 @@ public class AutoConstants {
     public static final Pose2d BL2_way0 = new Pose2d(46.0, 31.8, Math.toRadians(-84.0));
     public static final Pose2d BL2_way1 = new Pose2d(46.0, 80.0, Math.toRadians(-84.0));
     public static final Pose2d BL2_way2 = new Pose2d(16.0, 80.0, Math.toRadians(-84.0));
-    public static final Pose2d BL2_BACKSTAGE = new Pose2d(10.0, 98.0, Math.toRadians(-84.0));
+    public static final Pose2d BL2_BACKSTAGE = new Pose2d(10.0, 98.5, Math.toRadians(-84.0));
     public static final Pose2d BL2_Tag = new Pose2d(10.0, 90.0, Math.toRadians(-84.0));
     //Red far BACKSTAGE side - Right
     public static final Pose2d RR2_way = new Pose2d(24.0, 0.0, Math.toRadians(84.0));
@@ -108,7 +108,7 @@ public class AutoConstants {
     public static final Pose2d BM2_way = new Pose2d(26.5, 24.0, Math.toRadians(-84.0));
     public static final Pose2d BM2_way0 = new Pose2d(23.0, 32.0, Math.toRadians(-84.0));
     public static final Pose2d BM2_BACKSTAGE_way = new Pose2d(23.0, 80.0, Math.toRadians(-84.0));
-    public static final Pose2d BM2_BACKSTAGE = new Pose2d(23.0, 98.0, Math.toRadians(-84.0));
+    public static final Pose2d BM2_BACKSTAGE = new Pose2d(23.0, 98.5, Math.toRadians(-84.0));
     public static final Pose2d BM2_Tag = new Pose2d(23.0, 90.0, Math.toRadians(-84.0));
     //Red far BACKSTAGE side - Middle
     public static final Pose2d RM2_PUT = new Pose2d(30.0, -4.0, Math.toRadians(0.0));
@@ -124,7 +124,7 @@ public class AutoConstants {
     public static final Pose2d BR2_way0 = new Pose2d(45.0+5.3, 8.0, Math.toRadians(-84.0));
     public static final Pose2d BR2_way1 = new Pose2d(40.0, 80.0, Math.toRadians(-84.0));
     public static final Pose2d BR2_way2 = new Pose2d(23.5, 80.0, Math.toRadians(-84.0));
-    public static final Pose2d BR2_BACKSTAGE = new Pose2d(23.5, 98.0, Math.toRadians(-84.0));
+    public static final Pose2d BR2_BACKSTAGE = new Pose2d(23.5, 98.5, Math.toRadians(-84.0));
     public static final Pose2d BR2_Tag = new Pose2d(23.5, 90.0, Math.toRadians(-84.0));
 
     //Red far BACKSTAGE side - Left - after put pixel, run straight to BACKSTAGE
