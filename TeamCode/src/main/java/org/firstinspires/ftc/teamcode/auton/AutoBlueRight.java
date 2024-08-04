@@ -12,6 +12,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumFaster;
 import org.firstinspires.ftc.teamcode.hardware.ArmAuto;
 import org.firstinspires.ftc.teamcode.hardware.CameraPro;
+import org.firstinspires.ftc.teamcode.hardware.NavxMicro;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
 import org.firstinspires.ftc.teamcode.subsystem.Elevator;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
@@ -23,6 +24,7 @@ import java.util.List;
 @Autonomous
 @Config
 public class AutoBlueRight extends LinearOpMode {
+    NavxMicro navxMicro;
     SampleMecanumFaster drive;
     CameraPro cameraPro;
     ArmAuto armAuto;
@@ -54,6 +56,7 @@ public class AutoBlueRight extends LinearOpMode {
         intake = new Intake(hardwareMap, dashboardTelemetry);
         elevator = new Elevator(hardwareMap, dashboardTelemetry);
         cameraPro = new CameraPro(hardwareMap, dashboardTelemetry, true);
+        navxMicro = new NavxMicro(hardwareMap, dashboardTelemetry);
 
         isAutoEnd = false;
 

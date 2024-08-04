@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.command;
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.auton.AutoConstants;
+import org.firstinspires.ftc.teamcode.hardware.NavxMicro;
 
 public class ReverseUp extends CommandBase {
     private boolean isRevise;
@@ -17,7 +18,8 @@ public class ReverseUp extends CommandBase {
     public void initialize() {
         AutoConstants.isUp = isRevise;
         if (isDown) {
-            AutoConstants.isOpRevise = -1;
+//            AutoConstants.isOpRevise = -1;
+            NavxMicro.resetYaw();
         } else {
             AutoConstants.isOpRevise = 1;
         }

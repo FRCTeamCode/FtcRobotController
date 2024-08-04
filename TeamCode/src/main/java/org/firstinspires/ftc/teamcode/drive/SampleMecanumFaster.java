@@ -34,6 +34,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.auton.AutoConstants;
+import org.firstinspires.ftc.teamcode.hardware.NavxMicro;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
@@ -112,6 +113,10 @@ public class SampleMecanumFaster extends MecanumDrive {
         imu.initialize(parameters);
         imu.resetYaw();
 
+        if (!AutoConstants.isInitNavxMicro2) {
+            NavxMicro navxMicro = new NavxMicro(hardwareMap, telemetry);
+        }
+
 //        navx2micro = AHRS.getInstance(hardwareMap.get(NavxMicroNavigationSensor.class, "navx"),
 //                AHRS.DeviceDataType.kProcessedData,
 //                NAVX_DEVICE_UPDATE_RATE_HZ);
@@ -128,6 +133,7 @@ public class SampleMecanumFaster extends MecanumDrive {
 //            }
 //        }
 //        navx2micro.zeroYaw();
+
 
         // TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
         // not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
@@ -414,8 +420,9 @@ public class SampleMecanumFaster extends MecanumDrive {
         double rx = right_stick_x;
 
 //        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) - AutoConstants.initAngle;
-        double botHeading = getRawExternalHeading() - AutoConstants.initAngle;
-//        double botHeading = AngleUnit.DEGREES.toRadians(-navx2micro.getYaw()) - AutoConstants.initAngle;
+//        double botHeading = getRawExternalHeading() - AutoConstants.initAngle;
+//        double botHeading = AngleUnit.DEGREES.toRadians(-navxMicro.getYaw()) - AutoConstants.initAngle;
+        double botHeading = AngleUnit.DEGREES.toRadians(-NavxMicro.getYaw()) - AutoConstants.initAngle;
 
         // Rotate the movement direction counter to the robot's rotation
         double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
