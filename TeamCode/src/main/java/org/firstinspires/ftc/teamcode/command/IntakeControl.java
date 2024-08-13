@@ -24,13 +24,13 @@ public class IntakeControl extends CommandBase {
         } else if (mIntakePos == 3.0) {
             mIntake.closeIntake();
         } else if (mIntakePos == 4.0) {
-            mIntake.intakeSetPos(0.28);
+            mIntake.intakeSetPos(0.23);
         } else if (mIntakePos == 5.0) {
-            mIntake.intakeSetPos(0.30);
+            mIntake.intakeSetPos(0.26);
         } else if (mIntakePos == 6.0) {
-            mIntake.intakeSetPos(0.32);
+            mIntake.intakeSetPos(0.29);
         } else if (mIntakePos == 7.0) {
-            mIntake.intakeSetPos(0.35);
+            mIntake.intakeSetPos(0.32);
         }
     }
 

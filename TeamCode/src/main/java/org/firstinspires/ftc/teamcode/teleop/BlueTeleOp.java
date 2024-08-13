@@ -18,6 +18,8 @@ import org.firstinspires.ftc.teamcode.command.DriveControlType;
 import org.firstinspires.ftc.teamcode.command.LaunchFinished;
 import org.firstinspires.ftc.teamcode.command.PixelPutLow;
 import org.firstinspires.ftc.teamcode.command.PixelPutMiddle;
+import org.firstinspires.ftc.teamcode.command.PixelRelease1;
+import org.firstinspires.ftc.teamcode.command.PixelRelease2;
 import org.firstinspires.ftc.teamcode.command.ReverseUp;
 import org.firstinspires.ftc.teamcode.command.RevieseDirec;
 import org.firstinspires.ftc.teamcode.command.IntakeControl;
@@ -95,8 +97,13 @@ public class BlueTeleOp extends CommandOpMode {
         Button lb2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.LEFT_BUMPER);
         lb2.whenPressed(new IntakeControl(intake,3.0));
         Button rb2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.RIGHT_BUMPER);
-//        rb2.whenPressed(new IntakeControl(intake,1.0));
         rb2.whenPressed(new PixelRelease(intake));
+
+        Button lsb2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.LEFT_STICK_BUTTON);
+        lsb2.whenPressed(new PixelRelease1(intake));
+        Button rsb2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.RIGHT_STICK_BUTTON);
+        rsb2.whenPressed(new PixelRelease2(intake));
+
         Button s2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.START);
         s2.whenPressed(new LaunchPlane(launch, 2.0));
         Button ba2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.BACK);

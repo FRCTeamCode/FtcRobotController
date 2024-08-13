@@ -8,8 +8,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Intake extends SubsystemBase {
     public Servo intakeServo;
     private final Telemetry telemetry;
-    public static double closeIntake = 0.2;
-    public static double looseIntake = 0.25;
+    public static double closeIntake = 0.16;
+    public static double looseIntake = 0.23;
     public static double openIntake = 0.47;//0.47;
 
     public Intake(HardwareMap hardwareMap, Telemetry telemetry) {
