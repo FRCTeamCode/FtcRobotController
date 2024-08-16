@@ -18,7 +18,7 @@ public class PixelIntake extends SequentialCommandGroup {
                 new ClawControl(claw, 1.5),
                 new WaitCommand(100),
                 new IntakeControl(intake, 1.5),
-                new ArmControl(arm, 0.88)
+                new ArmControl(arm, 0.84)
 
 //                new EleControl(ele, 3.0),
 //                new WaitCommand(100),
