@@ -30,6 +30,9 @@ public class NavxMicro {
                 telemetry.addData("navX-Micro", "Startup Calibration in Progress");
             }
         }
+        telemetry.addData("navX-Micro", "Calibration finished");
+        boolean connected = navx2micro.isConnected();
+        telemetry.addData("1 navX-Device", connected ? "Connected" : "Disconnected" );
 //        navx2micro.zeroYaw();
         AutoConstants.isInitNavxMicro2 = true;
     }
@@ -42,3 +45,23 @@ public class NavxMicro {
         navx2micro.zeroYaw();
     }
 }
+
+
+// navXTimer.reset();
+//         navXTimer.start();
+//         System.out.println("NavX is calibrating");
+//         while (navX.isCalibrating() && (navXTimer.get() <= 7.0))
+//         {
+//         }
+//
+//         if (!navX.isCalibrating())
+//         {
+//         System.out.println("NavX is done calibrating" + navXTimer.get());
+//         System.out.println("Firmware version: " + navX.getFirmwareVersion());
+//         navXIsCalibrated = true;
+//         navX.reset();
+//         }
+//         else
+//         {
+//         System.out.println("NavX calibration timed out");
+//         }

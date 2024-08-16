@@ -218,6 +218,7 @@ public class AutoBlueLeft extends LinearOpMode {
 
             currentTime = timer.milliseconds();
             dashboardTelemetry.addLine("run-time: " + currentTime/1000);
+            telemetry.addData("navX-Micro init", AutoConstants.isInitNavxMicro2);
 
             List<Recognition> currentRecognitions = cameraAuto.getTfodData();
             if (currentRecognitions.size() != 0) {

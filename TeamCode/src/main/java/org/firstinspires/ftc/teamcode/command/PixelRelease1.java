@@ -8,16 +8,10 @@ import org.firstinspires.ftc.teamcode.subsystem.Arm;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
 
-public class PixelRelease extends SequentialCommandGroup {
-    public PixelRelease(Intake intake) {
+public class PixelRelease1 extends SequentialCommandGroup {
+    public PixelRelease1(Intake intake) {
         addCommands(
-                new IntakeControl(intake, 2.0),
-                new WaitCommand(300),
-                new IntakeControl(intake, 4.0)
-//                new WaitCommand(180)
-//                new IntakeControl(intake, 5.0),
-//                new WaitCommand(100),
-//                new IntakeControl(intake, 6.0)
+                new IntakeControl(intake, 2.0)
         );
         addRequirements(intake);
     }

@@ -10,7 +10,7 @@ public class Claw extends SubsystemBase {
     private final Telemetry telemetry;
     public static double lowerClaw = 0.23;
     public static double lowClaw = 0.39;//
-    public static double lowClawPro = 0.36;//
+    public static double lowClawPro = 0.4;//
     public static double lowMidClaw = 0.27;
     public static double middleLowClaw = 0.375;
     public static double middleClaw = 0.742;//
