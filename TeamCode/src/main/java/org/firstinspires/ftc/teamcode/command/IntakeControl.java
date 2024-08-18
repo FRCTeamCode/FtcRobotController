@@ -28,7 +28,7 @@ public class IntakeControl extends CommandBase {
         } else if (mIntakePos == 4.0) {
             mIntake.intakeSetPos(0.23);
         } else if (mIntakePos == 5.0) {
-            mIntake.intakeSetPos(0.285);
+            mIntake.intakeSetPos(0.265);
         } else if (mIntakePos == 6.0) {
             mIntake.intakeSetPos(0.32);
         } else if (mIntakePos == 7.0) {

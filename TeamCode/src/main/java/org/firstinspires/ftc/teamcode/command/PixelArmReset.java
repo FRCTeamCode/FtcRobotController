@@ -12,7 +12,8 @@ public class PixelArmReset extends SequentialCommandGroup {
     public PixelArmReset(Arm arm, Claw claw, Intake intake, Elevator ele) {
         addCommands(
 //                new PixelRelease(intake),
-//                new WaitCommand(300),
+                new IntakeControl(intake, 4.0),
+                new WaitCommand(200),
                 new PixelArmResetCom(arm, claw, intake, ele)
 
 

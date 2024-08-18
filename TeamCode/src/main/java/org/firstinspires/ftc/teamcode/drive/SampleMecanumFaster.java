@@ -337,6 +337,62 @@ public class SampleMecanumFaster extends MecanumDrive {
         }
         telemetry.addData("Auto is End Align", isEndAlign());
     }
+    public void alinTagWall(double[] tag, int targetID, double strafe, double translation, double rotation, double time) {
+        if (tag[0] == 0) {
+            if (tag[0] != -1.0) {
+                isHasTarget = true;
+            } else {
+                isHasTarget = false;
+            }
+        } else {
+            if (tag[0] == targetID) {
+                isHasTarget = true;
+            } else {
+                isHasTarget = false;
+            }
+        }
+        if (isHasTarget) {
+            if (!isHasFindTarget) {
+                isHasFindTarget = true;
+            }
+            //move forward and backward
+            if (tag[1] - strafe < 30.0) {
+                strafeVal = MathUtils.clamp((tag[1] - strafe) * 0.1, -0.4, 0.4);
+                strafeFriction = Math.signum(strafeVal) * 0.009;
+            } else {
+                strafeVal = 0.0;
+            }
+            //Move left and right
+            double dist = Math.abs(tag[1] - strafe);
+            double kp2 = dist > 4.0 ? dist / 3.0 * dist / 3.0 : 1.0;
+            translationVal = MathUtils.clamp((tag[2] - translation) * 0.35 * kp2, -0.32, 0.32);
+            translationFriction = Math.signum(translationVal) * 0.0055;
+            //move rotate
+            double kp3 = dist > 4.0 ? 1.3 : 1.0;
+            rotationVal = MathUtils.clamp((rotation - tag[3]) * 0.2 * kp3, -0.13, 0.13);
+            rotationFriction = Math.signum(rotationVal) * 0.008;
+            updateRobotDrive(
+                    -(strafeVal * 0.5 + strafeFriction),             //forward and backward
+                    (translationVal * 0.5 + translationFriction),  //left and right
+                    -(rotationVal * 0.5 + rotationFriction),         //rotate left and right
+                    1.0
+            );
+            telemetry.addData("Error1", strafeVal);
+            telemetry.addData("Error2", translationVal);
+            telemetry.addData("Error3", rotationVal);
+            if ((Math.abs(strafeVal) < 0.11) && (Math.abs(translationVal) < 0.11) && (Math.abs(rotationVal) < 0.08)) {
+                tolerance = true;
+            } else {
+                tolerance = false;
+            }
+        } else {
+//            if (isHasFindTarget) {
+//                tolerance = true;
+//            }
+            updateRobotDrive(0.0,0.0,0.0,1.0);
+        }
+        telemetry.addData("Auto is End Align", isEndAlign());
+    }
 
     public void alignAprilTag(double x, double y, double r, double id, double X, double Y, double R) {
         double strafeVal = 0.0, strafeFriction;
@@ -381,6 +437,7 @@ public class SampleMecanumFaster extends MecanumDrive {
 //        telemetry.addData("right", sTWLoclizer.getWheelPos().get(1));
 //        telemetry.addData("front", sTWLoclizer.getWheelPos().get(2));
         telemetry.addData("ImuHeading", Math.toDegrees(getRawExternalHeading()));
+        telemetry.addData("NavxMicro", NavxMicro.isConnected());
 //        telemetry.addData("NavxYaw", df.format(navx2micro.getYaw()));
         telemetry.update();
         updatePoseEstimate();

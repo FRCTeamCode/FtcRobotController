@@ -40,6 +40,9 @@ public class NavxMicro {
     public static double getYaw() {
         return navx2micro.getYaw();
     }
+    public static boolean isConnected() {
+        return navx2micro.isConnected();
+    }
 
     public  static void resetYaw() {
         navx2micro.zeroYaw();

@@ -28,10 +28,17 @@ public class AutoConstants {
     public static final TrajectoryVelocityConstraint PARK_VEL2 = SampleMecanumDrive.getVelocityConstraint(32, 4.0, 10.2);
     public static final TrajectoryAccelerationConstraint PARK_ACCEL2 = SampleMecanumDrive.getAccelerationConstraint(32);
 
+    public static final TrajectoryVelocityConstraint PARK_VEL3 = SampleMecanumDrive.getVelocityConstraint(32, 4.0, 10.2);
+    public static final TrajectoryAccelerationConstraint PARK_ACCEL3 = SampleMecanumDrive.getAccelerationConstraint(32);
+
 
     // GLOBAL
     public static final Pose2d redSTART = new Pose2d(0.0, 0.0, 0.0);
     public static final Pose2d blueSTART = new Pose2d(0.0, -1.0, 0.0);
+
+    public static final Pose2d BLWP_STOP = new Pose2d(42.0, -70.0, Math.toRadians(-84.0));
+    public static Pose2d BLWP_WALL = new Pose2d(42.0, -70.0, Math.toRadians(-84.0));
+    public static final Pose2d BLWP_BACKSTAGE = new Pose2d(30.0, 36.0, Math.toRadians(-84.0));
 
     //Blue near BACKSTAGE side - Left
     public static final Pose2d BL1_PUT = new Pose2d(20.5, 5.9, 0.0);

@@ -55,7 +55,7 @@ public class AutoRedL2ProP extends LinearOpMode {
         claw = new Claw(hardwareMap, dashboardTelemetry);
         intake = new Intake(hardwareMap, dashboardTelemetry);
         elevator = new Elevator(hardwareMap, dashboardTelemetry);
-        cameraPro = new CameraPro(hardwareMap, dashboardTelemetry, true);
+        cameraPro = new CameraPro(hardwareMap, dashboardTelemetry, true, false);
         navxMicro = new NavxMicro(hardwareMap, dashboardTelemetry);
 
         isAutoEnd = false;
@@ -336,7 +336,7 @@ public class AutoRedL2ProP extends LinearOpMode {
 
             if (!(!isStarted() && !isStopRequested())&&!isCameraUpdated) {
                 cameraPro.visionClose();
-                cameraPro = new CameraPro(hardwareMap, dashboardTelemetry, false);
+                cameraPro = new CameraPro(hardwareMap, dashboardTelemetry, false, true);
                 isCameraUpdated = true;
                 dashboardTelemetry.addLine("Camera updated!");
                 drive.initTagPara();

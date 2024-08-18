@@ -20,6 +20,7 @@ import org.firstinspires.ftc.teamcode.command.PixelPutHigher;
 import org.firstinspires.ftc.teamcode.command.PixelPutHighest;
 import org.firstinspires.ftc.teamcode.command.PixelPutLow;
 import org.firstinspires.ftc.teamcode.command.PixelPutMiddle;
+import org.firstinspires.ftc.teamcode.command.PixelRelease1;
 import org.firstinspires.ftc.teamcode.command.ReverseUp;
 import org.firstinspires.ftc.teamcode.command.RevieseDirec;
 import org.firstinspires.ftc.teamcode.command.IntakeControl;
@@ -98,6 +99,8 @@ public class RedTeleop extends CommandOpMode {
         Button y2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.Y);
         y2.whenPressed(new PixelArmReset(arm, claw, intake, ele));
 //        y2.whenPressed(new PixelArmResetCom(arm, claw, intake,ele));
+        Button rsb2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.RIGHT_STICK_BUTTON);
+        rsb2.whenPressed(new PixelRelease1(intake));
 
         Button lb2 = new GamepadButton(new GamepadEx(gamepad2), GamepadKeys.Button.LEFT_BUMPER);
         lb2.whenPressed(new IntakeControl(intake,3.0));

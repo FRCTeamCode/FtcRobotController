@@ -18,24 +18,36 @@ public class CameraPro {
     private VisionPortal visionPortal;
     private TfodProcessor tfod;
     private final Telemetry telemetry;
-    private Boolean isTFOD;
+    private Boolean isTFOD, isTFODAprilTag;
     private static final String TFOD_MODEL_ASSET = "model_20231201_200350.tflite";//CDCenterStage.tflite
     private static final String[] CustomLabeles = {"BlueCube", "RedCube", "Pixel", "Z1", "Z2", "Z3"};
 
-    public CameraPro(HardwareMap hardwareMap, Telemetry telemetry, boolean isTFOD) {
+    public CameraPro(HardwareMap hardwareMap, Telemetry telemetry, boolean isTFOD, boolean isTFODAprilTag) {
         this.telemetry = telemetry;
         this.isTFOD = isTFOD;
-//        telemetry.addData("DS" + " preview on/off", "Select init, then tape 3 dots, MyCamera Stream");
+        this.isTFODAprilTag = isTFODAprilTag;
         if (isTFOD) {
-            tfod = new TfodProcessor.Builder()
-                    .setModelAssetName(TFOD_MODEL_ASSET)
-                    .setModelLabels(CustomLabeles)
-                    .setIsModelTensorFlow2(true)
-                    .setIsModelQuantized(true)
-                    .setModelInputSize(300)
-                    .setModelAspectRatio(16.0 / 9.0)
-                    .build();
-            visionPortal = VisionPortal.easyCreateWithDefaults(hardwareMap.get(WebcamName.class, "Webcam 2"), tfod);
+            if (isTFODAprilTag) {
+                aprilTag = new AprilTagProcessor.Builder()
+                        .setDrawAxes(false)
+                        .setDrawCubeProjection(false)
+                        .setDrawTagOutline(true)
+                        .setTagFamily(AprilTagProcessor.TagFamily.TAG_36h11)
+                        .setTagLibrary(AprilTagGameDatabase.getCenterStageTagLibrary())
+                        .setOutputUnits(DistanceUnit.INCH, AngleUnit.DEGREES)
+                        .build();
+                visionPortal = VisionPortal.easyCreateWithDefaults(hardwareMap.get(WebcamName.class, "Webcam 2"), aprilTag);
+            } else {
+                tfod = new TfodProcessor.Builder()
+                        .setModelAssetName(TFOD_MODEL_ASSET)
+                        .setModelLabels(CustomLabeles)
+                        .setIsModelTensorFlow2(true)
+                        .setIsModelQuantized(true)
+                        .setModelInputSize(300)
+                        .setModelAspectRatio(16.0 / 9.0)
+                        .build();
+                visionPortal = VisionPortal.easyCreateWithDefaults(hardwareMap.get(WebcamName.class, "Webcam 2"), tfod);
+            }
         } else {
             aprilTag = new AprilTagProcessor.Builder()
                     .setDrawAxes(false)
@@ -50,7 +62,7 @@ public class CameraPro {
     }
 
     public void loop() {
-        if (isTFOD) {
+        if (isTFOD&&!isTFODAprilTag) {
             telemetryTfod();
         } else {
             telemetryAprilTag();
