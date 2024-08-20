@@ -11,6 +11,7 @@ public class Elevator extends SubsystemBase {
     public static double defaultEle = 0.185;
     public static double eleIntake = 0.26-(0.26-0.185)/2;
     public static double eleIntakePro = 0.29-(0.26-0.185)/2;
+    public static double autoPixel5Ele = 0.36-(0.36-0.185)/2;
     public static double middleEle = 0.43-(0.43-0.185)/2;
     public static double highEle = 0.635-(0.62-0.185)/2;
 
@@ -35,6 +36,9 @@ public class Elevator extends SubsystemBase {
 
     public void middleEle() {
         elevatorServo.setPosition(middleEle);
+    }
+    public void autoPixel5Ele() {
+        elevatorServo.setPosition(autoPixel5Ele);
     }
 
     public void defaultEle() {

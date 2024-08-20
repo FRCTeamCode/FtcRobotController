@@ -20,6 +20,8 @@ public class ClawControl extends CommandBase {
             mClaw.lowerClaw();
         } else if (mClawPos == 1.0) {
             mClaw.lowClaw();
+        } else if (mClawPos == 1.2) {
+            mClaw.lowP5Claw();
         } else if (mClawPos == 1.5) {
             mClaw.lowClawPro();
         } else if (mClawPos == 2.0) {

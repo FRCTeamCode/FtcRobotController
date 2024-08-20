@@ -11,6 +11,7 @@ public class Claw extends SubsystemBase {
     public static double lowerClaw = 0.23;
     public static double lowClaw = 0.39;//
     public static double lowClawPro = 0.392;//
+    public static double lowP5Claw = 0.356;//
     public static double lowMidClaw = 0.27;
     public static double middleLowClaw = 0.375;
     public static double middleClaw = 0.742;//
@@ -40,6 +41,9 @@ public class Claw extends SubsystemBase {
     }
     public void lowClawPro() {
         clawServo.setPosition(lowClawPro);
+    }
+    public void lowP5Claw() {
+        clawServo.setPosition(lowP5Claw);
     }
     public void lowMidClaw() {
         clawServo.setPosition(lowMidClaw);

@@ -357,20 +357,20 @@ public class SampleMecanumFaster extends MecanumDrive {
             }
             //move forward and backward
             if (tag[1] - strafe < 30.0) {
-                strafeVal = MathUtils.clamp((tag[1] - strafe) * 0.1, -0.4, 0.4);
-                strafeFriction = Math.signum(strafeVal) * 0.009;
+                strafeVal = MathUtils.clamp((tag[1] - strafe) * 0.07, -0.4, 0.4);
+                strafeFriction = Math.signum(strafeVal) * 0.007;
             } else {
                 strafeVal = 0.0;
             }
             //Move left and right
             double dist = Math.abs(tag[1] - strafe);
             double kp2 = dist > 4.0 ? dist / 3.0 * dist / 3.0 : 1.0;
-            translationVal = MathUtils.clamp((tag[2] - translation) * 0.35 * kp2, -0.32, 0.32);
-            translationFriction = Math.signum(translationVal) * 0.0055;
+            translationVal = MathUtils.clamp((tag[2] - translation) * 0.27 * kp2, -0.32, 0.32);
+            translationFriction = Math.signum(translationVal) * 0.004;
             //move rotate
             double kp3 = dist > 4.0 ? 1.3 : 1.0;
-            rotationVal = MathUtils.clamp((rotation - tag[3]) * 0.2 * kp3, -0.13, 0.13);
-            rotationFriction = Math.signum(rotationVal) * 0.008;
+            rotationVal = MathUtils.clamp((rotation - tag[3]) * 0.15 * kp3, -0.13, 0.13);
+            rotationFriction = Math.signum(rotationVal) * 0.006;
             updateRobotDrive(
                     -(strafeVal * 0.5 + strafeFriction),             //forward and backward
                     (translationVal * 0.5 + translationFriction),  //left and right

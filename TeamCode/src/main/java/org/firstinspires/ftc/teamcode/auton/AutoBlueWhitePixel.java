@@ -14,7 +14,6 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumFaster;
 import org.firstinspires.ftc.teamcode.hardware.ArmAuto;
 import org.firstinspires.ftc.teamcode.hardware.CameraPro;
 import org.firstinspires.ftc.teamcode.hardware.NavxMicro;
-import org.firstinspires.ftc.teamcode.subsystem.CameraAuto;
 import org.firstinspires.ftc.teamcode.subsystem.Claw;
 import org.firstinspires.ftc.teamcode.subsystem.Elevator;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
@@ -66,42 +65,42 @@ public class AutoBlueWhitePixel extends LinearOpMode {
         TrajectorySequence pathLeft = drive.trajectorySequenceBuilder(AutoConstants.blueSTART)
                 .setVelConstraint(AutoConstants.PARK_VEL3)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL3)
-                .lineToLinearHeading(AutoConstants.BL1_PUT)
+                .lineToLinearHeading(AutoConstants.BLWP_PUT)
                 .addTemporalMarker(0.1, () -> {
                     elevator.eleIntake();
                 })
                 .addTemporalMarker(0.5, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutLowPixel);
                 })
-                .addTemporalMarker(1.0, () -> {
+                .addTemporalMarker(0.6, () -> {
                     claw.lowClaw();
                 })
-                .addTemporalMarker(2.1, () -> {
+                .addTemporalMarker(1.0, () -> {
                     intake.openIntake();
                 })
-                .waitSeconds(0.4)
-                .lineToLinearHeading(AutoConstants.BL1_PUT_Back)
+                .waitSeconds(0.3)
+                .lineToLinearHeading(AutoConstants.BLWP_PUT_Back)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     intake.closeOpenIntake();
                 })
-                .waitSeconds(0.4)
+                .waitSeconds(0.3)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArmPre);
                 })
-                .waitSeconds(0.3)
+                .waitSeconds(0.1)
                 .UNSTABLE_addTemporalMarkerOffset(0.7, () -> {
                     intake.closeIntake();
                 })
                 .UNSTABLE_addTemporalMarkerOffset(0.8, () -> {
                     claw.lowerClaw();
                 })
-                .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE)
-                .lineToLinearHeading(AutoConstants.BL1_BACKSTAGE_better)
+                .lineToLinearHeading(AutoConstants.BLWP_BACKSTAGE)
+                .lineToLinearHeading(AutoConstants.BLWP_BACKSTAGE_better)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
                     armAuto.setArmPos(AutoConstants.autoPutArm);
                 })
-                .waitSeconds(1.0)
-                .lineToLinearHeading(AutoConstants.BL1_Tag)
+                .waitSeconds(0.8)
+                .lineToLinearHeading(AutoConstants.BLWP_Tag_Stop)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(1.8);
                 })
@@ -112,23 +111,41 @@ public class AutoBlueWhitePixel extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
                     armAuto.setArmPos(0.58);
                 })
+                .waitSeconds(0.5)
+                .lineToLinearHeading(AutoConstants.BLWP_Wall_STOP)
                 .lineToLinearHeading(AutoConstants.BLWP_STOP)
-//                .lineToLinearHeading(AutoConstants.BL1_STOP_BACK)
+
                 .build();
         TrajectorySequence pathLeftPark = drive.trajectorySequenceBuilder(AutoConstants.BLWP_WALL)
                 .setVelConstraint(AutoConstants.PARK_VEL3)
                 .setAccelConstraint(AutoConstants.PARK_ACCEL3)
 
+
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+                    elevator.autoPixel5Ele();
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+                    armAuto.setArmPos(AutoConstants.pixel5Height1);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                    armAuto.setArmPos(AutoConstants.pixel5Height11);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {
+                    intake.openIntake();
+                })
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
+                    claw.lowP5Claw();
+                })
+                .UNSTABLE_addTemporalMarkerOffset(1.0, () -> {
+                    intake.closeIntake();
+                })
+                .waitSeconds(1.8)
+
+                .lineToLinearHeading(AutoConstants.BLWP_Wall_STOP)
                 .lineToLinearHeading(AutoConstants.BLWP_BACKSTAGE)
-//
-//                .UNSTABLE_addTemporalMarkerOffset(0.3, () -> {
-//                    armAuto.setArmPos(AutoConstants.autoPutArm);
-//                })
+
 //                .waitSeconds(1.3)
 //                .lineToLinearHeading(AutoConstants.BR2p_BACKSTAGE_back)
-//                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
-//                    armAuto.setArmPos(1.8);
-//                })
 //                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {
 //                    claw.middleClaw();
 //                    elevator.defaultEle();

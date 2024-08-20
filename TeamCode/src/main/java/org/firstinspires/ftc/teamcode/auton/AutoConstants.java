@@ -13,12 +13,12 @@ public class AutoConstants {
     public  static boolean isInitNavxMicro2 = false;
     public static Boolean isFieldControl = false;
     public static Boolean isBlueOrRed = true;
-    public static boolean isUp = true;
+    public static boolean isUp = false;
     public  static double initAngle = AngleUnit.DEGREES.toRadians(0.0);
     public static double isOpRevise = 1.0;
     public  static  double autoPutLowPixel = 0.78;//0.68 -> 0.74
     public  static  double autoPutArmPre = 1.85;
-    public  static  double autoPutArm = 2.5;
+    public  static  double autoPutArm = 2.4;
 
     // Cycle parking constraints
     public static final TrajectoryVelocityConstraint PARK_VEL = SampleMecanumDrive.getVelocityConstraint(24, 4.0, 10.2);
@@ -36,9 +36,16 @@ public class AutoConstants {
     public static final Pose2d redSTART = new Pose2d(0.0, 0.0, 0.0);
     public static final Pose2d blueSTART = new Pose2d(0.0, -1.0, 0.0);
 
-    public static final Pose2d BLWP_STOP = new Pose2d(42.0, -70.0, Math.toRadians(-84.0));
-    public static Pose2d BLWP_WALL = new Pose2d(42.0, -70.0, Math.toRadians(-84.0));
-    public static final Pose2d BLWP_BACKSTAGE = new Pose2d(30.0, 36.0, Math.toRadians(-84.0));
+    public static final double pixel5Height1 = 1.1;
+    public static final double pixel5Height11 = 0.96;
+    public static final Pose2d BLWP_PUT = new Pose2d(21.5, 5.0, 0.0);
+    public static final Pose2d BLWP_PUT_Back = new Pose2d(14.0, 5.0, 0.0);
+    public static final Pose2d BLWP_BACKSTAGE = new Pose2d(21.2, 30.0, Math.toRadians(-84.0));
+    public static final Pose2d BLWP_BACKSTAGE_better = new Pose2d(20.0, 38.0, Math.toRadians(-84.0));
+    public static final Pose2d BLWP_Tag_Stop = new Pose2d(10.0, 0.0, Math.toRadians(-84.0));
+    public static final Pose2d BLWP_Wall_STOP = new Pose2d(10.0, -72.0, Math.toRadians(-84.0));
+    public static final Pose2d BLWP_STOP = new Pose2d(35.0, -72.0, Math.toRadians(-84.0));
+    public static Pose2d BLWP_WALL = new Pose2d(35.0, -72.0, Math.toRadians(-84.0));
 
     //Blue near BACKSTAGE side - Left
     public static final Pose2d BL1_PUT = new Pose2d(20.5, 5.9, 0.0);
